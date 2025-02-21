@@ -1,15 +1,10 @@
 'use client'
-import { ExposureRegular } from '@/app/layout'
 import { pagePadding } from '@/app/styles'
 import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { fadeIn } from '@/app/variants/fadIn'
-import TestComponent from '@/app/components/TestComponent'
-import { SessionProvider } from 'next-auth/react'
-import { cookies } from 'next/headers'
-import { decrypt } from '@/app/lib/session'
-import { userContext } from '@/app/context/userContext'
+
 
 const AboutPage = ()=>  {
   useEffect(() => {
@@ -31,7 +26,6 @@ console.log('3000')
     "/about/1.jpg",
     "/about/2.jpg",
   ];
-  const {user}= useContext(userContext)
 
   return (
     <div className={`min-h-screen h-auto ${pagePadding} pt-16 pb-16 md:pb-4  h-auto text-start flex justify-between flex-col items-start bg-backgroundColor`}>
@@ -42,7 +36,7 @@ console.log('3000')
                          viewport={{once:true,amount:0.6}}
            className='relative flex  flex-col items-start'>
 
-            <p className={`${ExposureRegular.className} text-xl text-primary`}>
+            <p className={` text-xl text-primary`}>
                 our story 
                 {/* {user?.email} */}
             </p>
