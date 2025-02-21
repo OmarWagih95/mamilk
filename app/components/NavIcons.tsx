@@ -49,7 +49,7 @@ const NavIcons = () => {
   }, [isProfileOpen, isCartOpen]);
 
   return (
-    <div className='hover:cursor-pointer flex items-center gap-4 xl:gap-6  md:px-10 '>
+    <div className='hover:cursor-pointer flex items-center gap-4 xl:gap-6   '>
       {/* <Link href={'/pages/'} className='hidden md:flex'>SHOP</Link> */}
       <h2  className='hidden md:flex'>SHOP</h2>
       

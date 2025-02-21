@@ -115,11 +115,12 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
     //   whileInView="show"
     //   viewport={{ once: true, amount: 0.6 }}
      
-    <div onClick={()=>{
-      router.push(`/pages/productPage/${product._id}`)
-    }} className="bg-white flex flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
+    <div  className="bg-white flex flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
     <div className="w-full">
       <img src={product.variations[0].images[0]} alt="Product 1"
+      onClick={()=>{
+        router.push(`/pages/productPage/${product._id}`)
+      }}
         className="w-full object-cover object-top aspect-[230/307]" />
     </div>
 

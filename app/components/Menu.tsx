@@ -24,16 +24,14 @@ const Menu: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.0 }}
-          className={`bg-babyBlue test text-primary w-full items-start justify-center absolute z-40 top-0 left-0 h-[100vh] gap-8 flex flex-col`}
+          className={`bg-backgroundColor test text-primary w-full items-start justify-center absolute z-40 top-0 left-0 h-[100vh] gap-8 flex flex-col`}
         >
-          <div className='flex w-full pt-0 gap-32 justify-between flex-col  border-b border-primary'>
-<div className='flex flex-col border-b border-primary'>
+          <div className='flex w-full pt-0 gap-32 justify-between flex-col'>
+<div className='flex flex-col gap-4'>
           <Link className={``} href="/" >
             HOME
           </Link>
-          <Link className={``} href="/pages/account" >
-            ACCOUNT
-          </Link>
+
           <Link
           className={``}
             href="/pages/wishlist"
@@ -46,28 +44,14 @@ const Menu: React.FC = () => {
             CART
           </Link>
 
-</div>
-<div className='flex flex-col'>
           <Link 
           className={``}
           href="/pages/about">
             ABOUT
           </Link>
-          <Link
-          className={``}
-          href="/pages/archive" >
-            ARCHIVE
-          </Link>
-          <Link 
-          className={``}
-          href="/pages/policies?return-and-exchange" >
-            RETURN & EXCHANGE
-          </Link>
-          <Link 
-          className={``}
-          href="/pages/faq" >
-            FAQ
-          </Link>
+
+
+     
           <Link 
           className={``}
           href="/pages/policies" >
@@ -78,7 +62,7 @@ const Menu: React.FC = () => {
           href="/pages/contact" >
             CONTACT
           </Link>
-          <Link 
+          {/* <Link 
           className={``}
           target='#' href={'https://www.instagram.com/anchuva__/'} >
             INSTAGRAM
@@ -87,14 +71,10 @@ const Menu: React.FC = () => {
           className={``}
           target='#' href={'https://web.facebook.com/anchuva/?_rdc=1&_rdr'} >
             FACEBOOK
-          </Link>
-          <Link 
-          className={``}
-          target='#' href={'https://www.tiktok.com/@anchuva'} >
-            TIKTOK
-          </Link>
+          </Link> */}
+          </div>
 
-</div>
+
           </div>
         </motion.div>
       )}

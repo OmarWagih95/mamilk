@@ -45,7 +45,7 @@ const Navbar = () => {
     {/* <div className='bg-backgroundColor text-primary  h-14 relative px-4 md:px-4 lg:px-8 xl:px-16'> */}
       {/* mobile Nav */}
         <div className='flex lg:hidden justify-between items-center h-full'>
-            <Link className='text-2xl tracking-wider' href={'/'}><Image alt='logo' width={150} height={70} src='/logo.png'></Image></Link>
+            <Link className='text-2xl tracking-wider' href={'/'}><Image alt='logo' width={120} height={70} src='/logo1.PNG'></Image></Link>
             
             <div className='flex items-center'>
               <NavIcons/>
@@ -53,13 +53,13 @@ const Navbar = () => {
               </div>
         </div>
         {/* //meduimSize */}
-        <div className='hidden  lg:flex justify-between items-center h-full'>
+        <div className='hidden px-8 lg:flex justify-between items-center h-full'>
             <div className='flex w-1/3  items-center justify-start  gap-4'>
             {/* Logo */}
               <Link className='text-2xl tracking-wider' href={'/'}>
-              <div className='relative  w-[220px] h-[120px]'>
+              <div className='relative  w-[150px] h-[80px]'>
 
-              <Image fill alt='' src='/logo.png'></Image>
+              <Image fill alt='' src='/logo1.PNG'></Image>
               </div>
               </Link>
               </div>
