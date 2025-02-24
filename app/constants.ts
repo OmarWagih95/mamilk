@@ -13,18 +13,20 @@ const Categories:Category[]=[
 export const testProducts: Product[] = [
     {
       _id: "prod_001",
-      title: "Elegant Leather Handbag",
+      title: "Product 1",
       description: "A premium leather handbag perfect for all occasions.",
-      price: 149.99,
+      price: 150,
       variations: [
         {
-          color: "Black",
+          color: "green",
           sizes: [
             { type: "One Size", name: "OS" }
           ],
           images: [
-            "/test1.jpeg",
-            "https://example.com/images/handbag-black-2.jpg"
+            "/category8.jpeg",
+            "/product12.jpeg",
+            "/product13.jpeg",
+
           ],
           stock: 20
         },
@@ -34,8 +36,9 @@ export const testProducts: Product[] = [
             { type: "One Size", name: "OS" }
           ],
           images: [
-            "/test1.jpeg",
-            "https://example.com/images/handbag-brown-2.jpg"
+            "/category8.jpeg",
+            "/product12.jpeg",
+            "/product13.jpeg",
           ],
           stock: 15
         }
@@ -46,20 +49,19 @@ export const testProducts: Product[] = [
     },
     {
       _id: "prod_002",
-      title: "Casual Sneakers",
+      title: "Product 2",
       description: "Comfortable sneakers designed for everyday wear.",
-      price: 89.99,
+      price: 90,
       variations: [
         {
-          color: "White",
+          color: "Off-White",
           sizes: [
             { type: "EU", name: "40" },
             { type: "EU", name: "42" }
           ],
           images: [
-            "/test1.jpeg",
-            "https://example.com/images/sneakers-white-2.jpg"
-          ],
+            "/product2.jpeg",
+            "/product21.jpeg"          ],
           stock: 30
         },
         {
@@ -79,74 +81,55 @@ export const testProducts: Product[] = [
       productDetails: ["Breathable mesh upper", "Lightweight rubber sole", "Slip-resistant"],
       productCare: ["Machine washable", "Air dry only"]
     },
-    {
-      _id: "prod_003",
-      title: "Luxury Silk Scarf",
-      description: "A soft and elegant silk scarf with a floral pattern.",
-      price: 59.99,
-      variations: [
-        {
-          color: "Red",
-          sizes: [
-            { type: "One Size", name: "OS" }
-          ],
-          images: [
-            "/test1.jpeg",
-            "https://example.com/images/scarf-red-2.jpg"
-          ],
-          stock: 40
-        }
-    ,    {
-          color: "Black",
-          sizes: [
-            { type: "One Size", name: "OS" },{ type: "One Size", name: "xl" }
-          ],
-          images: [
-            "/test1.jpeg",
-            "https://example.com/images/scarf-red-2.jpg"
-          ],
-          stock: 40
-        }
-      ],
-      productDimensions: ["90cm x 90cm"],
-      productDetails: ["100% Silk", "Hand-stitched edges", "Limited edition print"],
-      productCare: ["Dry clean only", "Store in a cool, dry place"]
-    }
+    // {
+    //   _id: "prod_003",
+    //   title: "Luxury Silk Scarf",
+    //   description: "A soft and elegant silk scarf with a floral pattern.",
+    //   price: 59.99,
+    //   variations: [
+    //     {
+    //       color: "Red",
+    //       sizes: [
+    //         { type: "One Size", name: "OS" }
+    //       ],
+    //       images: [
+    //         "/test1.jpeg",
+    //         "https://example.com/images/scarf-red-2.jpg"
+    //       ],
+    //       stock: 40
+    //     }
+    // ,    {
+    //       color: "Black",
+    //       sizes: [
+    //         { type: "One Size", name: "OS" },{ type: "One Size", name: "xl" }
+    //       ],
+    //       images: [
+    //         "/test1.jpeg",
+    //         "https://example.com/images/scarf-red-2.jpg"
+    //       ],
+    //       stock: 40
+    //     }
+    //   ],
+    //   productDimensions: ["90cm x 90cm"],
+    //   productDetails: ["100% Silk", "Hand-stitched edges", "Limited edition print"],
+    //   productCare: ["Dry clean only", "Store in a cool, dry place"]
+    // }
   ];
   
   // Sample Cart Items
-  export const testCartItems: CartItem[] = [
-    {
-      id: 1,
-      productId: "prod_001",
-      productName: "Elegant Leather Handbag",
-      price: 149.99,
-      quantity: 1,
-      imageUrl: "https://example.com/images/handbag-black-1.jpg",
-      color: "Black"
-    },
-    {
-      id: 2,
-      productId: "prod_002",
-      productName: "Casual Sneakers",
-      price: 89.99,
-      quantity: 2,
-      imageUrl: "https://example.com/images/sneakers-white-1.jpg",
-      color: "White"
-    }
-  ];
+
   
   // Sample Image Variants
-  export const testImageVariants: ImageVariant[] = [
-    {
-      image: "https://example.com/images/handbag-black-1.jpg",
-      color: "Black"
-    },
-    {
-      image: "https://example.com/images/sneakers-white-1.jpg",
-      color: "White"
-    }
-  ];
+  // export const testImageVariants: ImageVariant[] = [
+  //   {
+  //     image: "https://example.com/images/handbag-black-1.jpg",
+  //     color: "Black"
+  //   },
+  //   {
+  //     image: "https://example.com/images/sneakers-white-1.jpg",
+  //     color: "White"
+  //   }
+  // ];
   
 
 

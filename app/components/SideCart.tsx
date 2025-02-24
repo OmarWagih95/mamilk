@@ -97,7 +97,7 @@ navigator.clipboard
 </Link>
 </div>
 <div className='w-full max-h-[60vh] scrollbar-hidden overflow-scroll'>
-    <div>
+    <div className='space-y-3'>
         {cart.map((item,index) =>{
                       total += item.price * item.quantity
 

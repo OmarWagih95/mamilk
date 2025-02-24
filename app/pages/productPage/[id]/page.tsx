@@ -100,10 +100,10 @@ const ProductPage = () => {
           {/* Product Details */}
           <div className="w-full lg:sticky top-0 lg:col-span-2">
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-800">{product?.title}</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-secondary">{product?.title}</h3>
               <p className="text-gray-500 mt-4 text-sm">{product?.description}</p>
               <div className="flex items-center flex-wrap gap-4 mt-4">
-                <h4 className="text-gray-800 text-2xl sm:text-3xl font-bold">{product?.price} LE</h4>
+                <h4 className="text-secondary text-2xl sm:text-3xl font-bold">{product?.price} LE</h4>
               </div>
             </div>
 
@@ -111,7 +111,7 @@ const ProductPage = () => {
 
             {/* Color Selection */}
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-800">Colors</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-secondary">Colors</h3>
               <div className="flex flex-wrap gap-4 mt-4">
                 {product?.variations?.map((variation, index) => (
                   <button
@@ -130,7 +130,7 @@ const ProductPage = () => {
 
             {/* Size Selection */}
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-800">Sizes</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-secondary">Sizes</h3>
               <div className="flex flex-wrap gap-4 mt-4">
                 {selectedVariation?.sizes?.length ? (
                   selectedVariation.sizes.map((size, index) => (
@@ -153,7 +153,7 @@ const ProductPage = () => {
 
             {/* Quantity Selector */}
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-800">Quantity</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-secondary">Quantity</h3>
               <div className="flex items-center mt-4">
                 <button
                   onClick={decreaseQuantity}
@@ -183,7 +183,7 @@ const ProductPage = () => {
             <hr className="my-6 border-gray-300" />
 
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-800">Product Information</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-secondary">Product Information</h3>
               <ul className="text-sm text-gray-600 mt-2">
                 {product?.productDetails?.map((detail, index) => (
                   <li key={index}>• {detail}</li>

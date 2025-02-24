@@ -56,21 +56,22 @@ const CheckoutPage = () => {
                       className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
+                    <input type="number" placeholder="Phone"
+                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                  <div>
                     <select 
+                    onChange={(e)=>{setState(e.target.value)}}
                       className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none">
                         {states.map((state,index)=><option value={state.name}>{state.name}</option>)}
                         </select>
                   </div>
+                  </div>
                   <div>
-                    <input type="text" placeholder="City"
+                    <input type="text" placeholder="Address"
                       className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
-                    <input type="text" placeholder="State"
-                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
-                  </div>
-                  <div>
-                    <input type="number" placeholder="Postal code"
+                    <input type="text" placeholder="Notes"
                       className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                 </div>
