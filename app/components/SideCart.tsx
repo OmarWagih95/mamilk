@@ -119,13 +119,13 @@ navigator.clipboard
   <h1>{total}</h1>
 </div>
 <div className='flex flex-col w-full items-center gap-4'>
-    <Link href={'/pages/cart'} onClick={toggleDrawer} className='rounded-sm w-full flex justify-center border border-primary cursor-pointer px-4 py-2 text-primary  hover:bg-secondary transition duration-300 shadow-md'>
+    <Link href={'/pages/cart'} onClick={toggleDrawer} className='rounded-sm w-full flex justify-center border border-primary cursor-pointer px-4 py-2 text-primary hover:cursor-pointer hover:bg-secondary hover:text-white transition duration-300 shadow-md'>
         {/* <button onClick={toggleDrawer} href={'/pages/cart'}>VIEW CART</button>  */}
         <button onClick={()=>{toggleDrawer()
           router.push('/pages/cart')
         }} >VIEW CART</button> 
     </Link>
-{  cart.length>0?  <Link  onClick={toggleDrawer} href={'/pages/checkout'} className=' w-full rounded-sm flex justify-center  cursor-pointer text-white px-4 py-2 bg-primary hover:text-primary hover:border-primary hover:border hover:bg-secondary shadow-md'>
+{  cart.length>0?  <Link  onClick={toggleDrawer} href={'/pages/checkout'} className=' w-full rounded-sm flex justify-center  cursor-pointer text-white px-4 py-2 bg-primary hover:cursor-pointer hover:border-primary hover:border hover:bg-secondary shadow-md'>
         <button >CHECKOUT</button> 
         
     </Link>:

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CartItem } from '../interfaces/interfaces'
 import Image from 'next/image'
 import { cartContext } from '../context/cartContext'
+import MamilkButton from './MamilkButton'
 
 const BigCartItem = ({cartItem}:{cartItem:CartItem}) => {
     const {cart,setCart}=useContext(cartContext)
@@ -40,14 +41,14 @@ const BigCartItem = ({cartItem}:{cartItem:CartItem}) => {
 
     const[modalAppear,toggleRemoveModal]=useState(false)
   return (
-    <div className='flex w-full border-b border-primary items-start text-primary mr-28'>
+    <div className='flex w-full px-2 py-1 border-2 rounded-md border-primary items-start text-primary mr-28'>
         <span onClick={()=>toggleRemoveModal((prevState)=>!prevState)} className='hover:cursor-pointer mr-10 md:mr-20 lg:mr-24 hover:rotate-180 transition duration-700'>x</span>
 
     <div className='flex  pb-2 w-full justify-between items-start text-primary'>
         <div className='relative w-[60px] h-[70px] md:w-[100px] md:h-[120px]'>
         <Image  fill alt={cartItem.productName} src={cartItem.imageUrl}></Image>
         </div>
-        <h2 className={` text-lg`}>{cartItem.productName}</h2>
+        <h2 className={`text-[12px] md:text-lg`}>{cartItem.productName}</h2>
         <p className='text-[12px] lg:text-lg'>COLOR:{cartItem.color}</p>
         <p className='text-[12px] lg:text-lg'> 
           <span className='cursor-pointer' onClick={()=>handleQuantity('-',cartItem.id)}>&lt; </span>
@@ -59,11 +60,10 @@ const BigCartItem = ({cartItem}:{cartItem:CartItem}) => {
             <span onClick={()=>toggleRemoveModal(false)} className='hover:cursor-pointer hover:rotate-180 transition-transform inline-block duration-700' >x</span>
             <h1 className='py-6 text-center text-sm'>ARE YOU SURE YOU WANT TO REMOVE THIS ITEM FROM YOUR CART ?</h1>
             <div className='flex w-full justify-center gap-3 py-4'>
-            {/* <AnchuvaButton disabled={false} buttonText={'DECLINE'} onClick={()=>toggleRemoveModal(false)}/>
-            <AnchuvaButton  disabled={false} buttonText={'CONFIRM'} onClick={()=>{ */}
-                {/* deleteItem(cartItem.id);
-                toggleRemoveModal(false)
-            }}/> */}
+            <MamilkButton disabled={false} buttonText={'DECLINE'} onClick={()=>toggleRemoveModal(false)}/>
+            <MamilkButton  disabled={false} buttonText={'CONFIRM'} onClick={()=>{deleteItem(cartItem.id);
+                toggleRemoveModal(false)}} />
+    
 
 
             </div>

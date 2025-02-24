@@ -20,8 +20,8 @@ const CategoryPage = () => {
 
   return (
     <div className="bg-white">
-      <div className="font-sans w-screen min-h-screen h-auto bg-white p-4 mx-auto lg:max-w-6xl md:max-w-4xl">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-6 sm:mb-10">Premium Threads</h2>
+      <div className="font-sans pt-14 w-screen min-h-screen h-auto bg-white p-4 mx-auto lg:max-w-6xl md:max-w-4xl">
+        <h2 className="text-2xl sm:text-3xl font-bold text-primary mt-6 md:mt-10 mb-6 md:mb-10">Premium Threads</h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {productList.map((product, index) => (

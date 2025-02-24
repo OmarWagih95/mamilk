@@ -71,9 +71,9 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
 
 
     return (
-      <div className=''>
+      <div className='text-primary border border-primary rounded-md px-2 py-2'>
 
-        <div className="flex w-full h-full border-b border-gray-400 py-2  gap-4">
+        <div className="flex w-full h-full  py-2  gap-4">
           <div  className='cursor-pointer h-full flex justify-start items-start'><span onClick={()=>deleteItem(item.productId)} className='text-[12px] text-primary'>x</span></div>
         <div className='relative min-w-[80px] min-h-[80px]'>
 
@@ -87,7 +87,7 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
     
         <div className='flex w-full flex-col justify-between '>
          <div>
-         <h3 className="text-sm w-full text-black">{item.productName}</h3>
+         <h3 className="text-sm w-full ">{item.productName}</h3>
           </div> 
           <div className='flex w-full  text-[10px] text-gray-400 justify-between'> 
             <h3 className=''>COLOR : {item.color}</h3>
@@ -104,7 +104,7 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
 
             </div>
     
-            <div>
+            <div className=''>
             TOTAL :  {item.quantity*item.price} LE
             </div>
           </div>

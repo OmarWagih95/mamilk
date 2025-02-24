@@ -4,36 +4,39 @@ import Menu from './Menu'
 // import SearchBar from './SearchBar'
 import NavIcons from './NavIcons'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { pagePadding } from '../styles'
 // import { useEffect, useState } from 'react'
 // import { CartItem } from '../interfaces/interfaces'
 // import { CartItem } from '../interfaces/interfaces'
 
 const Navbar = () => {
-  // const [isVisible, setIsVisible] = useState(true);
-  // const [lastScrollY, setLastScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const currentScrollY = window.scrollY;
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-  //     if (currentScrollY > lastScrollY && currentScrollY > 50) {
-  //       // Scrolling down, hide header
-  //       setIsVisible(false);
-  //     } else {
-  //       // Scrolling up, show header
-  //       setIsVisible(true);
-  //     }
-  //     setLastScrollY(currentScrollY);
-  //   };
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // Scrolling down, hide header
+        setIsVisible(false);
+      } else {
+        // Scrolling up, show header
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
 
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, [lastScrollY]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
 
   return (
     <div
     className={`fixed  text-primary  h-14 top-0 left-0 w-full transition-transform duration-500 z-40 px-1 
-
+      ${isVisible ? 'translate-y-0' : '-translate-y-full'}
      bg-backgroundColor`}
     // <div
     // className={`fixed  text-primary  h-14 top-0 left-0 w-full transition-transform duration-500 z-40 px-1 
@@ -53,7 +56,7 @@ const Navbar = () => {
               </div>
         </div>
         {/* //meduimSize */}
-        <div className='hidden px-8 lg:flex justify-between items-center h-full'>
+        <div className={`hidden ${pagePadding} lg:flex justify-between items-center h-full`}>
             <div className='flex w-1/3  items-center justify-start  gap-4'>
             {/* Logo */}
               <Link className='text-2xl tracking-wider' href={'/'}>

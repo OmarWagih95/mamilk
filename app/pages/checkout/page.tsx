@@ -1,6 +1,38 @@
-import React from 'react'
+'use client'
+import CartItemSmall from '@/app/components/cart/CartItemSmall';
+import { cartContext } from '@/app/context/cartContext';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
 
 const CheckoutPage = () => {
+  const [subTotal, setSubTotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  const {cart,setCart}=useContext(cartContext)
+  const [state, setState] = useState('Cairo');
+  const [shipping,setShipping]=useState(70)
+  const [states, setStates] = useState<{ name: string,shipping_zone:number }[]>([]);
+
+
+    useEffect(() => {
+      const getStates = async () => {
+        const response = await axios.get(
+          `/api/states`
+        );        setStates(response.data);
+        if (response.data.length > 0) {
+          setState(response.data[0].name);
+        }
+      }
+      getStates();
+    const calculatedSubTotal = cart.reduce(
+      (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
+      0
+  );
+  setSubTotal(calculatedSubTotal);
+  setTotal(calculatedSubTotal + shipping);
+  
+  
+  }, [])
+  
   return (
     <div className="pt-14 bg-white">
       <div className="max-lg:max-w-xl mx-auto w-full">
@@ -20,12 +52,14 @@ const CheckoutPage = () => {
                       className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
-                    <input type="email" placeholder="Email address"
+                    <input type="email" placeholder="Email"
                       className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
-                    <input type="text" placeholder="Street address"
-                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                    <select 
+                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none">
+                        {states.map((state,index)=><option value={state.name}>{state.name}</option>)}
+                        </select>
                   </div>
                   <div>
                     <input type="text" placeholder="City"
@@ -99,7 +133,7 @@ const CheckoutPage = () => {
               </div> */}
 
               <div className="flex flex-wrap gap-4 mt-8">
-                <button type="button" className="min-w-[150px] px-6 py-3.5 text-sm bg-primary text-white rounded-lg hover:bg-secondary">Confirm payment $240</button>
+                <button type="button" className="min-w-[150px] px-6 py-3.5 text-sm bg-primary text-white rounded-lg hover:bg-secondary">Confirm Order</button>
               </div>
             </form>
           </div>
@@ -110,85 +144,16 @@ const CheckoutPage = () => {
                 <h2 className="text-xl font-bold text-primary">Order Summary</h2>
 
                 <div className="space-y-6 mt-8">
-                  <div className="flex gap-4">
-                    <div className="w-[124px] h-[100px] flex items-center justify-center p-4 shrink-0 bg-gray-200 rounded-lg">
-                      <img src='https://readymadeui.com/images/product10.webp' className="w-full object-contain" />
-                    </div>
+                  {cart.map((cartona,index)=>
+                 < CartItemSmall item={cartona} wishListBool={false} key={index} />
+                  )}
 
-                    <div className="w-full">
-                      <h3 className="text-sm text-gray-800 font-bold">Naruto: Split Sneakers</h3>
-                      <ul className="text-xs text-gray-800 space-y-1 mt-2">
-                        <li className="flex flex-wrap gap-4">Size <span className="ml-auto">37</span></li>
-                        <li className="flex flex-wrap gap-4">Quantity <span className="ml-auto">2</span></li>
-                        <li className="flex flex-wrap gap-4">Total Price <span className="ml-auto">$40</span></li>
-                      </ul>
-                    </div>
-                  </div>
 
-                  <div className="flex gap-4">
-                    <div className="w-[124px] h-[100px] flex items-center justify-center p-4 shrink-0 bg-gray-200 rounded-lg">
-                      <img src='https://readymadeui.com/images/product11.webp' className="w-full object-contain" />
-                    </div>
-
-                    <div className="w-full">
-                      <h3 className="text-sm text-gray-800 font-bold">VelvetGlide Boots</h3>
-                      <ul className="text-xs text-gray-800 space-y-1 mt-2">
-                        <li>Size <span className="float-right">37</span></li>
-                        <li>Quantity <span className="float-right">2</span></li>
-                        <li>Total Price <span className="float-right">$40</span></li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="w-[124px] h-[100px] flex items-center justify-center p-4 shrink-0 bg-gray-200 rounded-lg">
-                      <img src='https://readymadeui.com/images/product14.webp' className="w-full object-contain" />
-                    </div>
-
-                    <div className="w-full">
-                      <h3 className="text-sm text-gray-800 font-bold">Echo Elegance</h3>
-                      <ul className="text-xs text-gray-800 space-y-1 mt-2">
-                        <li>Size <span className="float-right">37</span></li>
-                        <li>Quantity <span className="float-right">2</span></li>
-                        <li>Total Price <span className="float-right">$40</span></li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="w-[124px] h-[100px] flex items-center justify-center p-4 shrink-0 bg-gray-200 rounded-lg">
-                      <img src='https://readymadeui.com/images/product12.webp' className="w-full object-contain" />
-                    </div>
-
-                    <div className="w-full">
-                      <h3 className="text-sm text-gray-800 font-bold">Naruto: Split Sneakers</h3>
-                      <ul className="text-xs text-gray-800 space-y-1 mt-2">
-                        <li className="flex flex-wrap gap-4">Size <span className="ml-auto">37</span></li>
-                        <li className="flex flex-wrap gap-4">Quantity <span className="ml-auto">2</span></li>
-                        <li className="flex flex-wrap gap-4">Total Price <span className="ml-auto">$40</span></li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="w-[124px] h-[100px] flex items-center justify-center p-4 shrink-0 bg-gray-200 rounded-lg">
-                      <img src='https://readymadeui.com/images/product9.webp' className="w-full object-contain" />
-                    </div>
-
-                    <div className="w-full">
-                      <h3 className="text-sm text-gray-800 font-bold">VelvetGlide Boots</h3>
-                      <ul className="text-xs text-gray-800 space-y-1 mt-2">
-                        <li>Size <span className="float-right">37</span></li>
-                        <li>Quantity <span className="float-right">2</span></li>
-                        <li>Total Price <span className="float-right">$40</span></li>
-                      </ul>
-                    </div>
-                  </div>
                 </div>
               </div>
 
               <div className="lg:absolute lg:left-0 lg:bottom-0 bg-gray-200 w-full p-4">
-                <h4 className="flex flex-wrap gap-4 text-sm text-gray-800 font-bold">Total <span className="ml-auto">$240.00</span></h4>
+                <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Total <span className="ml-auto">240.00 LE</span></h4>
               </div>
             </div>
           </div>

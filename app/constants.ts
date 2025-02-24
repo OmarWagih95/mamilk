@@ -23,7 +23,7 @@ export const testProducts: Product[] = [
             { type: "One Size", name: "OS" }
           ],
           images: [
-            "/category1.jpeg",
+            "/test1.jpeg",
             "https://example.com/images/handbag-black-2.jpg"
           ],
           stock: 20
@@ -34,7 +34,7 @@ export const testProducts: Product[] = [
             { type: "One Size", name: "OS" }
           ],
           images: [
-            "/category1.jpeg",
+            "/test1.jpeg",
             "https://example.com/images/handbag-brown-2.jpg"
           ],
           stock: 15
@@ -57,7 +57,7 @@ export const testProducts: Product[] = [
             { type: "EU", name: "42" }
           ],
           images: [
-            "/category1.jpeg",
+            "/test1.jpeg",
             "https://example.com/images/sneakers-white-2.jpg"
           ],
           stock: 30
@@ -69,7 +69,7 @@ export const testProducts: Product[] = [
             { type: "EU", name: "43" }
           ],
           images: [
-            "/category1.jpeg",
+            "/test1.jpeg",
             "https://example.com/images/sneakers-blue-2.jpg"
           ],
           stock: 25
@@ -91,7 +91,7 @@ export const testProducts: Product[] = [
             { type: "One Size", name: "OS" }
           ],
           images: [
-            "/category1.jpeg",
+            "/test1.jpeg",
             "https://example.com/images/scarf-red-2.jpg"
           ],
           stock: 40
@@ -102,7 +102,7 @@ export const testProducts: Product[] = [
             { type: "One Size", name: "OS" },{ type: "One Size", name: "xl" }
           ],
           images: [
-            "/category1.jpeg",
+            "/test1.jpeg",
             "https://example.com/images/scarf-red-2.jpg"
           ],
           stock: 40
