@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import constants from '../constants';
 import Link from 'next/link';
 
-const ShopModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const ShopModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+    const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      // Open the modal
-      setIsVisible(true);
-    } else {
-      // Start the closing animation
-      setIsVisible(false);
-    }
-  }, [isOpen]);
+    useEffect(() => {
+      if (isOpen) {
+        // Open the modal
+        setIsVisible(true);
+      } else {
+        // Start the closing animation
+        setIsVisible(false);
+      }
+    }, [isOpen]);
 
-  if (!isOpen && !isVisible) return null;
+    if (!isOpen && !isVisible) return null;
 
   return (
     <>

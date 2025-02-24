@@ -1,8 +1,7 @@
 type ShippingZone = {
-    zoneID: number;
-    zoneName: string
-    localGlobal: string;
-    zoneRate: number;
+    zone_id: number;
+    zone_name: string
+    zone_rate: number;
   };
 
   type Country = {
