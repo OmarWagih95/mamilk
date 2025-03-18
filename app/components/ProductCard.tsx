@@ -10,6 +10,7 @@ import { wishListContext } from '../context/wishListContext';
 // import { fadeIn } from '../variants/fadIn';
 import { Product } from '../interfaces/interfaces';
 import { useRouter } from 'next/navigation';
+import { Gluten } from '@/app/layout';
 // import { ExposureRegular } from '../layout';
 
 const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Product,color:string,search:boolean }) => {
@@ -115,7 +116,7 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
     //   whileInView="show"
     //   viewport={{ once: true, amount: 0.6 }}
      
-    <div  className="bg-white flex flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
+    <div  className="bg-backgroundColor flex flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
     <div className="w-full">
       <img src={product.variations[0].images[0]} alt="Product 1"
       onClick={()=>{
@@ -126,7 +127,7 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
 
     <div className="p-4 flex-1 flex flex-col">
       <div className="flex-1">
-        <h5 className="text-sm sm:text-base font-bold text-gray-800 line-clamp-2">{product.title}</h5>
+        <h5 className={`text-sm sm:text-base ${Gluten.className} font-bold text-gray-800 line-clamp-2`}>{product.title}</h5>
         <div className="mt-2 flex items-center flex-wrap gap-2">
           <h6 className="text-sm sm:text-base font-bold text-gray-800">{product.price} EGP</h6>
           <div onClick={() => {

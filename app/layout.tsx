@@ -9,22 +9,25 @@ import Footer from "./components/sections/Footer";
 import SplashScreen from "./components/sections/SplashScreen";
 
 export const testFont = localFont({
-  src: "/fonts/Shafarik-Regular.ttf",
+  src: "/fonts/Dangrek-Regular.ttf",
 });
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+export const Gluten = localFont({
+  src: "/fonts/Gluten.ttf",
 });
+export const Genos = localFont({
+  src: "/fonts/Genos.ttf",
+});
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "MAMILK",
-  description: "",
-};
+// export const metadata: Metadata = {
+//   title: "MAMILK",
+//   description: "",
+// };
 
 export default function RootLayout({
   children,
@@ -34,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${testFont.className} w-screen overflow-x-hidden antialiased`}
+        className={`${Genos.className} w-screen overflow-x-hidden antialiased`}
       >
                 <SplashScreen /> {/* Add the splash screen component */}
 
