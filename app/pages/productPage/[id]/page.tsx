@@ -5,6 +5,7 @@ import constants from '@/app/constants';
 import { Product } from '@/app/interfaces/interfaces';
 import { cartContext } from '@/app/context/cartContext';
 import Swal from 'sweetalert2';
+import { Gluten } from '@/app/layout';
 
 const ProductPage = () => {
   const params = useParams();
@@ -82,7 +83,7 @@ const ProductPage = () => {
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
   return (
-    <div className="bg-white pt-16 p-4">
+    <div className="bg-pink0 pt-16 p-4">
       <div className="w-full">
         <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8 max-lg:gap-12 max-sm:gap-8">
           
@@ -98,12 +99,12 @@ const ProductPage = () => {
           </div>
 
           {/* Product Details */}
-          <div className="w-full lg:sticky top-0 lg:col-span-2">
+          <div className="w-full lg:sticky top-0 lg:col-span-2 text-primary">
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-secondary">{product?.title}</h3>
+              <h3 className={`${Gluten.className} text-xl sm:text-2xl lg:text-4xl font-bold `}>{product?.title}</h3>
               <p className="text-gray-500 mt-4 text-sm">{product?.description}</p>
               <div className="flex items-center flex-wrap gap-4 mt-4">
-                <h4 className="text-secondary text-2xl sm:text-3xl font-bold">{product?.price} LE</h4>
+                <h4 className=" text-2xl sm:text-3xl font-bold">{product?.price} LE</h4>
               </div>
             </div>
 
@@ -111,14 +112,14 @@ const ProductPage = () => {
 
             {/* Color Selection */}
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-secondary">Colors</h3>
+              <h3 className="text-lg sm:text-xl font-bold ">Colors</h3>
               <div className="flex flex-wrap gap-4 mt-4">
                 {product?.variations?.map((variation, index) => (
                   <button
                     key={index}
                     type="button"
                     onClick={() => setSelectedColor(variation.color)}
-                    className={`px-4 py-2 border ${selectedColor === variation.color ? 'border-primary bg-primary text-white' : 'border-gray-300 bg-white text-gray-800'} text-sm font-semibold`}
+                    className={`px-4 py-2 border ${selectedColor === variation.color ? ' bg-gradient-to-r from-pink3  to-primary text-white' : 'border-gray-300 bg-pink3 text-white'} text-sm font-semibold`}
                   >
                     {variation.color}
                   </button>
@@ -130,7 +131,7 @@ const ProductPage = () => {
 
             {/* Size Selection */}
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-secondary">Sizes</h3>
+              <h3 className="text-lg sm:text-xl font-bold ">Sizes</h3>
               <div className="flex flex-wrap gap-4 mt-4">
                 {selectedVariation?.sizes?.length ? (
                   selectedVariation.sizes.map((size, index) => (
@@ -138,7 +139,7 @@ const ProductPage = () => {
                       key={index}
                       type="button"
                       onClick={() => setSelectedSize(size.name)}
-                      className={`w-10 h-9 border ${selectedSize === size.name ? 'border-primary bg-primary text-white' : 'border-gray-300 bg-white text-gray-800'} text-sm flex items-center justify-center shrink-0`}
+                      className={`w-10 h-9 border ${selectedSize === size.name ? 'bg-gradient-to-r from-pink3  to-primary text-white' : 'border-gray-300 bg-pink3 text-white'} text-sm flex items-center justify-center shrink-0`}
                     >
                       {size.name}
                     </button>
@@ -153,18 +154,18 @@ const ProductPage = () => {
 
             {/* Quantity Selector */}
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-secondary">Quantity</h3>
+              <h3 className="text-lg sm:text-xl font-bold ">Quantity</h3>
               <div className="flex items-center mt-4">
                 <button
                   onClick={decreaseQuantity}
-                  className="px-4 py-2 border border-gray-300 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-semibold"
+                  className="px-4 py-2 border bg-gradient-to-r from-pink3  to-primary hover:bg-gray-200 text-white text-sm font-semibold"
                 >
                   -
                 </button>
-                <span className="px-6 py-2 border border-gray-300 text-gray-800 text-sm">{quantity}</span>
+                <span className="px-6 py-2 border border-gray-300 text-pink3 text-lg">{quantity}</span>
                 <button
                   onClick={increaseQuantity}
-                  className="px-4 py-2 border border-gray-300 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-semibold"
+                  className="px-4 py-2 border bg-gradient-to-r from-pink3  to-primary hover:bg-gray-200 text-white text-sm font-semibold"
                 >
                   +
                 </button>
@@ -172,10 +173,10 @@ const ProductPage = () => {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-4">
-              <button type="button" className="px-4 py-3 w-[45%] border border-gray-300 bg-gray-100 hover:bg-gray-200 text-primary text-sm font-semibold">
+              <button type="button" className="px-4 py-3 w-[45%]  bg-pink3  text-white text-sm font-semibold">
                 Add to wishlist
               </button>
-              <button onClick={addToCart} type="button" className="px-4 py-3 w-[45%] border border-primary bg-primary hover:bg-white hover:text-primary hover:border-primary text-white text-sm font-semibold">
+              <button onClick={addToCart} type="button" className="px-4 py-3 w-[45%] bg-gradient-to-r  from-pink3  to-primary text-white text-sm font-semibold">
                 Add to cart
               </button>
             </div>
@@ -183,7 +184,7 @@ const ProductPage = () => {
             <hr className="my-6 border-gray-300" />
 
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-secondary">Product Information</h3>
+              <h3 className="text-lg sm:text-xl font-bold ">Product Information</h3>
               <ul className="text-sm text-gray-600 mt-2">
                 {product?.productDetails?.map((detail, index) => (
                   <li key={index}>• {detail}</li>

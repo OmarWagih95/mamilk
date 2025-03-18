@@ -35,9 +35,9 @@ const Navbar = () => {
 
   return (
     <div
-    className={`fixed  text-primary  h-14 top-0 left-0 w-full transition-transform duration-500 z-40 px-1 
+    className={`fixed  text-blue1  h-14 top-0 left-0 w-full transition-transform duration-500 z-40 px-1 
       ${isVisible ? 'translate-y-0' : '-translate-y-full'}
-     bg-backgroundColor`}
+     bg-pink1`}
     // <div
     // className={`fixed  text-primary  h-14 top-0 left-0 w-full transition-transform duration-500 z-40 px-1 
     //   ${

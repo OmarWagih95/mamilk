@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${Genos.className} w-screen overflow-x-hidden antialiased`}
+        className={`${Genos.className} bg-pink1 w-screen overflow-x-hidden antialiased`}
       >
                 <SplashScreen /> {/* Add the splash screen component */}
 

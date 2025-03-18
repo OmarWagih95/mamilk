@@ -116,7 +116,7 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
     //   whileInView="show"
     //   viewport={{ once: true, amount: 0.6 }}
      
-    <div  className="bg-backgroundColor flex flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
+    <div  className="bg-pink1 flex flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
     <div className="w-full">
       <img src={product.variations[0].images[0]} alt="Product 1"
       onClick={()=>{
@@ -127,18 +127,18 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
 
     <div className="p-4 flex-1 flex flex-col">
       <div className="flex-1">
-        <h5 className={`text-sm sm:text-base ${Gluten.className} font-bold text-gray-800 line-clamp-2`}>{product.title}</h5>
+        <h5 className={`text-sm sm:text-base ${Gluten.className} font-bold text-pink3 line-clamp-2`}>{product.title}</h5>
         <div className="mt-2 flex items-center flex-wrap gap-2">
-          <h6 className="text-sm sm:text-base font-bold text-gray-800">{product.price} EGP</h6>
+          <h6 className="text-sm sm:text-base font-bold text-pink2">{product.price} EGP</h6>
           <div onClick={() => {
             addToWishList();
             toggleHeart();
-        }} className="bg-gray-100 text-primary w-8 h-8 flex items-center justify-center rounded-full cursor-pointer ml-auto" title="Wishlist">
+        }} className="bg-pink0 text-pink3 w-8 h-8 flex items-center justify-center rounded-full cursor-pointer ml-auto" title="Wishlist">
           {heartIsEmpty !== true ?   <IoIosHeart />: <IoIosHeartEmpty />}
           </div>
         </div>
       </div>
-      <button onClick={addToCart} type="button" className="px-2 h-9 font-semibold w-full mt-4 bg-primary hover:bg-secondary text-white tracking-wide ml-auto outline-none border-none rounded">Add to cart</button>
+      <button onClick={addToCart} type="button" className="px-2 h-9 font-semibold w-full mt-4 bg-gradient-to-r from-pink3  to-primary hover:bg-primary text-white tracking-wide ml-auto outline-none border-none rounded">Add to cart</button>
     </div>
   </div>
     // {/* </motion.div> */}

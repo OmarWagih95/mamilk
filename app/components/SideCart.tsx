@@ -70,7 +70,7 @@ navigator.clipboard
     <BsBag />
 
     </div>
-    <div className={`absolute top-[-2px] text-white right-[-6px] flex justify-center items-center rounded-full text-sm w-3 h-3 bg-primary`}>
+    <div className={`absolute top-[-2px] text-white right-[-6px] flex justify-center items-center rounded-full text-sm w-3 h-3 bg-blue1`}>
         {cart.length>0?cart.length:''}
         </div>
     </div>

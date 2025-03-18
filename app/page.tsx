@@ -10,7 +10,7 @@ export default function Home() {
       <Hero/>
       <ShopByCategories/>
       <MessageFromTheOwners/>
-      <Mummies/>
+      {/* <Mummies/> */}
 
     </div>
   );

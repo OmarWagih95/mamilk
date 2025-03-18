@@ -66,7 +66,7 @@ async function handleSubmit() {
 }
   return (
     <>
-<footer className="bg-backgroundColor text-primary py-10 sm:px-10 px-6 tracking-wide">
+<footer className="bg-pink2 text-blue2 py-10 sm:px-10 px-6 tracking-wide">
 
 
         {/* <hr className="my-12" /> */}
@@ -74,24 +74,24 @@ async function handleSubmit() {
         <div className="flex-col-reverse  w-full flex md:flex-row  gap-8">
 
           <div className='md:w-1/4'>
-            <h4 className="text-base font-bold mb-6 text-primary">POLICIES</h4>
+            <h4 className="text-base font-bold mb-6 ">POLICIES</h4>
             <ul className="space-y-1">
-              <li><Link href="/pages/policies?privacy-policy" className="text-gray-500 hover:text-secondary text-sm">  
+              <li><Link href="/pages/policies?privacy-policy" className="text-white hover:text-secondary text-sm">  
                 PRIVACY POLICY</Link></li>
-              <li><Link href="javascript:void(0)" className="text-gray-500 hover:text-secondary text-sm">
+              <li><Link href="javascript:void(0)" className="text-white hover:text-secondary text-sm">
               TERMS AND CONDITIONS</Link></li>
-              <li><Link href="javascript:void(0)" className="text-gray-500 hover:text-secondary text-sm">          
+              <li><Link href="javascript:void(0)" className="text-white hover:text-secondary text-sm">          
                 RETURN AND EXCHANGE</Link></li>
                 </ul>          </div>
 
           <div className='md:w-1/4'>
-            <h4 className="text-base font-bold mb-6 text-primary">SOCIALS</h4>
+            <h4 className="text-base font-bold mb-6 ">SOCIALS</h4>
             <ul className="space-y-1">
-              <li><Link target='#' href="https://www.facebook.com/profile.php?id=61565209649532&mibextid=LQQJ4d" className="text-gray-500 hover:text-secondary text-sm">  
+              <li><Link target='#' href="https://www.facebook.com/profile.php?id=61565209649532&mibextid=LQQJ4d" className="text-white hover:text-secondary text-sm">  
                 FACEBOOK</Link></li>
-              <li><Link target='#' href="https://www.instagram.com/mamilk_breastfeeding/profilecard" className="text-gray-500 hover:text-secondary text-sm">
+              <li><Link target='#' href="https://www.instagram.com/mamilk_breastfeeding/profilecard" className="text-white hover:text-secondary text-sm">
               INSTAGRAM</Link></li>
-              {/* <li><Link href="javascript:void(0)" className="text-gray-500 hover:text-secondary text-sm">          
+              {/* <li><Link href="javascript:void(0)" className="text-white hover:text-secondary text-sm">          
                 TIKTOK</Link></li>  */}
             </ul>
           </div>
@@ -101,7 +101,7 @@ async function handleSubmit() {
      
           <div className="max-w-xl md:w-1/2  mx-auto text-start">
           <h3 className="text-2xl font-bold ">Newsletter</h3>
-          <p className="text-sm mt-4 text-gray-500">Subscribe to our newsletter and stay up to date with the latest news,
+          <p className="text-sm mt-4 text-white">Subscribe to our newsletter and stay up to date with the latest news,
             updates, and exclusive offers. Get valuable insights. Join our community today!</p>
 
           <div className="bg-gray-100 flex px-2 py-1.5 rounded-full text-left mt-8">
@@ -110,7 +110,7 @@ async function handleSubmit() {
             type='email' placeholder='Enter your email' className="w-full outline-none bg-transparent text-sm pl-4" />
             <button 
             onClick={handleSubmit} type='button'
-              className="bg-primary hover:bg-secondary text-white text-sm rounded-full px-4 py-2 ml-4 transition-all tracking-wide">Submit</button>
+              className="bg-blue1 hover:bg-secondary text-white text-sm rounded-full px-4 py-2 ml-4 transition-all tracking-wide">Submit</button>
           </div>
         </div>
         </div>
