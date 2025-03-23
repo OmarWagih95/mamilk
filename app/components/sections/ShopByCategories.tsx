@@ -22,7 +22,7 @@ const ShopByCategories = () => {
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
             
             <div className='bg-pink2 flex justify-center items-center px-4 py-2 rounded-md mt-[20vh] md:mt-[30vh]'>
-            <h1 className={`font-bold text-2xl md:text-4xl xl:text-5xl ${Gluten.className} `}>DRESSES</h1>
+            <h1 className={`font-bold text-sm md:text-2xl xl:text-4xl ${Gluten.className} `}>DRESSES</h1>
                 </div>
         </div>
             </div>
@@ -32,8 +32,8 @@ const ShopByCategories = () => {
                         <Image className='group-hover:scale-110 transition duration-700' alt='category' src={'/category5.jpeg'} objectFit='cover' layout='fill'></Image>
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
             
-            <div className='bg-pink2 flex justify-center items-center px-4 py-2 rounded-md mt-[20vh] md:mt-[30vh]'>
-            <h1 className={`font-bold text-2xl md:text-4xl xl:text-5xl ${Gluten.className}`}>TOPS</h1>
+            <div className='bg-pink2 flex justify-center items-center px-3 py-2 rounded-md mt-[20vh] md:mt-[30vh]'>
+            <h1 className={`font-bold text-sm md:text-2xl xl:text-4xl ${Gluten.className}`}>TOPS</h1>
                 </div>
         </div>
             </div>
@@ -47,7 +47,7 @@ const ShopByCategories = () => {
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
             
             <div className='bg-pink2 flex justify-center items-center px-4 py-2 rounded-md mt-[15vh] md:mt-[20vh]'>
-            <h1 className={`font-bold text-2xl md:text-4xl xl:text-5xl ${Gluten.className} `}>Bottoms</h1>
+            <h1 className={`font-bold text-sm md:text-2xl xl:text-4xl ${Gluten.className} `}>Bottoms</h1>
                 </div>
         </div>
             </div>
@@ -58,7 +58,7 @@ const ShopByCategories = () => {
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
             
             <div className='bg-pink2 flex justify-center items-center px-4 py-2 rounded-md mt-[15vh] md:mt-[20vh]'>
-            <h1 className={`${Gluten.className} font-bold text-2xl md:text-4xl xl:text-5xl `}>Maternity</h1>
+            <h1 className={`${Gluten.className} font-bold text-sm md:text-2xl xl:text-4xl `}>Maternity</h1>
                 </div>
         </div>
             </div>
@@ -69,7 +69,7 @@ const ShopByCategories = () => {
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
             
             <div className='bg-pink2 flex justify-center items-center px-4 py-2 rounded-md mt-[15vh] md:mt-[20vh]'>
-            <h1 className={`font-bold text-2xl md:text-4xl xl:text-5xl ${Gluten.className}`}>SETS</h1>
+            <h1 className={`font-bold text-sm md:text-2xl xl:text-4xl ${Gluten.className}`}>SETS</h1>
                 </div>
         </div>
             </div>

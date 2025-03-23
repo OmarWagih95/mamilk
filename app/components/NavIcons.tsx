@@ -6,6 +6,7 @@ import SearchModela from './SearchModela';
 import ShopModal from './ShopModal';
 import { IoSearchOutline } from 'react-icons/io5';
 import SearchModal from './SearchModal';
+import Link from 'next/link';
 
 const NavIcons = () => {
   const [isProfileOpen, setProfileOpen] = useState(false);
@@ -37,6 +38,7 @@ const NavIcons = () => {
 
   return (
     <div className='hover:cursor-pointer flex items-center gap-4 xl:gap-6'>
+     <Link href={'/pages/about'}>ABOUT</Link>
       <h2 onClick={() => setCategoriesOpen(!isCategoriesOpen)} className='hidden md:flex'>
         SHOP
       </h2>

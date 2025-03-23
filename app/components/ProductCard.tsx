@@ -11,6 +11,7 @@ import { wishListContext } from '../context/wishListContext';
 import { Product } from '../interfaces/interfaces';
 import { useRouter } from 'next/navigation';
 import { Gluten } from '@/app/layout';
+import { gradientButtonStyle } from '../styles/styles';
 // import { ExposureRegular } from '../layout';
 
 const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Product,color:string,search:boolean }) => {
@@ -31,13 +32,10 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
       );
     
       if (sameProductIndex !== -1) {
-        // If the product exists, update its quantity
         const updatedCart = [...cart];  // Create a new cart array
         updatedCart[sameProductIndex].quantity += 1; 
-         // Update the quantity of the existing item
-    
         setCart(updatedCart); 
-       } // Se
+       } 
       else{
         setCart(oldCart=>[...oldCart,{
               id:cart.length,
@@ -46,8 +44,8 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
             price: product.price,
             color:product.variations[0].color,
             quantity: 1,
+            size: product.variations[0].sizes[0].name,
             imageUrl: product.variations[0].images[0]
-            // imageUrl: product.variations.find(v=>v.color===product.variations[0].color)!.images[0]
         }])
       }
       console.log(cart.length)
@@ -84,6 +82,8 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
           price: product.price,
           quantity: 1,
           color: 'blue',
+          size: product.variations[0].sizes[0].name,
+          
           // imageUrl: product.variations.find(v=>v.color==='blue')!.images[0],
           imageUrl: product.variations[0].images[0],
         },
@@ -109,13 +109,6 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
   };
 
   return (
-    // <motion.div
-    //   // style={{ aspectRatio: '16/5' }}
-    //   variants={fadeIn({ direction: 'up', delay: 0.1 })}
-    //   initial="hidden"
-    //   whileInView="show"
-    //   viewport={{ once: true, amount: 0.6 }}
-     
     <div  className="bg-pink1 flex flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
     <div className="w-full">
       <img src={product.variations[0].images[0]} alt="Product 1"
@@ -125,10 +118,10 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
         className="w-full object-cover object-top aspect-[230/307]" />
     </div>
 
-    <div className="p-4 flex-1 flex flex-col">
+    <div className="p-4 flex-1 gap-3 flex flex-col">
       <div className="flex-1">
         <h5 className={`text-sm sm:text-base ${Gluten.className} font-bold text-pink3 line-clamp-2`}>{product.title}</h5>
-        <div className="mt-2 flex items-center flex-wrap gap-2">
+        <div className=" flex items-center flex-wrap ">
           <h6 className="text-sm sm:text-base font-bold text-pink2">{product.price} EGP</h6>
           <div onClick={() => {
             addToWishList();
@@ -138,8 +131,14 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
           </div>
         </div>
       </div>
-      <button onClick={addToCart} type="button" className="px-2 h-9 font-semibold w-full mt-4 bg-gradient-to-r from-pink3  to-primary hover:bg-primary text-white tracking-wide ml-auto outline-none border-none rounded">Add to cart</button>
-    </div>
+      <button
+  onClick={addToCart}
+  type="button"
+  className={`${gradientButtonStyle}`}
+>
+  Add to cart
+</button>
+   </div>
   </div>
     // {/* </motion.div> */}
   );

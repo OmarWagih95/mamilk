@@ -21,10 +21,10 @@ const page = () => {
   //   setCart(newCart);
   // }
   
-  return ( cart.length > 0 ? <div  className={`relative pt-20 pb-4 ${pagePadding} justify-between  min-h-screen  bg-backgroundColor flex flex-col text-primary`}>
+  return ( cart.length > 0 ? <div  className={`relative pt-20 pb-4 ${pagePadding} justify-between  min-h-screen  bg-pink0 flex flex-col  text-primary`}>
      <div className='w-full'>
 
-      <div className='flex w-full flex-col'>
+      <div className='flex w-full gap-2 md:gap-4 flex-col'>
           {cart.map((cartItem,index)=>{
             total += cartItem.price * cartItem.quantity
             return <BigCartItem  cartItem={cartItem} key={index}/>})}
@@ -46,7 +46,7 @@ const page = () => {
 
       </div>
     </div>
-    :<div className={`pt-14 text-primary flex justify-center items-center min-h-screen ${pagePadding} bg-backgroundColor text-primary`} >
+    :<div className={`pt-14 text-primary font-bold text-xl md:text-2xl flex justify-center items-center min-h-screen ${pagePadding} bg-pink1 text-primary`} >
       YOUR CART IS EMPTY.
     </div>
   

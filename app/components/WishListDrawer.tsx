@@ -6,6 +6,7 @@ import { wishListContext } from '../context/wishListContext';
 import { cartContext } from '../context/cartContext';
 import Swal from 'sweetalert2';
 import { IoShareOutline } from 'react-icons/io5';
+import { gradientButtonStyle } from '../styles/styles';
 
 
 
@@ -92,7 +93,7 @@ export default function SideDrawer() {
 
       {/* Side Drawer */}
       <div
-        className={`fixed flex py-5 pr-3 flex-col pl-4 justify-start items-start top-0 right-0 h-[120vh] bg-white text-white  w-80 sm:w-96 lg:w-[45vw] z-50 transform ${
+        className={`fixed flex py-5 pr-3 flex-col pl-4 justify-start items-start top-0 right-0 h-[120vh] bg-pink1 text-white  w-80 sm:w-96 lg:w-[45vw] z-50 transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } transition-transform duration-700 ease-in-out`}
       >
@@ -104,7 +105,7 @@ export default function SideDrawer() {
 </Link>
 </div>
 <div className='w-full max-h-[60vh] scrollbar-hidden overflow-scroll'>
-    <ul>
+    <ul className='w-full flex flex-col gap-4'>
         {wishList.map((item,index) =>{
          return   <CartItemSmall wishListBool={true} key={index} item={item}/> 
         }
@@ -112,7 +113,7 @@ export default function SideDrawer() {
     </ul>
 </div>
 <div className='w-full flex justify-between gap-7 py-4 text-sm '>
-    <p className='text-gray-400'>SHIPING AND TAXES CALCULATED AT CHECKOUT</p>
+    <p className='text-primary'>SHIPING AND TAXES CALCULATED AT CHECKOUT</p>
     <div onClick={handleShare} className='hover:cursor-pointer flex items-center gap-1 text-primary'>
     <IoShareOutline />
 
@@ -122,7 +123,7 @@ export default function SideDrawer() {
     {/* <div className='rounded-md w-full flex justify-center border border-primary cursor-pointer px-4 py-2 text-primary  hover:bg-secondary transition duration-300 shadow-md'>
         <Link href={'/wishList'}>View WishList</Link> 
     </div> */}
-    <div onClick={addAllToCart} className={`${wishList.length===0? 'disabled-div':''} w-full flex justify-center rounded-md cursor-pointer text-white px-4 py-2 bg-primary hover:text-primary hover:border-primary hover:border  hover:bg-secondary shadow-md`}>
+    <div onClick={addAllToCart} className={`${wishList.length===0? 'disabled-div bg-gray-300 w-full flex justify-center items-center':`${gradientButtonStyle}`} `}>
         ADD ALL TO CART
     </div>
 </div>

@@ -6,14 +6,18 @@ import { Product } from '@/app/interfaces/interfaces';
 import { cartContext } from '@/app/context/cartContext';
 import Swal from 'sweetalert2';
 import { Gluten } from '@/app/layout';
-
+import { gradientSmallButtonStyle } from '@/app/styles/styles';
+import { wishListContext } from '@/app/context/wishListContext';
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 const ProductPage = () => {
   const params = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1); // New quantity state
   const {cart,setCart}=useContext(cartContext)
+    const { wishList, setWishList } = useContext(wishListContext);
+  
+  const [selectedSize, setSelectedSize] = useState<string>(product?.variations[0].sizes[0].name!);
 
   useEffect(() => {
     if (!params?.id) return; // Ensure params.id is available
@@ -25,12 +29,13 @@ const ProductPage = () => {
     
     if (foundProduct?.variations?.length) {
       setSelectedColor(foundProduct.variations[0].color); // Default to first color
+      setSelectedSize(foundProduct.variations[0].sizes[0].name!); // Default to first color
     }
   }, [params.id]);
       const addToCart=()=>{
         console.log('clicked')
         const sameProductIndex = cart.findIndex(
-          (cartItem) => cartItem.productId === product!._id && cartItem.color === selectedColor
+          (cartItem) => cartItem.productId === product!._id && cartItem.color === selectedColor && cartItem.size===selectedSize
         );
       
         if (sameProductIndex !== -1) {
@@ -48,8 +53,8 @@ const ProductPage = () => {
               productName: product!.title,
               price: product!.price,
               color:selectedColor!,
+              size: selectedSize,
               quantity: quantity,
-              // imageUrl: product.variations[0].images[0]
               imageUrl: product!.variations.find(v=>v.color===selectedColor)!.images[0]
           }])
         }
@@ -73,7 +78,40 @@ const ProductPage = () => {
       )
       
         
-      } // Depend on params.id
+      }
+        const addToWishList = () => {
+          
+            setWishList(oldWishList => [
+              ...oldWishList,
+              {
+                id: wishList.length,
+                productId: product!._id,
+                productName: product!.title,
+                price: product!.price,
+                quantity: 1,
+                color: 'blue',
+                size: product!.variations[0].sizes[0].name,
+                
+                // imageUrl: product.variations.find(v=>v.color==='blue')!.images[0],
+                imageUrl: product!.variations[0].images[0],
+              },
+            ]);
+            Swal.fire({
+              background: '#FFFFF',
+              color: 'black',
+              toast: false,
+              iconColor: '#473728',
+              position: 'bottom-right',
+              text: 'YOUR PRODUCT HAS BEEN ADDED TO YOUR WISHLIST',
+              showConfirmButton: false,
+              timer: 2000,
+              customClass: {
+                popup: 'no-rounded-corners small-popup'
+              }
+            });
+
+          console.log(wishList.length)
+        }; // Depend on params.id
 
   // Find the selected color variation
   const selectedVariation = product?.variations?.find(variation => variation.color === selectedColor);
@@ -102,24 +140,24 @@ const ProductPage = () => {
           <div className="w-full lg:sticky top-0 lg:col-span-2 text-primary">
             <div>
               <h3 className={`${Gluten.className} text-xl sm:text-2xl lg:text-4xl font-bold `}>{product?.title}</h3>
-              <p className="text-gray-500 mt-4 text-sm">{product?.description}</p>
-              <div className="flex items-center flex-wrap gap-4 mt-4">
+              <p className="text-gray-500  text-sm">{product?.description}</p>
+              <div className="flex items-center flex-wrap gap-4 ">
                 <h4 className=" text-2xl sm:text-3xl font-bold">{product?.price} LE</h4>
               </div>
             </div>
 
-            <hr className="my-6 border-gray-300" />
+            <hr className="my-2 border-pink2" />
 
             {/* Color Selection */}
             <div>
-              <h3 className="text-lg sm:text-xl font-bold ">Colors</h3>
-              <div className="flex flex-wrap gap-4 mt-4">
+              <h3 className="text-lg mb-2 sm:text-xl font-bold ">Colors</h3>
+              <div className="flex flex-wrap gap-4 ">
                 {product?.variations?.map((variation, index) => (
                   <button
                     key={index}
                     type="button"
                     onClick={() => setSelectedColor(variation.color)}
-                    className={`px-4 py-2 border ${selectedColor === variation.color ? ' bg-gradient-to-r from-pink3  to-primary text-white' : 'border-gray-300 bg-pink3 text-white'} text-sm font-semibold`}
+                    className={`px-4 py-2 border ${selectedColor === variation.color ? gradientSmallButtonStyle : 'border-gray-300 bg-pink3 '} text-white text-sm font-semibold`}
                   >
                     {variation.color}
                   </button>
@@ -127,19 +165,19 @@ const ProductPage = () => {
               </div>
             </div>
 
-            <hr className="my-6 border-gray-300" />
+            <hr className="my-2 border-pink2" />
 
             {/* Size Selection */}
             <div>
-              <h3 className="text-lg sm:text-xl font-bold ">Sizes</h3>
-              <div className="flex flex-wrap gap-4 mt-4">
+              <h3 className="text-lg sm:text-xl mb-2 font-bold ">Sizes</h3>
+              <div className="flex flex-wrap gap-4 ">
                 {selectedVariation?.sizes?.length ? (
                   selectedVariation.sizes.map((size, index) => (
                     <button
                       key={index}
                       type="button"
                       onClick={() => setSelectedSize(size.name)}
-                      className={`w-10 h-9 border ${selectedSize === size.name ? 'bg-gradient-to-r from-pink3  to-primary text-white' : 'border-gray-300 bg-pink3 text-white'} text-sm flex items-center justify-center shrink-0`}
+                      className={`w-10 h-9 border ${selectedSize === size.name ? gradientSmallButtonStyle : 'border-gray-300 bg-pink3 '} text-white text-sm flex items-center justify-center shrink-0`}
                     >
                       {size.name}
                     </button>
@@ -150,22 +188,22 @@ const ProductPage = () => {
               </div>
             </div>
 
-            <hr className="my-6 border-gray-300" />
+            <hr className="my-2 border-pink2" />
 
             {/* Quantity Selector */}
             <div>
               <h3 className="text-lg sm:text-xl font-bold ">Quantity</h3>
-              <div className="flex items-center mt-4">
+              <div className="flex items-center ">
                 <button
                   onClick={decreaseQuantity}
-                  className="px-4 py-2 border bg-gradient-to-r from-pink3  to-primary hover:bg-gray-200 text-white text-sm font-semibold"
+                  className={`px-4 py-2 border ${gradientSmallButtonStyle} text-white text-sm font-semibold`}
                 >
                   -
                 </button>
                 <span className="px-6 py-2 border border-gray-300 text-pink3 text-lg">{quantity}</span>
                 <button
                   onClick={increaseQuantity}
-                  className="px-4 py-2 border bg-gradient-to-r from-pink3  to-primary hover:bg-gray-200 text-white text-sm font-semibold"
+                  className={`px-4 py-2 border ${gradientSmallButtonStyle} text-white text-sm font-semibold`}
                 >
                   +
                 </button>
@@ -173,10 +211,10 @@ const ProductPage = () => {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-4">
-              <button type="button" className="px-4 py-3 w-[45%]  bg-pink3  text-white text-sm font-semibold">
+              <button type="button" onClick={addToWishList} className={`px-4 py-3 w-[45%]  ${gradientSmallButtonStyle}  text-white text-sm font-semibold`}>
                 Add to wishlist
               </button>
-              <button onClick={addToCart} type="button" className="px-4 py-3 w-[45%] bg-gradient-to-r  from-pink3  to-primary text-white text-sm font-semibold">
+              <button onClick={addToCart} type="button" className={` ${gradientSmallButtonStyle} px-4 py-3 w-[45%]  text-white text-sm font-semibold`}>
                 Add to cart
               </button>
             </div>

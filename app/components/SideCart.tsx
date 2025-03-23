@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import { IoShareOutline } from "react-icons/io5";
 import { BsBag } from "react-icons/bs";
+import { gradientButtonStyle } from '../styles/styles';
 
 
 
@@ -19,7 +20,6 @@ export default function SideDrawer() {
   useEffect(() => {
     
   cart.map((item)=> setSubTotal(subTotal + item.price*item.quantity))
-  
   }, [cart])
 
   // Function to toggle the drawer open/closed
@@ -85,7 +85,7 @@ navigator.clipboard
 
       {/* Side Drawer */}
       <div
-        className={`fixed flex py-5 pr-3 flex-col pl-4 justify-start items-start top-0 right-0 h-[120vh] bg-white text-white  w-80 sm:w-96 lg:w-[45vw] z-40 transform ${
+        className={`fixed flex py-5 pr-3 flex-col pl-4 justify-start items-start top-0 right-0 h-[120vh] bg-pink1 text-white  w-80 sm:w-96 lg:w-[45vw] z-40 transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } transition-transform duration-700 ease-in-out`}
       >
@@ -108,7 +108,7 @@ navigator.clipboard
 </div>
 
 <div className='w-full flex justify-between gap-7 py-4 text-sm '>
-    <p className='text-gray-400'>SHIPING AND TAXES CALCULATED AT CHECKOUT</p>
+    <p className='text-primary'>SHIPPING AND TAXES CALCULATED AT CHECKOUT</p>
     <div onClick={handleShare} className='hover:cursor-pointer flex items-center gap-1 text-primary'>
     <IoShareOutline />
 
@@ -119,13 +119,13 @@ navigator.clipboard
   <h1>{total}</h1>
 </div>
 <div className='flex flex-col w-full items-center gap-4'>
-    <Link href={'/pages/cart'} onClick={toggleDrawer} className='rounded-sm w-full flex justify-center border border-primary cursor-pointer px-4 py-2 text-primary hover:cursor-pointer hover:bg-secondary hover:text-white transition duration-300 shadow-md'>
+    <Link href={'/pages/cart'} onClick={toggleDrawer} className={`${gradientButtonStyle}  `}>
         {/* <button onClick={toggleDrawer} href={'/pages/cart'}>VIEW CART</button>  */}
         <button onClick={()=>{toggleDrawer()
           router.push('/pages/cart')
         }} >VIEW CART</button> 
     </Link>
-{  cart.length>0?  <Link  onClick={toggleDrawer} href={'/pages/checkout'} className=' w-full rounded-sm flex justify-center  cursor-pointer text-white px-4 py-2 bg-primary hover:cursor-pointer hover:border-primary hover:border hover:bg-secondary shadow-md'>
+{  cart.length>0?  <Link  onClick={toggleDrawer} href={'/pages/checkout'} className={`${gradientButtonStyle}`}>
         <button >CHECKOUT</button> 
         
     </Link>:

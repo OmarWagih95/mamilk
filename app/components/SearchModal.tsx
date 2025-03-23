@@ -53,7 +53,7 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         onClick={onClose}
       />
       <div
-        className={`fixed inset-0 flex items-start justify-center bg-white min-h-[60vh] h-auto w-[100vw] z-40 transition-all duration-500 ${
+        className={`fixed inset-0 flex items-start justify-center bg-pink1 min-h-[60vh] h-auto w-[100vw] z-40 transition-all duration-500 ${
           isVisible ? 'opacity-100 translate-y-14' : 'opacity-0 -translate-y-10'
         }`}
         onClick={(e) => e.stopPropagation()} // Stop event propagation here
@@ -65,7 +65,7 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               value={searchValue}
               type='text'
               onChange={(e) => setSearchValue(e.target.value)}
-              className='border-b rounded-md px-2 py-1 outline-none w-full h-6 border-primary bg-babyBlue  text-sm'
+              className='border-b rounded-md px-2 py-1 outline-none w-full h-6 border-primary bg-pink0  text-sm'
             />
         <span onClick={onClose} className='hover:cursor-pointer mr-4 hover:rotate-180 transition duration-700'>
           x

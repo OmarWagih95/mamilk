@@ -33,7 +33,7 @@ import Link from 'next/link';
           isVisible ? 'opacity-100 translate-y-14' : 'opacity-0 -translate-y-10'
         }`}
       >
-        <div className='bg-backgroundColor text-primary text-sm gap-2 p-4 flex flex-col shadow-lg w-[100vw] items-center rounded-md'>
+        <div className='bg-pink1 text-primary text-sm gap-2 p-4 flex flex-col shadow-lg w-[100vw] items-center rounded-md'>
           {constants.Categories.map((category, index) => (
             <div key={index} className='flex flex-col gap-2 text-primary hover:text-secondary'>
               <Link onClick={onClose} href={`/pages/categoryPage/${category.id}`}>

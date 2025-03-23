@@ -12,9 +12,16 @@ const CheckoutPage = () => {
   const [state, setState] = useState('');
   const [shipping, setShipping] = useState(70);
   const [states, setStates] = useState<{ name: string, shipping_zone: number }[]>([]);
-  
 
-  // Function to calculate subtotal and total
+  // Form state
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [notes, setNotes] = useState('');
+  const [errors, setErrors] = useState<string[]>([]);  // To store validation errors
+
+  // Calculate subtotal and total
   const calculateTotals = () => {
     const calculatedSubTotal = cart.reduce(
       (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
@@ -41,25 +48,73 @@ const CheckoutPage = () => {
   }, []);
 
   useEffect(() => {
-    calculateTotals(); // Recalculate totals when cart changes
+    calculateTotals();
   }, [cart]);
 
   useEffect(() => {
-    const stata = states.find(stata => stata.name === state);
-    const shippingZone = shippingZones.find(zona => zona.zone_id === stata?.shipping_zone);
+    const stata = states.find(s => s.name === state);
+    const shippingZone = shippingZones.find(z => z.zone_id === stata?.shipping_zone);
 
     if (shippingZone) {
       setShipping(shippingZone.zone_rate);
-      setTotal(shippingZone.zone_rate+subTotal)
+      setTotal(shippingZone.zone_rate + subTotal);
     } else {
       setShipping(70);
     }
+  }, [state, shippingZones, subTotal]);
 
-    calculateTotals(); // Recalculate totals when shipping or state changes
-  }, [state, shippingZones]);
+  // Validation function
+  const validateInputs = () => {
+    const validationErrors: string[] = [];
+
+    if (!name.trim()) validationErrors.push('Name is required.');
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) validationErrors.push('Valid email is required.');
+    if (!phone.trim() || !/^\d{10,15}$/.test(phone)) validationErrors.push('Valid phone number is required.');
+    if (!address.trim()) validationErrors.push('Address is required.');
+    if (cart.length === 0) validationErrors.push('Cart is empty.');
+
+    setErrors(validationErrors);
+    return validationErrors.length === 0;
+  };
+
+  // Handle form submission
+  const handleConfirmOrder = async () => {
+    if (!validateInputs()) return;
+
+    const orderData = {
+      name,
+      email,
+      phone,
+      address,
+      notes,
+      state,
+      shipping,
+      total,
+      cart,
+    };
+
+    try {
+      const response = await axios.post('/api/orders', orderData);
+      if (response.status === 200) {
+        alert('Order placed successfully!');
+        // Optionally clear cart and form
+        setCart([]);
+        setName('');
+        setEmail('');
+        setPhone('');
+        setAddress('');
+        setNotes('');
+      } else {
+        alert('Failed to place order.');
+      }
+    } catch (error) {
+      console.error('Order submission error:', error);
+      alert('An error occurred while placing the order.');
+    }
+  };
 
   return (
-    <div className="pt-14 bg-white">
+    <div className="pt-14 bg-pink0">
       <div className="max-lg:max-w-xl mx-auto w-full">
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 max-lg:order-1 p-6 !pr-0 max-w-4xl mx-auto w-full">
@@ -67,51 +122,70 @@ const CheckoutPage = () => {
               <h2 className="text-3xl font-bold text-primary inline-block border-b-2 border-secondary">Checkout</h2>
             </div>
 
-            <form className="lg:mt-16">
+            <form className="lg:mt-16" onSubmit={(e) => e.preventDefault()}>
               <div>
                 <h2 className="text-xl font-bold text-primary">Shipping info</h2>
 
                 <div className="grid sm:grid-cols-2 gap-8 mt-8">
                   <div>
-                    <input type="text" placeholder="Name"
-                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                    <input type="text" placeholder="Name" value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
-                    <select 
-                      onChange={(e) => setState(e.target.value)}
-                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none">
+                    <select value={state} onChange={(e) => setState(e.target.value)}
+                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none">
                       {states.map((state, index) => (
                         <option key={index} value={state.name}>{state.name}</option>
                       ))}
                     </select>
                   </div>
                   <div>
-                    <input type="email" placeholder="Email"
-                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                    <input type="email" placeholder="Email" value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
-                    <input type="number" placeholder="Phone"
-                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                    <input type="text" placeholder="Phone" value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
-                    <input type="text" placeholder="Address"
-                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                    <input type="text" placeholder="Address" value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
-                    <input type="text" placeholder="Notes"
-                      className="px-2 pb-2 bg-white text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                    <input type="text" placeholder="Notes" value={notes}
+                      onChange={(e) => setNotes(e.target.value)}
+                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                 </div>
+
+                {/* Error messages */}
+                {errors.length > 0 && (
+                  <div className="mt-4 text-red-500 text-sm">
+                    <ul className="list-disc ml-5">
+                      {errors.map((err, idx) => (
+                        <li key={idx}>{err}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
               </div>
               <div className="flex flex-wrap gap-4 mt-8">
-                <button type="button" className="min-w-[150px] px-6 py-3.5 text-sm bg-primary text-white rounded-lg hover:bg-secondary">Confirm Order</button>
+                <button type="button" onClick={handleConfirmOrder}
+                  className={`bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 hover:bg-gradient-to-l hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-700 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm  text-white rounded-lg`}>
+                  Confirm Order
+                </button>
               </div>
             </form>
           </div>
 
-          <div className="bg-gray-100 lg:h-screen lg:sticky lg:top-0 lg:max-w-[430px] w-full lg:ml-auto">
+          <div className="bg-pink1  lg:h-screen lg:sticky lg:top-0 lg:max-w-[430px] w-full lg:ml-auto">
             <div className="relative h-full">
-              <div className="p-6 overflow-auto max-lg:max-h-[450px] lg:h-[calc(100vh-50px)]">
+              <div className="p-6 overflow-hidden max-lg:max-h-[450px] lg:h-[calc(100vh-50px)]">
                 <h2 className="text-xl font-bold text-primary">Order Summary</h2>
 
                 <div className="space-y-6 mt-8">
@@ -121,7 +195,7 @@ const CheckoutPage = () => {
                 </div>
               </div>
 
-              <div className="lg:absolute lg:left-0 lg:bottom-0 bg-gray-200 w-full p-4">
+              <div className="lg:absolute border-t-2 border-pink3 px-2 md:px-6 lg:left-0 lg:bottom-0  w-full p-4">
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Sub-Total <span className="ml-auto">{subTotal} LE</span></h4>
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Shipping <span className="ml-auto">{shipping} LE</span></h4>
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Total <span className="ml-auto">{total} LE</span></h4>
