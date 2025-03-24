@@ -26,11 +26,11 @@ export default function SideDrawer() {
     console.log('Share link copied to clipboard:', shareLink);
           Swal.fire({
         
-            background:'#FFFFF',
-            color:'black',
+            background:'#cb808b',
+            color:'white',
             toast:false,
             iconColor:'#473728',
-          position: "bottom-right",
+          position: "center",
           // icon: "success",
           text: "YOUR WISHLIST LINK HAS BEEN COPIED TO YOUR CLIPBOARD.",
           showConfirmButton: false,
@@ -62,11 +62,11 @@ export default function SideDrawer() {
     setWishListUpdated((prev) => !prev); // Toggle wishListUpdated
     Swal.fire({
     
-      background:'#FFFFF',
-      color:'black',
+      background:'#cb808b',
+      color:'white',
       toast:false,
       iconColor:'#473728',
-    position: "bottom-right",
+    position: "center",
     // icon: "success",
     text: "YOUR PRODUCT HAS BEEN ADDED TO CART",
     showConfirmButton: false,
@@ -123,7 +123,7 @@ export default function SideDrawer() {
     {/* <div className='rounded-md w-full flex justify-center border border-primary cursor-pointer px-4 py-2 text-primary  hover:bg-secondary transition duration-300 shadow-md'>
         <Link href={'/wishList'}>View WishList</Link> 
     </div> */}
-    <div onClick={addAllToCart} className={`${wishList.length===0? 'disabled-div bg-gray-300 w-full flex justify-center items-center':`${gradientButtonStyle}`} `}>
+    <div onClick={addAllToCart} className={`${wishList.length===0? 'disabled-div py-2 hover:cursor-default bg-gray-800 w-full flex justify-center items-center':`${gradientButtonStyle}`} `}>
         ADD ALL TO CART
     </div>
 </div>

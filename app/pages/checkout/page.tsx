@@ -3,8 +3,11 @@ import CartItemSmall from '@/app/components/cart/CartItemSmall';
 import { cartContext } from '@/app/context/cartContext';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
+import {Modal} from '@/app/components/Modal';
+import { useRouter } from 'next/navigation';
 
 const CheckoutPage = () => {
+  const router = useRouter()
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   const [shippingZones, setShippingZones] = useState<ShippingZone[]>([]);
@@ -20,6 +23,8 @@ const CheckoutPage = () => {
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
   const [errors, setErrors] = useState<string[]>([]);  // To store validation errors
+  const [modalVisible, setModalVisible] = useState(false); // State for modal visibility
+  const [modalMessage, setModalMessage] = useState(''); // State for modal message
 
   // Calculate subtotal and total
   const calculateTotals = () => {
@@ -91,12 +96,14 @@ const CheckoutPage = () => {
       shipping,
       total,
       cart,
+      subTotal,
     };
 
     try {
       const response = await axios.post('/api/orders', orderData);
       if (response.status === 200) {
-        alert('Order placed successfully!');
+        setModalMessage('Your Order placed successfully!');
+        setModalVisible(true);
         // Optionally clear cart and form
         setCart([]);
         setName('');
@@ -104,17 +111,26 @@ const CheckoutPage = () => {
         setPhone('');
         setAddress('');
         setNotes('');
+        setSubTotal(0);
+        setTotal(0);
       } else {
-        alert('Failed to place order.');
+        setModalMessage('Failed to place order.');
+        setModalVisible(true); // Show error modal
       }
     } catch (error) {
       console.error('Order submission error:', error);
-      alert('An error occurred while placing the order.');
+      setModalMessage('An error occurred while placing the order.');
+      setModalVisible(true); // Show error modal
     }
   };
-
+  const closeModal = () => {
+    setModalVisible(false);
+    router.push('/'); // 
+  };
   return (
     <div className="pt-14 bg-pink0">
+            {modalVisible && <Modal message={modalMessage} onClose={closeModal} />} {/* Modal component */}
+
       <div className="max-lg:max-w-xl mx-auto w-full">
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 max-lg:order-1 p-6 !pr-0 max-w-4xl mx-auto w-full">
@@ -185,17 +201,17 @@ const CheckoutPage = () => {
 
           <div className="bg-pink1  lg:h-screen lg:sticky lg:top-0 lg:max-w-[430px] w-full lg:ml-auto">
             <div className="relative h-full">
-              <div className="p-6 overflow-hidden max-lg:max-h-[450px] lg:h-[calc(100vh-50px)]">
+              <div className="p-6 md:pb-12 overflow-y-scroll max-lg:max-h-[450px] lg:h-[calc(100vh-50px)]">
                 <h2 className="text-xl font-bold text-primary">Order Summary</h2>
 
-                <div className="space-y-6 mt-8">
+                <div className="space-y-6 mt-4">
                   {cart.map((cartona, index) => (
                     <CartItemSmall item={cartona} wishListBool={false} key={index} />
                   ))}
                 </div>
               </div>
 
-              <div className="lg:absolute border-t-2 border-pink3 px-2 md:px-6 lg:left-0 lg:bottom-0  w-full p-4">
+              <div className="lg:absolute border-t-2 bg-pink1 border-pink3 px-2 md:px-6 lg:left-0 lg:bottom-0  w-full p-4">
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Sub-Total <span className="ml-auto">{subTotal} LE</span></h4>
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Shipping <span className="ml-auto">{shipping} LE</span></h4>
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Total <span className="ml-auto">{total} LE</span></h4>

@@ -38,11 +38,11 @@ navigator.clipboard
   console.log('Share link copied to clipboard:', shareLink);
         Swal.fire({
       
-          background:'#FFFFF',
-          color:'black',
+          background:'#cb808b',
+          color:'white',
           toast:false,
           iconColor:'#473728',
-        position: "bottom-right",
+        position: "center",
         // icon: "success",
         text: "YOUR CART LINK HAS BEEN COPIED TO YOUR CLIPBOARD.",
         showConfirmButton: false,

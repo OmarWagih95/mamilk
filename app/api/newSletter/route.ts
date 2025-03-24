@@ -10,11 +10,11 @@ const loadDB = async () => {
 loadDB();
 
 export async function POST(request: Request) {
-    const { email } = await request.json();
-    console.log(email);
+    const data = await request.json();
+    console.log('Name'+data.name+data.number);
 
     try {
-        const res = await newSletterModel.create({ email });
+        const res = await newSletterModel.create({name:data.name,number:data.number});
             return NextResponse.json({ message: "Done Wogo" }, { status: 200 });
    
     }
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
         // Check for duplicate key error
         if (error.code === 11000) {
-            return NextResponse.json({ message: `Duplicate entry: The email ${email} already exists.` }, { status: 400 });
+            return NextResponse.json({ message: `Duplicate entry: The number ${data.number} already exists.` }, { status: 400 });
         }
 
         // For other MongoDB errors (e.g., connection issues)

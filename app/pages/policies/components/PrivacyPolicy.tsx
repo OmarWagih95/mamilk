@@ -107,7 +107,7 @@ We collect personal data you provide directly to us, such as:
     </li>
     <li>Navigate to the Account section and select Overview.
     </li>
-    <li>In the bottom-right corner of the page, locate and click the Delete Account button.</li>
+    <li>In the center corner of the page, locate and click the Delete Account button.</li>
     <li>Follow the on-screen instructions to confirm your account deletion.</li>
   </ul>
   <h1 className='font-semibold'>Timeframe for Data Deletion

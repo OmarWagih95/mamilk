@@ -61,11 +61,11 @@ const ProductPage = () => {
         console.log(cart.length)
         Swal.fire({
       
-          background:'#FFFFF',
-          color:'black',
+          background:'#cb808b',
+          color:'white',
           toast:false,
           iconColor:'#473728',
-        position: "bottom-right",
+        position: "center",
         // icon: "success",
         text: "YOUR PRODUCT HAS BEEN ADDED TO CART",
         showConfirmButton: false,
@@ -97,11 +97,11 @@ const ProductPage = () => {
               },
             ]);
             Swal.fire({
-              background: '#FFFFF',
-              color: 'black',
+              background: '#cb808b',
+              color: 'white',
               toast: false,
               iconColor: '#473728',
-              position: 'bottom-right',
+              position: 'center',
               text: 'YOUR PRODUCT HAS BEEN ADDED TO YOUR WISHLIST',
               showConfirmButton: false,
               timer: 2000,
