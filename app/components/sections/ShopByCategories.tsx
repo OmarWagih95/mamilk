@@ -16,7 +16,7 @@ const ShopByCategories = () => {
 </h2>        */}
  <div className='flex uppercase w-full justify-between rounded-md h-[30vh] md:h-[70vh]'>
             <div 
-            onClick={()=>router.push(`/pages/categoryPage/1`)}
+            onClick={()=>router.push(`/pages/categoryPage/67e2dfbd630c109896771f91`)}
             className='rounded-md overflow-hidden hover:cursor-pointer group relative w-[55%] h-full'>
                         <Image className='group-hover:scale-110 transition duration-700' alt='category' src={'/category8.jpeg'} objectFit='cover' layout='fill'></Image>
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
@@ -27,7 +27,7 @@ const ShopByCategories = () => {
         </div>
             </div>
             <div 
-            onClick={()=>router.push(`/pages/categoryPage/1`)}
+            onClick={()=>router.push(`/pages/categoryPage/67e2b261630c109896771f90`)}
             className='rounded-md overflow-hidden hover:cursor-pointer group relative w-[44%] h-full'>
                         <Image className='group-hover:scale-110 transition duration-700' alt='category' src={'/category5.jpeg'} objectFit='cover' layout='fill'></Image>
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
@@ -41,7 +41,7 @@ const ShopByCategories = () => {
         {/* 2nd Row */}
         <div className='flex uppercase w-full justify-between rounded-md h-[20vh] md:h-[50vh]'>
             <div 
-            onClick={()=>router.push(`/pages/categoryPage/1`)}
+            onClick={()=>router.push(`/pages/categoryPage/67e2e60dad1aeb81400d9970`)}
             className='rounded-md overflow-hidden hover:cursor-pointer group relative w-[36%] h-full'>
                         <Image className='group-hover:scale-110 transition duration-700' alt='category' src={'/category8.jpeg'} objectFit='cover' layout='fill'></Image>
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
@@ -52,7 +52,7 @@ const ShopByCategories = () => {
         </div>
             </div>
             <div 
-            onClick={()=>router.push(`/pages/categoryPage/1`)}
+            onClick={()=>router.push(`/pages/categoryPage/67e3c7112fe97723301d6ff4`)}
             className='rounded-md overflow-hidden hover:cursor-pointer group relative w-[33%] h-full'>
                         <Image className='group-hover:scale-110 transition duration-700' alt='category' src={'/category2.jpeg'} objectFit='cover' layout='fill'></Image>
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>
@@ -63,7 +63,7 @@ const ShopByCategories = () => {
         </div>
             </div>
             <div 
-            onClick={()=>router.push(`/pages/categoryPage/1`)}
+            onClick={()=>router.push(`/pages/categoryPage/67e3c7182fe97723301d6ff8`)}
             className='rounded-md overflow-hidden hover:cursor-pointer group relative w-[30%] h-full'>
                         <Image className='group-hover:scale-110 transition duration-700' alt='category' src={'/category2.jpeg'} objectFit='cover' layout='fill'></Image>
                         <div className='bg-black/15 absolute left-0 top-0 z-10 w-full items-center h-full flex justify-center'>

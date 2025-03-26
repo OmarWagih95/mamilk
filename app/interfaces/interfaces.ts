@@ -1,4 +1,16 @@
-
+export interface User {
+   email:string;
+   userId:string;
+   userCountry:string;
+   firstName:string;
+   lastName:string;
+   title:string;
+   phoneNumber:string;
+   address:string;
+   // phoneCode:string;
+   dob:string;
+   deviceType:string;
+  }
   
  export interface Variant {
     color: string;
@@ -27,7 +39,7 @@
   }
   export interface Size
   {
-     type:string;
+   //   type:string;
      name:string 
   }
   export interface CartItem 

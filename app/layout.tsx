@@ -7,6 +7,7 @@ import CartProvider from "./CartProvider";
 import WishListProvider from "./WishListProvider";
 import Footer from "./components/sections/Footer";
 import SplashScreen from "./components/sections/SplashScreen";
+import UserProvider from "./UserProvider";
 
 export const testFont = localFont({
   src: "/fonts/Dangrek-Regular.ttf",
@@ -40,6 +41,7 @@ export default function RootLayout({
         className={`${Genos.className} bg-pink1 w-screen overflow-x-hidden antialiased`}
       >
                 <SplashScreen /> {/* Add the splash screen component */}
+<UserProvider>
 
                 <CartProvider>
                 <WishListProvider>
@@ -48,6 +50,7 @@ export default function RootLayout({
                 </WishListProvider>
         </CartProvider>
         <Footer />  
+</UserProvider>
       </body>
     </html>
   );

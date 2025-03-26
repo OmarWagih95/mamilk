@@ -73,9 +73,9 @@ const Footer = () => {
             <ul className="space-y-1">
               <li><Link href="/pages/policies?privacy-policy" className="text-white hover:text-secondary text-sm">
                 PRIVACY POLICY</Link></li>
-              <li><Link href="javascript:void(0)" className="text-white hover:text-secondary text-sm">
+              <li><Link href="/pages/policies?terms-and-conditions" className="text-white hover:text-secondary text-sm">
                 TERMS AND CONDITIONS</Link></li>
-              <li><Link href="javascript:void(0)" className="text-white hover:text-secondary text-sm">
+              <li><Link href="/pages/policies?return-and-exchange" className="text-white hover:text-secondary text-sm">
                 RETURN AND EXCHANGE</Link></li>
             </ul>
           </div>

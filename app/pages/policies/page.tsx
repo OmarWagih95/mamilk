@@ -1,13 +1,9 @@
 'use client'
 import PolicyTab from '@/app/components/PolicyTab';
 import { accountTextStyle, pagePadding } from '@/app/styles'
-import { useRouter } from 'next/router';
-import { NextRequest } from 'next/server';
 import React, { useEffect, useState } from 'react'
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions';
-import CookiePolicy from './components/CookiePolicy';
-// import { ExposureRegular } from '@/app/layout';
 import ReturnAndExchange from './components/ReturnAndExchange';
 
 const PoliciesPage = () => {
@@ -46,7 +42,7 @@ const PoliciesPage = () => {
             <div className={`${pagePadding} pt-16 min-h-screen h-auto w-full text-primary bg-backgroundColor flex flex-col ${accountTextStyle} justify-start items-center`}>
       <div className='py-6 lg:py-16 flex flex-col gap-6 w-full justify-start items-start border-b border-primary'>
         <div className={`flex  w-full`}>
-          <div className='w-1/4'>LEGAL</div>
+          <div className='w-1/4'>POLICY</div>
           <div>{title}</div>
         </div>
         {/* <h1 className=' '>
