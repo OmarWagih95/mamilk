@@ -49,7 +49,7 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
   const {wishList,setWishList}=useContext(wishListContext)
   const deleteItem =(id:string,size:string,color:string)=>{
     console.log(id + size + color)
-    console.log('currentCart' + cart[0].productId + cart[0].size + cart[0].color)
+    // console.log('currentCart' + cart[0].productId + cart[0].size + cart[0].color)
    if(wishListBool){
  const newWishList =wishList.filter((item)=>item.productId !== id);
      setWishList(newWishList);

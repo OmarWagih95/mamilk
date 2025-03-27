@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import constants from '../constants';
 import Link from 'next/link';
+import { Collection } from '../interfaces/interfaces';
+import axios from 'axios';
 
   const ShopModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
     const [isVisible, setIsVisible] = useState(false);
-
+    const [collections, setCollections] = useState<Collection[]>([])
+  
+    useEffect(() => {
+      const fetchCollections = async () => {
+        try {
+          const res = await axios.get(`/api/collections?categoryID=all`);
+          setCollections(res.data.data);
+        } catch (error) {
+          console.error("Error fetching collections:", error);
+        }
+      };
+      fetchCollections();
+    }, []);
     useEffect(() => {
       if (isOpen) {
         // Open the modal
@@ -34,10 +48,10 @@ import Link from 'next/link';
         }`}
       >
         <div className='bg-pink1 text-primary text-sm gap-2 p-4 flex flex-col shadow-lg w-[100vw] items-center rounded-md'>
-          {constants.Categories.map((category, index) => (
+          {collections.map((collection, index) => (
             <div key={index} className='flex flex-col gap-2 text-primary hover:text-secondary'>
-              <Link onClick={onClose} href={`/pages/categoryPage/${category.id}`}>
-                {category.categoryName}
+              <Link onClick={onClose} href={`/pages/categoryPage/${collection._id}`}>
+                {collection.collectionName}
               </Link>
             </div>
           ))}

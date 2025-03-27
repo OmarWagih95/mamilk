@@ -192,7 +192,7 @@ const CheckoutPage = () => {
               </div>
               <div className="flex flex-wrap gap-4 mt-8">
                 <button type="button" onClick={handleConfirmOrder}
-                  className={`bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 hover:bg-gradient-to-l hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-700 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm  text-white rounded-lg`}>
+                  className={`bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 hover:bg-gradient-to-l hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-700 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm md:text-lg  text-white rounded-lg`}>
                   Confirm Order
                 </button>
               </div>

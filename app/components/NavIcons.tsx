@@ -38,7 +38,7 @@ const NavIcons = () => {
 
   return (
     <div className='hover:cursor-pointer flex items-center gap-4 xl:gap-6'>
-     <Link href={'/pages/about'}>ABOUT</Link>
+     <Link className='hidden md:flex' href={'/pages/about'}>ABOUT</Link>
       <h2 onClick={() => setCategoriesOpen(!isCategoriesOpen)} className='hidden md:flex'>
         SHOP
       </h2>

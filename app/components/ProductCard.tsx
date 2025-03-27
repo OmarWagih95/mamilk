@@ -41,7 +41,7 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
               id:cart.length,
           productId: product._id,
             productName: product.title,
-            price: product.price,
+            price: product.price.local,
             color:product.variations[0].color,
             quantity: 1,
             size: product.variations[0].sizes[0].name,
@@ -79,9 +79,9 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
           id: wishList.length,
           productId: product._id,
           productName: product.title,
-          price: product.price,
+          price: product.price.local,
           quantity: 1,
-          color: 'blue',
+          color: product.variations[0].color,
           size: product.variations[0].sizes[0].name,
           
           // imageUrl: product.variations.find(v=>v.color==='blue')!.images[0],
@@ -122,7 +122,7 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
       <div className="flex-1">
         <h5 className={`text-sm sm:text-base ${Gluten.className} font-bold text-pink3 line-clamp-2`}>{product.title}</h5>
         <div className=" flex items-center flex-wrap ">
-          <h6 className="text-sm sm:text-base font-bold text-pink2">{product.price} EGP</h6>
+          <h6 className="text-sm sm:text-base font-bold text-pink2">{product.price.local} EGP</h6>
           <div onClick={() => {
             addToWishList();
             toggleHeart();

@@ -9,8 +9,11 @@ import { Gluten } from '@/app/layout';
 import { gradientSmallButtonStyle } from '@/app/styles/styles';
 import { wishListContext } from '@/app/context/wishListContext';
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import axios from 'axios';
+
 const ProductPage = () => {
-  const params = useParams();
+    const { productID } = useParams();
+  
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1); // New quantity state
@@ -20,18 +23,26 @@ const ProductPage = () => {
   const [selectedSize, setSelectedSize] = useState<string>(product?.variations[0].sizes[0].name!);
 
   useEffect(() => {
-    if (!params?.id) return; // Ensure params.id is available
-
-    const productID = params.id as string;
-    const foundProduct = constants.products.find((p) => p._id === productID);
-    
-    setProduct(foundProduct || null);
-    
-    if (foundProduct?.variations?.length) {
-      setSelectedColor(foundProduct.variations[0].color); // Default to first color
-      setSelectedSize(foundProduct.variations[0].sizes[0].name!); // Default to first color
+      const fetchProduct= async()=>{
+        const res = await axios(`/api/products?productID=${productID}`);
+        const product = res.data.data;
+        setProduct(product);
+            if (product?.variations?.length) {
+      setSelectedColor(product.variations[0].color); // Default to first color
+      setSelectedSize(product.variations[0].sizes[0].name!); // Default to first color
     }
-  }, [params.id]);
+      }
+      fetchProduct();
+    // const productID = params.id as string;
+    // const foundProduct = constants.products.find((p) => p._id === productID);
+    
+    // setProduct(foundProduct || null);
+    
+    // if (foundProduct?.variations?.length) {
+    //   setSelectedColor(foundProduct.variations[0].color); // Default to first color
+    //   setSelectedSize(foundProduct.variations[0].sizes[0].name!); // Default to first color
+    // }
+  }, [productID]);
       const addToCart=()=>{
         console.log('clicked')
         const sameProductIndex = cart.findIndex(
@@ -51,7 +62,7 @@ const ProductPage = () => {
                 id:cart.length,
             productId: product!._id,
               productName: product!.title,
-              price: product!.price,
+              price: product!.price.local,
               color:selectedColor!,
               size: selectedSize,
               quantity: quantity,
@@ -87,7 +98,7 @@ const ProductPage = () => {
                 id: wishList.length,
                 productId: product!._id,
                 productName: product!.title,
-                price: product!.price,
+                price: product!.price.local,
                 quantity: 1,
                 color: 'blue',
                 size: product!.variations[0].sizes[0].name,
@@ -142,7 +153,7 @@ const ProductPage = () => {
               <h3 className={`${Gluten.className} text-xl sm:text-2xl lg:text-4xl font-bold `}>{product?.title}</h3>
               <p className="text-gray-500  text-sm">{product?.description}</p>
               <div className="flex items-center flex-wrap gap-4 ">
-                <h4 className=" text-2xl sm:text-3xl font-bold">{product?.price} LE</h4>
+                <h4 className=" text-2xl sm:text-3xl font-bold">{product?.price.local} LE</h4>
               </div>
             </div>
 
