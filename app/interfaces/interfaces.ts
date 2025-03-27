@@ -77,6 +77,7 @@
    title:string;
    phoneNumber:string;
    address:string;
+   deviceType:string
    // phoneCode:string;
    dob:string;
   }
