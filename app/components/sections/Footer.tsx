@@ -1,4 +1,5 @@
 'use client'
+import { Gluten } from '@/app/layout';
 import { gradientSmallButtonStyle } from '@/app/styles/styles';
 import axios from 'axios';
 import Link from 'next/link'
@@ -69,7 +70,7 @@ const Footer = () => {
       <footer className="bg-pink2 text-blue2 py-10 sm:px-10 px-6 tracking-wide">
         <div className="flex-col-reverse w-full flex md:flex-row gap-8">
           <div className='md:w-1/4'>
-            <h4 className="text-base font-bold mb-6">POLICIES</h4>
+            <h4 className={`text-base ${Gluten.className} font-bold mb-6`}>POLICIES</h4>
             <ul className="space-y-1">
               <li><Link href="/pages/policies?privacy-policy" className="text-white hover:text-secondary text-sm">
                 PRIVACY POLICY</Link></li>
@@ -81,17 +82,20 @@ const Footer = () => {
           </div>
 
           <div className='md:w-1/4'>
-            <h4 className="text-base font-bold mb-6">SOCIALS</h4>
+            <h4 className={`text-base ${Gluten.className} font-bold mb-6`}>SOCIALS</h4>
             <ul className="space-y-1">
               <li><Link target='#' href="https://www.facebook.com/profile.php?id=61565209649532&mibextid=LQQJ4d" className="text-white hover:text-secondary text-sm">
                 FACEBOOK</Link></li>
               <li><Link target='#' href="https://www.instagram.com/mamilk_breastfeeding/profilecard" className="text-white hover:text-secondary text-sm">
                 INSTAGRAM</Link></li>
+              <li><Link target='#' href="https://wa.me/201223453899?text=Hello%2C%20I%20am%20interested%20in%20your%20products
+" className="text-white hover:text-secondary text-sm">
+                WHATSAPP</Link></li>
             </ul>
           </div>
 
           <div className="max-w-xl md:w-1/2 mx-auto text-start">
-            <h3 className="text-2xl font-bold">Newsletter</h3>
+            <h3 className={`text-2xl ${Gluten.className} font-bold`}>Newsletter</h3>
             <p className="text-sm mt-4 text-white">Subscribe to our newsletter and stay up to date with the latest news,
               updates, and exclusive offers. Get valuable insights. Join our community today!</p>
 
