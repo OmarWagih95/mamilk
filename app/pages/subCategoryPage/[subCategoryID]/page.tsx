@@ -11,20 +11,20 @@ import axios from 'axios'
 const CategoryPage = () => {
   // const [categoryData, setCategoryData] = useState(null);
 const [collection,setCollection]=useState<Collection>()
-  const { categoryID } = useParams();
+  const { subCategoryID } = useParams();
   useEffect(() => {
-    if (!categoryID) return;
-    console.log(categoryID)
-    const fetchCategoryData = async () => {
+    if (!subCategoryID) return;
+    console.log(subCategoryID)
+    const fetchSubCategoryData = async () => {
       try {
-        const res = await axios(`/api/collections?categoryID=${categoryID}`);
+        const res = await axios(`/api/subCollections?categoryID=${subCategoryID}`);
         const data = res.data.data;
         setCollection(data);
       } catch (error) {
         console.error("Error fetching category data:", error);
       }
       try {
-        const res = await axios(`/api/categoryProducts?categoryID=${categoryID}`);
+        const res = await axios(`/api/categoryProducts?categoryID=${subCategoryID}`);
         const data = res.data.data;
         console.log('categoryProducts'+data.length)
         setProductList(data);
@@ -33,8 +33,8 @@ const [collection,setCollection]=useState<Collection>()
       }
     };
 
-    fetchCategoryData();
-  }, [categoryID]);
+    fetchSubCategoryData();
+  }, [subCategoryID]);
 
   // if (!categoryData) return <p>Loading...</p>; // Get the dynamic param
 

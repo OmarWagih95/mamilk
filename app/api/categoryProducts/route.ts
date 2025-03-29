@@ -18,7 +18,7 @@ export async function GET(req: Request) {
     // const skip = (page - 1) * limit;
 
     try {
-        const products = await productModel.find({"collectionID":categoryID}).sort({ createdAt: -1 });
+        const products = await productModel.find({"subCollectionID":categoryID}).sort({ createdAt: -1 });
         // const totalProducts = await productModel.countDocuments();
 
         return NextResponse.json({

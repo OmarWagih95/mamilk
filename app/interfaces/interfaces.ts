@@ -9,9 +9,19 @@
    local:number;
   }
   export interface Collection {
-      _id: string;
-      collectionName:string;
-  }
+    _id: string;
+    collectionName:string;
+    description:string;
+
+}
+export interface SubCollection {
+_id: string;
+subCollectionName:string;
+products :string[];
+imageUrl:string;
+collectionID:string;
+description:string;
+}
 
  export interface Product {
     _id: string;
