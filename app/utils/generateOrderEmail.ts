@@ -30,8 +30,8 @@
 //         </body>
 //     `;
 // }
-export function generateEmailBody(items: any[],firstName:string,lastName:string ,phone:string,email:string,total: number,subTotal: number,shipping:number,currency:string,address:string,orderNumber:string,paymentMethod:string,country:string,state:string
-	,city:string,postalZip:string,appartment:string,
+export function generateEmailBody(items: any[],firstName:string,lastName:string ,phone:string,email:string,total: number,subTotal: number,shipping:number,address:string,orderNumber:string,paymentMethod:string,country:string,state:string
+	
 ) {
     let productsHTML = items.map(item => `
       <table class="row row-8" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; padding-bottom: 20px; mso-table-rspace: 0pt;">
@@ -511,8 +511,8 @@ export function generateEmailBody(items: any[],firstName:string,lastName:string 
 															<td class="pad">
 																<div style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:13px;line-height:180%;text-align:right;  white-space: nowrap; ">
 																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">${paymentMethod}</span></p>
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">${subTotal + currency}</span></p>
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">${shipping + currency}</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">${subTotal} LE</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">${shipping} LE</span></p>
 																</div>
 															</td>
 														</tr>
@@ -521,7 +521,7 @@ export function generateEmailBody(items: any[],firstName:string,lastName:string 
 														<tr>
 															<td class="pad" style="padding-top:15px;">
 																<div style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:20px;line-height:180%;text-align:right;mso-line-height-alt:36px;">
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word;"><strong><span style="word-break: break-word; color: #2b303a;">${total + currency}</span></strong></span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word;"><strong><span style="word-break: break-word; color: #2b303a;">${total } LE</span></strong></span></p>
 																</div>
 															</td>
 														</tr>
@@ -568,10 +568,8 @@ export function generateEmailBody(items: any[],firstName:string,lastName:string 
 														<tr>
 															<td class="pad">
 																<div style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:13px;line-height:180%;text-align:left;mso-line-height-alt:23.400000000000002px;">
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">apartment:${appartment}</span></p>
 																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">${address}</span></p>
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">${country}, ${state},${city}</span></p>
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">zip/postal : ${postalZip}</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #2b303a;">${country}, ${state}</span></p>
 																</div>
 															</td>
 														</tr>

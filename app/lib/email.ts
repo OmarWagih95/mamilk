@@ -20,12 +20,12 @@ export async function sendMail({
   //   },
   // });
   const transport = nodemailer.createTransport({
-    host: "mail.smtp2go.com",        // SMTP2GO's SMTP server
-    port: 2525,                        // or 2525, or 465 for SSL
-    secure: false,                   // true for port 465 (SSL), false for others
+    host: "mail.smtp2go.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: process.env.SMTP_EMAIL,    // Your SMTP2GO username (usually your email)
-      pass: process.env.SMTP_PASSWORD, // Your SMTP2GO password
+      user: process.env.SMTP_EMAIL,
+      pass: process.env.SMTP_PASSWORD,
     },
   });
   try {
