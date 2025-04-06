@@ -23,7 +23,7 @@ export async function GET(request: Request) {
         return NextResponse.json({ message: "Products not found" }, { status: 404 });
       }
   
-      console.log("Zones found:", zones);
+      // console.log("Zones found:", zones);
       return NextResponse.json(zones);
     } catch (err) {
       console.error("Error fetching product:", err);

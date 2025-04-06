@@ -24,7 +24,7 @@ export async function GET(request: Request) {
         return NextResponse.json({ message: "states" }, { status: 404 });
       }
   
-      console.log("states found:", states);
+      // console.log("states found:", states);
       return NextResponse.json(states);
     } catch (err) {
       console.error("Error fetching states:", err);

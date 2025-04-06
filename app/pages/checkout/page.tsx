@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import {Modal} from '@/app/components/Modal';
 import { useRouter } from 'next/navigation';
+import { Product, Size, Variant } from '@/app/interfaces/interfaces';
 
 const CheckoutPage = () => {
   const router = useRouter()
@@ -22,6 +23,8 @@ const CheckoutPage = () => {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
+  const [buttonText, setButtonText] = useState('');
+  const [buttonFunction,setButtonFunction] =useState() // State
   const [errors, setErrors] = useState<string[]>([]);  // To store validation errors
   const [modalVisible, setModalVisible] = useState(false); // State for modal visibility
   const [modalMessage, setModalMessage] = useState(''); // State for modal message
@@ -33,6 +36,42 @@ const CheckoutPage = () => {
       0
     );
     setSubTotal(calculatedSubTotal);
+  };
+
+  const checkStock = async () => {
+    console.log("Cart contents:", cart);
+if (cart.length === 0) {
+  console.log("Cart is empty, skipping stock check.");
+  return;
+}
+    try {
+      const stockChecks = cart.map(async (item) => {
+        console.log("called")
+        console.log('productID'+item.productId)
+        const response = await axios.get(`/api/products?productID=${item.productId}`);
+        const  product  = response.data.data as Product;
+        const variant = product.variations.find((s: Variant) => s.color === item.color);
+        const size = variant?.sizes.find((s: Size) => s.name === item.size);
+
+        if (size?.stock === 0) {
+          setCart((prevCart) => prevCart.filter((cartItem) => cartItem.productId !== item.productId));
+          setButtonText('Continue')
+          // setButtonFunction(setModalVisible(false))
+          throw new Error(`Sorry but ${item.productName} is out of stock.`);
+
+        }
+        if (size && size.stock < item.quantity) {
+          throw new Error(`The quantity of ${item.productName} exceeds the available stock.`);
+        }
+      });
+
+      // Wait for all stock checks to complete
+      await Promise.all(stockChecks);
+    } catch (error: any) {
+      setModalMessage(error.message);
+      setModalVisible(true);
+      return false;
+    }
   };
 
   useEffect(() => {
@@ -53,6 +92,8 @@ const CheckoutPage = () => {
   }, []);
 
   useEffect(() => {
+    checkStock();
+
     calculateTotals();
   }, [cart]);
 
@@ -125,11 +166,10 @@ const CheckoutPage = () => {
   };
   const closeModal = () => {
     setModalVisible(false);
-    router.push('/'); // 
   };
   return (
     <div className="pt-14 bg-pink0">
-            {modalVisible && <Modal message={modalMessage} onClose={closeModal} />} {/* Modal component */}
+            {modalVisible && <Modal message={modalMessage} buttonText={buttonText} buttonFunction={buttonFunction} onClose={closeModal} />} {/* Modal component */}
 
       <div className="max-lg:max-w-xl mx-auto w-full">
         <div className="grid lg:grid-cols-3 gap-6">

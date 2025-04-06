@@ -63,21 +63,22 @@ export async function POST(request: Request) {
       console.log(data.shipping)
       console.log(data.state)
                   await sendMail({
-                      to: `${data.email}, anchuva.store@gmail.com`,
+                      to: `${data.email}`,
+                      // to: `${data.email}, anchuva.store@gmail.com`,
                       name: "Order Confirmation",
                       subject: "Order Confirmation",
                       body:generateEmailBody(items,data.firstName,data.lastName,data.phone,data.email, data.total,data.subTotal,data.shipping,data.currency,data.address,res._id,data.cash,data.country,data.state,data.city,data.postalZip,data.apartment)
                       // body: `<a href=${verificationLink}> click here to verify your account</a>`,
                       //   body: compileWelcomeTemplate("Vahid", "youtube.com/@sakuradev"),
                   });
-                  await sendMail({
-                      to: "anchuva.store@gmail.com",
-                      name: "Order Confirmation",
-                      subject: "Order Confirmation",
-                      body:generateEmailBody(items,data.firstName,data.lastName,data.phone,data.email, data.total,data.subTotal,data.shipping,data.currency,data.address,res._id,data.cash,data.country,data.state,data.city,data.postalZip,data.apartment)
-                      // body: `<a href=${verificationLink}> click here to verify your account</a>`,
-                      //   body: compileWelcomeTemplate("Vahid", "youtube.com/@sakuradev"),
-                  });
+                  // await sendMail({
+                  //     to: "anchuva.store@gmail.com",
+                  //     name: "Order Confirmation",
+                  //     subject: "Order Confirmation",
+                  //     body:generateEmailBody(items,data.firstName,data.lastName,data.phone,data.email, data.total,data.subTotal,data.shipping,data.currency,data.address,res._id,data.cash,data.country,data.state,data.city,data.postalZip,data.apartment)
+                  //     // body: `<a href=${verificationLink}> click here to verify your account</a>`,
+                  //     //   body: compileWelcomeTemplate("Vahid", "youtube.com/@sakuradev"),
+                  // });
       return NextResponse.json({token:'wiig'}, { status: 200 })
  
 }
