@@ -1,6 +1,5 @@
 import { sendMail } from "@/app/lib/email";
 import { generateEmailBody } from "@/app/utils/generateOrderEmail";
-// import { generateEmailInstaBody } from "@/app/utils/generateOrderInstaEmail";
 import { ConnectDB } from "@/app/config/db";
 import ordersModel from "@/app/modals/ordersModel";
 import axios from "axios";
@@ -19,6 +18,7 @@ export async function POST(request: Request) {
     console.log( 'subTotal' +data.subTotal);
     // console.log('here'+process.env.PaymobApiKey)
     const items =await data.cart.map((item: any) => {
+      
       return {
        "productId": item.productId,
        "productName": item.productName ,
@@ -59,16 +59,23 @@ export async function POST(request: Request) {
         billingApartment: data.billingApartment, 
         billingPostalZip: data.billingPostalZip, 
       })
+      console.log(data.items)
+      console.log(data.name)
+      console.log(data.phone)
+      console.log(data.email)
+      console.log(data.total)
       console.log(data.subTotal)
       console.log(data.shipping)
+      console.log(data.address)
+      console.log(res._id)
       console.log(data.state)
                   await sendMail({
                       to: `${data.email}`,
                       // to: `${data.email}, anchuva.store@gmail.com`,
                       name: "Order Confirmation",
                       subject: "Order Confirmation",
-                      // body:generateEmailBody(items,data.firstName,data.lastName,data.phone,data.email, data.total,data.subTotal,data.shipping,data.address,res._id,data.cash,data.country,data.state)
-                      body: `<p> Done</p>`,
+                      body:generateEmailBody(items,data.name,data.phone,data.email, data.total,data.subTotal,data.shipping,data.address,res._id,data.state)
+                      // body: `<p> Done</p>`,
                       //   body: compileWelcomeTemplate("Vahid", "youtube.com/@sakuradev"),
                   });
                   // await sendMail({

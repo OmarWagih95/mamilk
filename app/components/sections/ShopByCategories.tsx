@@ -7,7 +7,7 @@ const ShopByCategories = () => {
     const router = useRouter()
 
   return (
-    <div className='bg-pink1 space-y-4 w-full min-h-[50vh] px-4 md:px-8 py-8 md:py-16 h-auto text-center'>
+    <div className='bg-pink1 space-y-4 w-full min-h-[50vh] px-4 md:pl-8 md:pr-10 py-8 md:py-16 h-auto text-center'>
 <h2 className={`${Gluten.className} text-pink3 mb-8 md:mb-16 text-3xl md:text-4xl lg:text-5xl`}>
   Shop By Collection
 </h2>       

@@ -6,6 +6,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import {Modal} from '@/app/components/Modal';
 import { useRouter } from 'next/navigation';
 import { Product, Size, Variant } from '@/app/interfaces/interfaces';
+import Loading from '@/app/components/Loading';
 
 const CheckoutPage = () => {
   const router = useRouter()
@@ -24,7 +25,8 @@ const CheckoutPage = () => {
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
   const [buttonText, setButtonText] = useState('');
-  const [buttonFunction,setButtonFunction] =useState() // State
+  const [loading,setLoading]=useState(false)
+  const [buttonFunction,setButtonFunction] =useState<() => void>() // State
   const [errors, setErrors] = useState<string[]>([]);  // To store validation errors
   const [modalVisible, setModalVisible] = useState(false); // State for modal visibility
   const [modalMessage, setModalMessage] = useState(''); // State for modal message
@@ -41,6 +43,15 @@ const CheckoutPage = () => {
   const checkStock = async () => {
     console.log("Cart contents:", cart);
 if (cart.length === 0) {
+  setModalVisible(true)
+  setModalMessage('Your cart is empty. Please add items to your cart before proceeding to checkout.');
+  setButtonText('Redirect To Home Page')
+  setButtonFunction(() => () => {
+    router.push('/');
+  });
+  // if (cart.length === 0) {
+  //   router.push('/'); 
+  // }
   console.log("Cart is empty, skipping stock check.");
   return;
 }
@@ -56,12 +67,25 @@ if (cart.length === 0) {
         if (size?.stock === 0) {
           setCart((prevCart) => prevCart.filter((cartItem) => cartItem.productId !== item.productId));
           setButtonText('Continue')
-          // setButtonFunction(setModalVisible(false))
-          throw new Error(`Sorry but ${item.productName} is out of stock.`);
+          setButtonFunction(() => () => {
+            setModalVisible(false);
+          });    
+                throw new Error(`Sorry but ${item.productName} is out of stock.`);
 
         }
         if (size && size.stock < item.quantity) {
-          throw new Error(`The quantity of ${item.productName} exceeds the available stock.`);
+          setCart((prevCart) =>
+            prevCart.map((cartItem) =>
+              cartItem.productId === item.productId
+                ? { ...cartItem, quantity: size.stock }
+                : cartItem
+            )
+          );
+          setButtonText("Continue");
+          setButtonFunction(() => () => {
+            setModalVisible(false);
+          });
+          throw new Error(`The quantity of ${item.productName} exceeds the available stock. We've adjusted it to ${size.stock}.`);
         }
       });
 
@@ -95,6 +119,7 @@ if (cart.length === 0) {
     checkStock();
 
     calculateTotals();
+
   }, [cart]);
 
   useEffect(() => {
@@ -125,8 +150,9 @@ if (cart.length === 0) {
 
   // Handle form submission
   const handleConfirmOrder = async () => {
-    if (!validateInputs()) return;
 
+    if (!validateInputs()) return;
+    setLoading(true)
     const orderData = {
       name,
       email,
@@ -139,37 +165,40 @@ if (cart.length === 0) {
       cart,
       subTotal,
     };
-
     try {
+      const isStockAvailable = await checkStock();
       const response = await axios.post('/api/orders', orderData);
       if (response.status === 200) {
+        setLoading(false);
         setModalMessage('Your Order placed successfully!');
         setModalVisible(true);
-        // Optionally clear cart and form
-        setCart([]);
-        setName('');
-        setEmail('');
-        setPhone('');
-        setAddress('');
-        setNotes('');
-        setSubTotal(0);
-        setTotal(0);
-      } else {
-        setModalMessage('Failed to place order.');
-        setModalVisible(true); // Show error modal
+        setCart([]); // Clear cart and reset form
+        // ...
       }
-    } catch (error) {
-      console.error('Order submission error:', error);
-      setModalMessage('An error occurred while placing the order.');
-      setModalVisible(true); // Show error modal
+    } catch (error: any) {
+      if (error.response?.status === 400 && error.response.data?.updatedCart) {
+        // Cart was modified — notify and update
+        setCart(error.response.data.updatedCart);
+        setModalMessage(error.response.data.messages.join("\n"));
+        setButtonText("Review and Confirm Again");
+        setButtonFunction(() => () => {
+          setModalVisible(false);
+        });
+        setModalVisible(true);
+      } else {
+        setModalMessage('An error occurred while placing the order.');
+        setModalVisible(true);
+      }
     }
+    
   };
   const closeModal = () => {
     setModalVisible(false);
   };
   return (
     <div className="pt-14 bg-pink0">
-            {modalVisible && <Modal message={modalMessage} buttonText={buttonText} buttonFunction={buttonFunction} onClose={closeModal} />} {/* Modal component */}
+            {modalVisible && <Modal message={modalMessage} buttonText={buttonText} buttonFunction={()=>{buttonFunction}} onClose={closeModal} />} {/* Modal component */}
+              {loading && <Loading/>}
 
       <div className="max-lg:max-w-xl mx-auto w-full">
         <div className="grid lg:grid-cols-3 gap-6">
@@ -261,6 +290,7 @@ if (cart.length === 0) {
         </div>
       </div>
     </div>
+
   );
 };
 

@@ -33,3 +33,7 @@ body {
   opacity: 0.5; /* Dim the element */
   cursor: not-allowed; /* Show a "disabled" cursor */
 }
+/* 
+html {
+  scrollbar-gutter: stable;
+} */
