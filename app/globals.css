@@ -33,6 +33,24 @@ body {
   opacity: 0.5; /* Dim the element */
   cursor: not-allowed; /* Show a "disabled" cursor */
 }
+
+.border-loading-effect {
+  position: relative; /* Allows the ::after element to align with it */
+}
+
+.border-loading-effect::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px; /* Adjust the border height */
+  width: 0%; /* Start with a 0 width */
+  background-color: #1f3742; /* Set your primary color */
+  transition: width 0.5s ease; /* Control the animation speed */
+}
+.border-loading-effect:hover::after {
+  width: 100%; /* Expands to full width on hover */
+}
 /* 
 html {
   scrollbar-gutter: stable;

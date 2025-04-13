@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 const Shcema =mongoose.Schema({
-    subCollectionName:{
+    SubCategoryName:{
         type:String,
         required:true
     },
@@ -19,6 +19,6 @@ const Shcema =mongoose.Schema({
 
     });
 
-    const subCollectionsModel= mongoose.models.subCollections || mongoose.model('subCollections', Shcema)
+    const SubCategorysModel= mongoose.models.SubCategorys || mongoose.model('SubCategorys', Shcema)
 
-    export default subCollectionsModel;
+    export default SubCategorysModel;

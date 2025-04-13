@@ -1,0 +1,35 @@
+[{
+  "_id":  "67e2b261630c109896771f90"
+  ,
+  "collectionName": "Tops",
+  "description": "wolf"
+},
+{
+  "_id":  "67e2dfbd630c109896771f91"
+  ,
+  "collectionName": "Dresses"
+},
+{
+  "_id":  "67e2e60dad1aeb81400d9970"
+  ,
+  "collectionName": "Bottoms",
+  "__v": 0
+},
+{
+  "_id":  "67e3c7112fe97723301d6ff4"
+  ,
+  "collectionName": "Maternity",
+  "__v": 0
+},
+{
+  "_id":  "67e3c7182fe97723301d6ff8"
+  ,
+  "collectionName": "Sets",
+  "__v": 0
+},
+{
+  "_id":  "67e4a20423d644057f9fd265"
+  ,
+  "collectionName": "Hoodie",
+  "__v": 0
+}]

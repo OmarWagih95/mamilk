@@ -1,15 +1,69 @@
-import { CartItem, ImageVariant, Product } from "./interfaces/interfaces";
+import { CartItem, Collection, ImageVariant, Product } from "./interfaces/interfaces";
 
-const Categories:Category[]=[
+const Categories:Category[]=
      //     {text:"Portfolio",link:"/"},
-     {categoryName:"DRESS",path:"/pages/categories/",id:1,imageURL:"/category8.jpeg"},
-     {categoryName:"TOPS",path:"/pages/categories/",id:1,imageURL:"/category2.jpeg"},
-     {categoryName:"BOTTOMS",path:"/pages/categories/",id:1,imageURL:"/category6.jpeg"},
-    {categoryName:"HOODIE",path:"/pages/categories/",id:1,imageURL:"/category7.jpeg"},
-    {categoryName:"MATERNITY",path:"/pages/categories/",id:1,imageURL:"/category5.jpeg"},
-    {categoryName:"SET",path:"/pages/categories/",id:1,imageURL:"/category4.jpeg"},
-
+     [{
+      "_id":  "67e2b261630c109896771f90"
+      ,
+      "categoryName": "Tops",
+      "description": "wolf"
+    },
+    {
+      "_id":  "67e2dfbd630c109896771f91"
+      ,
+      "categoryName": "Dresses"
+    },
+    {
+      "_id":  "67e2e60dad1aeb81400d9970"
+      ,
+      "categoryName": "Bottoms",
+     
+    },
+    {
+      "_id":  "67e3c7112fe97723301d6ff4"
+      ,
+      "categoryName": "Maternity",
+     
+    },
+    {
+      "_id":  "67e3c7182fe97723301d6ff8"
+      ,
+      "categoryName": "Sets",
+     
+    },
+    {
+      "_id":  "67e4a20423d644057f9fd265"
+      ,
+      "categoryName": "Hoodie",
+     
+    }]
+const collections:Collection[]=
+     //     {text:"Portfolio",link:"/"},
+     [{
+      _id:  "67e2b261630c109896771f90"
+      ,
+      description: "wolf",
+      imageURL:"/winter.JPG",
+      collectionName: "Winter Essentials"
+    },
+    {
+      _id:  "67e2dfbd630c109896771f91"
+      ,
+      description: "wolf",
+      imageURL:"/maternity.jpg",
+      collectionName: "Maternity Essentials"
+    },
+    {
+      "_id":  "67e2e60dad1aeb81400d9970"
+      ,
+      description: "wolf",
+      imageURL:"/summer.jpg",
+      collectionName: "Summer Essentials"
+     
+    },
 ]
+
+
 // export const testProducts: Product[] = [
 //     {
 //       _id: "prod_001",
@@ -134,7 +188,7 @@ const Categories:Category[]=[
 
 
 
- const constants={Categories:Categories
+ const constants={Categories:Categories,collections:collections,
 }
 
 export default constants;

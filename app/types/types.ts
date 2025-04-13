@@ -11,11 +11,9 @@ type ShippingZone = {
   };
 
   type Category = {
-    id: number;
+    _id: string;
     categoryName: string;
-    imageURL: string;
-    path: string;
-
+    description?: string;
   }
   
 

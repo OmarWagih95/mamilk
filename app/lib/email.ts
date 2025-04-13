@@ -35,7 +35,6 @@ export async function sendMail({
     console.error({ error });
     return;
   }
-
   try {
     const sendResult = await transport.sendMail({
       from: SMTP_EMAIL,

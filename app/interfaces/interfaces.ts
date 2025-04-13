@@ -8,15 +8,23 @@
   export type price={
    local:number;
   }
+  export interface Category {
+    _id: string;
+    categoryName:string;
+    description:string;
+    imageURL:string;
+
+}
   export interface Collection {
     _id: string;
     collectionName:string;
     description:string;
+    imageURL:string;
 
 }
-export interface SubCollection {
+export interface SubCategory {
 _id: string;
-subCollectionName:string;
+SubCategoryName:string;
 products :string[];
 imageUrl:string;
 collectionID:string;

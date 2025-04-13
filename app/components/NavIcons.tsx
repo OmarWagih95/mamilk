@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import CartModal from './cart/CartModal';
 import SideCart from './SideCart';
 import WishListDrawer from './WishListDrawer';
-import SearchModela from './SearchModela';
 import ShopModal from './ShopModal';
 import { IoSearchOutline } from 'react-icons/io5';
 import SearchModal from './SearchModal';
@@ -37,11 +36,12 @@ const NavIcons = () => {
   }, [isProfileOpen, isCartOpen, isCategoriesOpen, isSearchOpen]);
 
   return (
-    <div className='hover:cursor-pointer flex items-center gap-4 xl:gap-6'>
-     <Link className='hidden md:flex' href={'/pages/about'}>ABOUT</Link>
-      <h2 onClick={() => setCategoriesOpen(!isCategoriesOpen)} className='hidden md:flex'>
+    <div className='hover:cursor-pointer text-xl font-medium tracking-wider  flex items-center gap-4 xl:gap-6'>
+     <Link className='hidden  border-loading-effect group   gap-4 transform  transition-transform duration-500 ease-out md:flex' href={'/pages/about'}>ABOUT</Link>
+     <Link className='hidden  border-loading-effect group   gap-4 transform  transition-transform duration-500 ease-out md:flex' href={'/pages/contact'}>CONTACT</Link>
+      {/* <h2 onClick={() => setCategoriesOpen(!isCategoriesOpen)} className='hidden  border-loading-effect group   gap-4 transform  transition-transform duration-500 ease-out  md:flex'>
         SHOP
-      </h2>
+      </h2> */}
       <IoSearchOutline onClick={(e) => { e.stopPropagation(); setSearchOpen((prev) => !prev); }} className='' />
       <WishListDrawer />
       <div className='flex items-center gap-1'>

@@ -17,7 +17,7 @@ const [collection,setCollection]=useState<Collection>()
     console.log(subCategoryID)
     const fetchSubCategoryData = async () => {
       try {
-        const res = await axios(`/api/subCollections?categoryID=${subCategoryID}`);
+        const res = await axios(`/api/SubCategorys?categoryID=${subCategoryID}`);
         const data = res.data.data;
         setCollection(data);
       } catch (error) {

@@ -17,17 +17,17 @@ const Menu: React.FC = () => {
   const [summary,setSummary] = useState(false)
 
   const [open, setOpen] = useState<boolean>(false); // Menu open/close state
-  useEffect(() => {
-    const fetchCollections = async () => {
-      try {
-        const res = await axios.get(`/api/collections?categoryID=all`);
-        setCollections(res.data.data);
-      } catch (error) {
-        console.error("Error fetching collections:", error);
-      }
-    };
-    fetchCollections();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCollections = async () => {
+  //     try {
+  //       const res = await axios.get(`/api/collections?categoryID=all`);
+  //       setCollections(res.data.data);
+  //     } catch (error) {
+  //       console.error("Error fetching collections:", error);
+  //     }
+  //   };
+  //   fetchCollections();
+  // }, []);
 
   // Close the menu
   // const toggleDrawer = () => setOpen(false);
@@ -68,10 +68,10 @@ const Menu: React.FC = () => {
     padding: summary ? "0.25rem 0.25rem" : "0",
   }}
 >
-  {collections.map((category,index)=>
+  {constants.Categories.map((category,index)=>
             <div key={index} className='flex flex-col gap-2 text-primary hover:text-secondary'>
             <Link onClick={() => setOpen(prev => !prev)}  href={`/pages/categoryPage/${category._id}`}>
-              {category.collectionName}
+              {category.categoryName}
             </Link>
           </div>  )}
 

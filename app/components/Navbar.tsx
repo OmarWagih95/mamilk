@@ -6,6 +6,7 @@ import NavIcons from './NavIcons'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { pagePadding } from '../styles'
+import constants from '../constants'
 // import { useEffect, useState } from 'react'
 // import { CartItem } from '../interfaces/interfaces'
 // import { CartItem } from '../interfaces/interfaces'
@@ -57,9 +58,16 @@ const Navbar = () => {
         </div>
         {/* //meduimSize */}
         <div className={`hidden ${pagePadding} lg:flex justify-between items-center h-full`}>
-            <div className='flex w-1/3  items-center justify-start  gap-4'>
+            <div className='flex w-1/3  items-center justify-start gap-4 '>
             {/* Logo */}
-              <Link className='text-2xl tracking-wider' href={'/'}>
+            {constants.Categories.map((category, index) =>
+               <Link key={index} className='text-xl font-medium tracking-wider group  border-loading-effect gap-4 transform  transition-transform duration-500 ease-out' href={`/pages/categoryPage/${category._id}`}>{category.categoryName}</Link>)}
+
+
+              </div>
+            <div className='flex   items-center justify-center  gap-4'>
+            {/* Logo */}
+              <Link className=' tracking-wider' href={'/'}>
               <div className='relative  w-[150px] h-[80px]'>
 
               <Image fill alt='' src='/logo1.PNG'></Image>
@@ -69,7 +77,7 @@ const Navbar = () => {
             {/* <div className='flex justify-start items-center w-1/3 gap-8'>
                 <SearchBar/>
             </div> */}
-            <div className='flex justify-end items-center w-4/6 gap-8'>
+            <div className='flex lg:w-1/3 justify-end items-center w-4/6 gap-8'>
                 <NavIcons/>
             </div>
         </div>
