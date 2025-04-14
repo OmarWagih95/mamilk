@@ -109,13 +109,13 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
   };
 
   return (
-    <div  className="bg-pink1 flex flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
+    <div  className="bg-pink1 flex max-md:min-w-[40vw] flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
     <div className="w-full">
-      <img src={product.variations[0].images[0]} alt="Product 1"
+      <img src={product.variations[0].images[0]} alt={product.title}
       onClick={()=>{
         router.push(`/pages/productPage/${product._id}`)
       }}
-        className="w-full object-cover object-top aspect-[230/307]" />
+        className="w-full object-cover max-h-[50vh] object-top aspect-[230/307]" />
     </div>
 
     <div className="p-4 flex-1 gap-3 flex flex-col">

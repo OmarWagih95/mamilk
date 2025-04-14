@@ -4,6 +4,7 @@ import constants from '../constants'
 import CollectionCard from './CollectionCard'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { sectionStyle } from '../styles';
 
 
 const CollectionsList = () => {
@@ -11,7 +12,7 @@ const CollectionsList = () => {
     <div className='w-[100vw] bg-white flex justify-center items-center'>
 
     
-    <div className='flex  py-4 md:py-[2vw]  gap-2 md:gap-4 w-[96vw] h-auto  justify-start items-center   overflow-x-scroll scrollbar-hidden '>
+    <div className={`${sectionStyle}   overflow-x-scroll scrollbar-hidden `}>
        {
         constants.collections.map((collection,index)=> <CollectionCard key={index} collection={collection} />)
         

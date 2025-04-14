@@ -8,9 +8,13 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const productID = searchParams.get("productID")!;
     console.log('productID'+productID)
+    const moreToShop = searchParams.get("moreToShop")!;
+    console.log('moreToShop'+moreToShop)
+    
     // const page = parseInt(searchParams.get("page") || "1", 10);
     // const limit = 10;
     // const skip = (page - 1) * limit;
+if(productID){
 
     try {
         const product = await productModel.findById(productID)
@@ -25,4 +29,23 @@ export async function GET(req: Request) {
     } catch (error) {
         return NextResponse.json({ error: "Failed to fetch orders" }, { status: 500 });
     }
+}
+else if(moreToShop){
+    try {
+        const products = await productModel.find({}).limit(8).skip(0)
+        // const totalProducts = await productModel.countDocuments();
+        console.log("productsLength" + products.length)
+        return NextResponse.json({
+            data: products,
+            // total: totalProducts,
+            // currentPage: page,
+            // totalPages: Math.ceil(totalProducts / limit),
+        }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ error: "Failed to fetch orders" }, { status: 500 });
+    }
+}
+else{
+    return NextResponse.json({ error: "productID or moreToShop not found" }, { status: 500 });
+}
 }
