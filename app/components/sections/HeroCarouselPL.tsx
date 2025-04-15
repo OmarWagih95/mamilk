@@ -55,7 +55,7 @@ console.log('3000')
       </div>
 
       {/* Carousel navigation dots */}
-      <div className="absolute z-30 flex gap-3 bottom-[50%] right-4 md:right-6 transform flex-col -translate-x-1/2">
+      <div className="absolute z-30 flex gap-3 bottom-[50%] right-4 md:right-8 transform flex-col -translate-x-1/2">
         {images.map((_, index) => (
           <button
             key={index}

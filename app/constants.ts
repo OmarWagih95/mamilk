@@ -44,7 +44,7 @@ const collections:Collection[]=
       ,
       description: "wolf",
       imageURL:"/winter.JPG",
-      collectionName: "Winter Essentials"
+      collectionName: "Winter Essentials",
     },
     {
       _id:  "67e2dfbd630c109896771f91"

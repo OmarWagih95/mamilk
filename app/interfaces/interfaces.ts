@@ -20,7 +20,7 @@
     collectionName:string;
     description:string;
     imageURL:string;
-    products:string[];
+    products?:string[];
 
 }
 export interface SubCategory {
