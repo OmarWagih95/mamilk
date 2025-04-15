@@ -19,16 +19,8 @@ console.log('3000')
 
   // Array of images to display in the carousel
   const images = [
-    "/8.jpeg",
-    "/1.jpg",
-    "/2.jpg",
-    "/3.JPG",
-    "/4.JPG",
-    "/5.JPG",
-    "/6.JPG",
-    "/7.jpg",
-    "/9.jpeg",
-    "/10.JPG",
+    "/category1.jpeg",
+    "/category2.jpeg",
   ];
 
   // Function to handle moving to the next slide
@@ -42,7 +34,7 @@ console.log('3000')
   // };
 
   return (
-    <div id="default-carousel" className="relative mt-16 w-full h-[45vh] md:h-[calc(100vh-64px)]" data-carousel="slide">
+    <div id="default-carousel" className="relative  w-full h-[45vh] md:h-[calc(100vh-56px)]" data-carousel="slide">
       <div className="relative  overflow-hidden rounded-lg h-full">
         {images.map((src, index) => (
           <div
@@ -63,7 +55,7 @@ console.log('3000')
       </div>
 
       {/* Carousel navigation dots */}
-      {/* <div className="absolute z-30 flex space-x-3 bottom-5 left-1/2 transform -translate-x-1/2">
+      <div className="absolute z-30 flex gap-3 bottom-[50%] right-4 md:right-6 transform flex-col -translate-x-1/2">
         {images.map((_, index) => (
           <button
             key={index}
@@ -73,7 +65,7 @@ console.log('3000')
             onClick={() => setActiveIndex(index)}
           />
         ))}
-      </div> */}
+      </div>
 
       {/* Previous Button */}
       {/* <button

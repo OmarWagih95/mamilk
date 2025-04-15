@@ -8,6 +8,7 @@ import WishListProvider from "./WishListProvider";
 import Footer from "./components/sections/Footer";
 import SplashScreen from "./components/sections/SplashScreen";
 import UserProvider from "./UserProvider";
+import AnnouncmentBar from "./components/AnnouncmentBar";
 
 export const testFont = localFont({
   src: "/fonts/Dangrek-Regular.ttf",
@@ -45,6 +46,7 @@ export default function RootLayout({
 
                 <CartProvider>
                 <WishListProvider>
+                  <AnnouncmentBar/>
         <Navbar/>
         {children}
                 </WishListProvider>

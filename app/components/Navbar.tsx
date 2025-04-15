@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { pagePadding } from '../styles'
 import constants from '../constants'
+import AnnouncmentBar from './AnnouncmentBar'
 // import { useEffect, useState } from 'react'
 // import { CartItem } from '../interfaces/interfaces'
 // import { CartItem } from '../interfaces/interfaces'
@@ -14,11 +15,29 @@ import constants from '../constants'
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [takeTop, setTakeTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the user has scrolled more than 30vh
+      const scrollPosition = window.scrollY;
+      setTakeTop(scrollPosition > 50 );
+
+      // const threshold = window.innerHeight * 0.3;
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
         // Scrolling down, hide header
         setIsVisible(false);
@@ -36,8 +55,8 @@ const Navbar = () => {
 
   return (
     <div
-    className={`fixed  text-blue1  h-14 top-0 left-0 w-full transition-transform duration-500 z-40 px-1 
-      ${isVisible ? 'translate-y-0' : '-translate-y-full'}
+    className={`fixed  text-blue1  h-14 ${takeTop?'top-0':'top-10'} left-0 w-full transition-transform duration-500 z-40 px-1 
+      ${isVisible ? 'translate-y-0' : '-translate-y-24'}
      bg-pink2`}
     // <div
     // className={`fixed  text-primary  h-14 top-0 left-0 w-full transition-transform duration-500 z-40 px-1 

@@ -5,6 +5,8 @@ const collectionsShcema =mongoose.Schema({
         type:String,
         required:true,
     },
+    imageURL:{type:String},
+    description:{String},
     });
 
     const collectionsModel= mongoose.models.collections || mongoose.model('collections', collectionsShcema)
