@@ -1,5 +1,5 @@
 type ShippingZone = {
-    zone_id: number;
+    _id: string;
     zone_name: string
     zone_rate: number;
   };

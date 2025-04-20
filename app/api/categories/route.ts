@@ -3,6 +3,7 @@ import productModel from "@/app/modals/productsModel";
 import { ConnectDB } from "@/app/config/db";
 import { NextResponse } from "next/server";
 import collectionsModel from "@/app/modals/categoriesModel";
+import categoriesModel from "@/app/modals/categoriesModel";
 
 const loadDB = async () => {
     await ConnectDB();
@@ -18,19 +19,15 @@ export async function GET(req: Request) {
 
     try {
         if (categoryID === "all") {
-            const collections = await collectionsModel.find().sort({ createdAt: -1 });
+            const categories = await categoriesModel.find().sort({ createdAt: -1 });
             return NextResponse.json({
-                data: collections,
+                data: categories,
             }, { status: 200 });
         }
         else{
-
-            const collection = await collectionsModel.findById(categoryID)
+            const categories = await categoriesModel.findById(categoryID)
             return NextResponse.json({
-                data: collection,
-                // total: totalProducts,
-                // currentPage: page,
-                // totalPages: Math.ceil(totalProducts / limit),
+                data: categories,
             }, { status: 200 });
         }
     } catch (error) {

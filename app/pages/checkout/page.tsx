@@ -16,7 +16,7 @@ const CheckoutPage = () => {
   const { cart, setCart } = useContext(cartContext);
   const [state, setState] = useState('');
   const [shipping, setShipping] = useState(70);
-  const [states, setStates] = useState<{ name: string, shipping_zone: number }[]>([]);
+  const [states, setStates] = useState<{ name: string, shipping_zone: string }[]>([]);
 
   // Form state
   const [name, setName] = useState('');
@@ -124,7 +124,7 @@ if (cart.length === 0) {
 
   useEffect(() => {
     const stata = states.find(s => s.name === state);
-    const shippingZone = shippingZones.find(z => z.zone_id === stata?.shipping_zone);
+    const shippingZone = shippingZones.find(z => z._id === stata?.shipping_zone);
 
     if (shippingZone) {
       setShipping(shippingZone.zone_rate);

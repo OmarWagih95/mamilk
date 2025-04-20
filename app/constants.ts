@@ -1,4 +1,4 @@
-import { CartItem, Collection, ImageVariant, Product } from "./interfaces/interfaces";
+import {  Collection, ImageVariant, Product } from "./interfaces/interfaces";
 
 const Categories:Category[]=
      //     {text:"Portfolio",link:"/"},
@@ -29,7 +29,6 @@ const Categories:Category[]=
       "_id":  "67e3c7182fe97723301d6ff8"
       ,
       "categoryName": "Sets",
-     
     },
     {
       "_id":  "67e4a20423d644057f9fd265"

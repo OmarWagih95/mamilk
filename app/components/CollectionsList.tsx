@@ -1,20 +1,34 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import CategoryCard from './CategoryCard'
 import constants from '../constants'
 import CollectionCard from './CollectionCard'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { sectionStyle } from '../styles';
+import axios from 'axios'
+import { Collection } from '../interfaces/interfaces'
 
 
 const CollectionsList = () => {
+  const [collections, setCollections] = useState<Collection[]>([])
+  useEffect(() => {
+    const fetchCollections = async () => {
+      const response = await axios(`/api/collections`);
+      setCollections(response.data as Collection[]);
+    }
+
+    fetchCollections()
+
+  }, [])
+  
   return (
     <div className='w-[100vw] bg-white flex justify-center items-center'>
 
     
     <div className={`${sectionStyle}   overflow-x-scroll scrollbar-hidden `}>
        {
-        constants.collections.map((collection,index)=> <CollectionCard key={index} collection={collection} />)
+        collections?.map((collection,index)=> <CollectionCard key={index} collection={collection} />)
         
        }
        

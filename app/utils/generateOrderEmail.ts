@@ -237,7 +237,7 @@ export function generateEmailBody(items: any[],name:string ,phone:string,email:s
 														<tr>
 															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
 																<div class="alignment" align="center" style="line-height:10px">
-																	<div style="max-width: 170px;"><img src="https://www.mamilk-breastfeeding.com/logo1.PNG" style="display: block; height: auto; border: 0; width: 100%;" width="170" alt title height="auto"></div>
+																	<div style="max-width: 170px;"><img src="https://www.mamilk-breastfeeding.com/mamilkWhiteLogo.svg" style="display: block; height: auto; border: 0; width: 100%;" width="170" alt title height="auto"></div>
 																</div>
 															</td>
 														</tr>

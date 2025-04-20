@@ -2,7 +2,7 @@
 import productModel from "@/app/modals/productsModel";
 import { ConnectDB } from "@/app/config/db";
 import { NextResponse } from "next/server";
-import collectionsModel from "@/app/modals/categoriesModel";
+import collectionsModel from "@/app/modals/collectionsModel";
 
 const loadDB = async () => {
     await ConnectDB();
@@ -12,20 +12,19 @@ loadDB();
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
-    const categoryID = searchParams.get("categoryID")!;
-    console.log('categoryID'+categoryID)
+    const collectionID = searchParams.get("collectionID")!;
+    console.log('collectionID'+collectionID)
 
 
     try {
-        if (categoryID === "all") {
+        if (!collectionID ) {
             const collections = await collectionsModel.find().sort({ createdAt: -1 });
-            return NextResponse.json({
-                data: collections,
-            }, { status: 200 });
+            console.log("collections", collections)
+            return NextResponse.json(collections, { status: 200 });
         }
         else{
 
-            const collection = await collectionsModel.findById(categoryID)
+            const collection = await collectionsModel.findById(collectionID)
             return NextResponse.json({
                 data: collection,
                 // total: totalProducts,
