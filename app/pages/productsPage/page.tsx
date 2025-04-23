@@ -11,14 +11,21 @@ import ProductCard from '@/app/components/ProductCard';
 const ProductsPage = () => {
 
   const searchParams = useSearchParams();
-  const categoryID = searchParams.get('categoryID');
-  const season = searchParams.get('season');
-  const collectionID = searchParams.get('collectionID');
+  const [categoryID, setCategoryID] = useState<string | null>(null);
+  const [season, setSeason] = useState<string | null>(null);
+  const [collectionID, setCollectionID] = useState<string | null>(null);
   
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
+    setProducts([])
+    const categoryID = searchParams.get('categoryID');
+    const season = searchParams.get('season');
+    const collectionID = searchParams.get('collectionID');
+    setCategoryID(categoryID);
+    setSeason(season);
+    setCollectionID(collectionID);
     async function fetchProducts() {
       setLoading(true);
       if (categoryID && season) {
