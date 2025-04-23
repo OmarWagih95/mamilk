@@ -1,5 +1,5 @@
 'use client'
-import { Gluten } from '@/app/layout';
+import { Berkishire } from '@/app/layout';
 import { gradientSmallButtonStyle } from '@/app/styles/styles';
 import axios from 'axios';
 import Link from 'next/link'
@@ -67,10 +67,10 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-pink2 text-blue2 py-10 sm:px-10 px-6 tracking-wide">
+      <footer className="bg-primary text-blue2 py-10 sm:px-10 px-6 tracking-wide">
         <div className="flex-col-reverse w-full flex md:flex-row gap-8">
           <div className='md:w-1/4'>
-            <h4 className={`text-base ${Gluten.className} font-bold mb-6`}>POLICIES</h4>
+            <h4 className={`text-base ${Berkishire.className} font-bold mb-6`}>POLICIES</h4>
             <ul className="space-y-1">
               <li><Link href="/pages/policies?privacy-policy" className="text-white hover:text-secondary text-sm">
                 PRIVACY POLICY</Link></li>
@@ -82,7 +82,7 @@ const Footer = () => {
           </div>
 
           <div className='md:w-1/4'>
-            <h4 className={`text-base ${Gluten.className} font-bold mb-6`}>SOCIALS</h4>
+            <h4 className={`text-base ${Berkishire.className} font-bold mb-6`}>SOCIALS</h4>
             <ul className="space-y-1">
               <li><Link target='#' href="https://www.facebook.com/profile.php?id=61565209649532&mibextid=LQQJ4d" className="text-white hover:text-secondary text-sm">
                 FACEBOOK</Link></li>
@@ -95,28 +95,28 @@ const Footer = () => {
           </div>
 
           <div className="max-w-xl md:w-1/2 mx-auto text-start">
-            <h3 className={`text-2xl ${Gluten.className} font-bold`}>Newsletter</h3>
+            <h3 className={`text-2xl ${Berkishire.className} font-bold`}>Newsletter</h3>
             <p className="text-sm mt-4 text-white">Subscribe to our newsletter and stay up to date with the latest news,
               updates, and exclusive offers. Get valuable insights. Join our community today!</p>
 
-            <div className="bg-gray-100 flex px-2 py-1.5 rounded-md text-left mt-8">
+            <div className="bg-gray-100 flex px-2 py-1.5 rounded-2xl text-left mt-8">
               <input
                 onChange={(e) => setName(e.target.value)}
                 type='text'
-                placeholder='Enter your name'
+                placeholder='Name'
                 value={name}
-                className="w-full mx-2 outline-none bg-transparent text-sm pl-4"
+                className="w-full text-primary mx-2 border-none outline-none bg-transparent text-sm pl-4"
               />
               <input
                 onChange={(e) => setWhatsappNumber(e.target.value)}
                 type='text'
-                placeholder='Enter your WhatsApp number'
+                placeholder='WhatsApp number'
                 value={number}
-                className="w-full outline-none bg-transparent text-sm pl-4"
+                className="w-full outline-none border-none text-primary bg-transparent text-sm pl-4"
               />
               <button
                 onClick={handleSubmit} type='button'
-                className={`${gradientSmallButtonStyle} text-white text-sm rounded-md px-4 py-2 ml-4 transition-all tracking-wide`}>
+                className={`bg-primary hover:bg-accent rounded-2xl text-white text-sm  px-4 py-2 ml-4 transition-all tracking-wide`}>
                 Submit
               </button>
             </div>

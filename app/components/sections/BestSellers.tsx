@@ -9,6 +9,7 @@ import axios from 'axios'
 import CartsListSkeleton from '../cardsSkelton'
 import CardsSkeleton from '../cardsSkelton'
 import { Berkishire } from '@/app/layout'
+import ProductCard from '../ProductCard'
 
 const MoreToShop = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -17,7 +18,7 @@ const MoreToShop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios('/api/collections?collectionID=67ff8a79ad6f2eb3c9425e44');
+        const res = await axios('/api/collections?collectionID=67ffaa228416009f14c31e4c');
         const collectionData = res.data?.data;
         console.log("collectionData"+ collectionData.collection.collectionName)
   
@@ -36,15 +37,18 @@ const MoreToShop = () => {
     fetchProducts();
   }, []);
     
+    
       const OPTIONS: EmblaOptionsType = { loop: true }
 
   return (
-    <div className='flex py-8 lg:py-12  flex-col md:pl-[2vw] pr-[3vw] items-start justify-center w-full h-auto gap-2 md:gap-8 lg:gap-10 bg-white'>
-        <h2 className={`${Berkishire.className} uppercase font-semibold text-xl max-md:pl-2 md:text-2xl lg:text-4xl text-primary`}>More to shop</h2>
-    {products.length>0?<div className={`${sectionStyle} flex justify-center w-full h-auto bg-white`}>
-              <EmblaCarouselAutoScroll slides={products} options={OPTIONS} />
+    <div className='flex  py-8 lg:py-12  flex-col md:pl-[2vw] pr-[3vw] items-start justify-center w-full h-auto gap-2 md:gap-8 lg:gap-10 bg-primaryLight'>
+        <h2 className={`${Berkishire.className} uppercase font-semibold text-xl max-md:pl-2 md:text-2xl lg:text-4xl text-primary`}>Best Sellers</h2>
+    {products.length>0?<div className={`${sectionStyle} grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center w-full h-auto`}>
+    {products?.slice(0, 4).map((product, index) => (
+  <ProductCard key={index} product={product} favorite={false} color="black" search={false} />
+))}
 
-    </div>:<CardsSkeleton width={300} height={450} count={3}/>}
+    </div>:<CardsSkeleton width={160} height={200} />}
    </div>
   )
 }

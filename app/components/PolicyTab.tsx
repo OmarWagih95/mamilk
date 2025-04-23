@@ -18,7 +18,7 @@ const PolicyTab = ({title,value,activeTab,setActiveTab}:{title:string,value:stri
   return (
     <div 
     onClick={handleClick}
-    className={`${value === activeTab ?'text-primary':'text-gray-400'} hover:cursor-pointer text-nowrap ${accountTextStyle}`}>{title}</div>
+    className={`${value === activeTab ?'text-primary':'text-gray-500'} hover:cursor-pointer text-nowrap ${accountTextStyle}`}>{title}</div>
   )
 }
 

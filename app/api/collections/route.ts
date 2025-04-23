@@ -13,26 +13,50 @@ loadDB();
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const collectionID = searchParams.get("collectionID")!;
+    const collectionName = searchParams.get("collectionName")!;
     console.log('collectionID'+collectionID)
-
+    // console.log('collectionsSection'+collectionsSection)
 
     try {
-        if (!collectionID ) {
-            const collections = await collectionsModel.find().sort({ createdAt: -1 });
-            console.log("collections", collections)
+        if (collectionID) {
+            const collection = await collectionsModel.findById(collectionID);
+          
+            if (!collection) {
+              return NextResponse.json({ error: "Collection not found" }, { status: 404 });
+            }
+          
+            const productIDs = collection.products || [];
+          
+            // Fetch all products with those IDs
+            const products = await productModel.find({ _id: { $in: productIDs } });
+          
+            return NextResponse.json({
+              data: {
+                collection:collection,
+                products:products, // replace the string IDs with actual product data
+              },
+            }, { status: 200 });
+          }
+          
+       else if (collectionName) {
+        if (collectionName === "section"){
+        console.log("section")
+            const excludedNames = ["Best Sellers", "More To Shop"];
+        
+            const collections = await collectionsModel
+              .find({ collectionName: { $nin: excludedNames } })
+              .sort({ createdAt: -1 });
+        
             return NextResponse.json(collections, { status: 200 });
         }
         else{
-
-            const collection = await collectionsModel.findById(collectionID)
-            return NextResponse.json({
-                data: collection,
-                // total: totalProducts,
-                // currentPage: page,
-                // totalPages: Math.ceil(totalProducts / limit),
-            }, { status: 200 });
+            
+            const collections = await collectionsModel.find({ collectionName:"More To Shop" }).sort({ createdAt: -1 });
+            console.log("collections", collections)
+            return NextResponse.json(collections, { status: 200 });
         }
+    }
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch orders" }, { status: 500 });
+        return NextResponse.json({ error: error }, { status: 500 });
     }
 }

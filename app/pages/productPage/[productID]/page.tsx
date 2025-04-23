@@ -5,7 +5,7 @@ import constants from '@/app/constants';
 import { Product } from '@/app/interfaces/interfaces';
 import { cartContext } from '@/app/context/cartContext';
 import Swal from 'sweetalert2';
-import { Gluten } from '@/app/layout';
+import { Berkishire } from '@/app/layout';
 import { gradientSmallButtonStyle } from '@/app/styles/styles';
 import { wishListContext } from '@/app/context/wishListContext';
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
@@ -132,7 +132,7 @@ const ProductPage = () => {
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
   return (
-    <div className="bg-pink0 pt-16 p-4">
+    <div className="bg-primaryLight pt-[110px] p-4">
       <div className="w-full">
         <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8 max-lg:gap-12 max-sm:gap-8">
           
@@ -150,7 +150,7 @@ const ProductPage = () => {
           {/* Product Details */}
           <div className="w-full lg:sticky top-0 lg:col-span-2 text-primary">
             <div>
-              <h3 className={`${Gluten.className} text-xl sm:text-2xl lg:text-4xl font-bold `}>{product?.title}</h3>
+              <h3 className={`${Berkishire.className} text-xl sm:text-2xl lg:text-4xl font-bold `}>{product?.title}</h3>
               <p className="text-gray-500  text-sm">{product?.description}</p>
               <div className="flex items-center flex-wrap gap-4 ">
                 <h4 className=" text-2xl sm:text-3xl font-bold">{product?.price.local} LE</h4>
@@ -168,7 +168,7 @@ const ProductPage = () => {
                     key={index}
                     type="button"
                     onClick={() => setSelectedColor(variation.color)}
-                    className={`px-4 py-2 border ${selectedColor === variation.color ? gradientSmallButtonStyle : 'border-gray-300 bg-pink3 '} text-white text-sm font-semibold`}
+                    className={`px-4 py-2 border ${selectedColor === variation.color ? 'bg-accent hover:bg-primary' : 'border-gray-300 bg-pink3 '} text-white text-sm font-semibold`}
                   >
                     {variation.color}
                   </button>
@@ -188,7 +188,7 @@ const ProductPage = () => {
                       key={index}
                       type="button"
                       onClick={() => setSelectedSize(size.name)}
-                      className={`w-10 h-9 border ${selectedSize === size.name ? gradientSmallButtonStyle : 'border-gray-300 bg-pink3 '} text-white text-sm flex items-center justify-center shrink-0`}
+                      className={`w-10 h-9 border ${selectedSize === size.name ? 'bg-accent hover:bg-primary' : 'border-gray-300 bg-pink3 '} text-white text-sm flex items-center justify-center shrink-0`}
                     >
                       {size.name}
                     </button>
@@ -207,14 +207,14 @@ const ProductPage = () => {
               <div className="flex items-center ">
                 <button
                   onClick={decreaseQuantity}
-                  className={`px-4 py-2 border ${gradientSmallButtonStyle} text-white text-sm font-semibold`}
+                  className={`px-4 py-2 border bg-accent hover:bg-primary text-white text-sm font-semibold`}
                 >
                   -
                 </button>
                 <span className="px-6 py-2 border border-gray-300 text-pink3 text-lg">{quantity}</span>
                 <button
                   onClick={increaseQuantity}
-                  className={`px-4 py-2 border ${gradientSmallButtonStyle} text-white text-sm font-semibold`}
+                  className={`px-4 py-2 border bg-accent hover:bg-primary text-white text-sm font-semibold`}
                 >
                   +
                 </button>
@@ -222,10 +222,10 @@ const ProductPage = () => {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-4">
-              <button type="button" onClick={addToWishList} className={`px-4 py-3 w-[45%]  ${gradientSmallButtonStyle}  text-white text-sm font-semibold`}>
+              <button type="button" onClick={addToWishList} className={`px-4 py-3 w-[45%]  bg-accent hover:bg-primary  text-white text-sm font-semibold`}>
                 Add to wishlist
               </button>
-              <button onClick={addToCart} type="button" className={` ${gradientSmallButtonStyle} px-4 py-3 w-[45%]  text-white text-sm font-semibold`}>
+              <button onClick={addToCart} type="button" className={` bg-accent hover:bg-primary px-4 py-3 w-[45%]  text-white text-sm font-semibold`}>
                 Add to cart
               </button>
             </div>

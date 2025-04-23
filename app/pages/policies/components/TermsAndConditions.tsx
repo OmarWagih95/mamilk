@@ -57,7 +57,7 @@ const TermsAndConditions = ({selectedTab ,setSelectedTab}:{selectedTab:string,se
 
         <div>
           <h2 className="font-bold text-xl">10. Privacy</h2>
-          <p>Your use of the website is also governed by our <a href="#" className="text-blue-500 underline">Privacy Policy</a>. Please review it to understand how we collect, use, and protect your personal information.</p>
+          <p>Your use of the website is also governed by our <span onClick={()=>setSelectedTab("privacy-policy")} className="text-blue-500 hover:cursor-pointer underline">Privacy Policy</span>. Please review it to understand how we collect, use, and protect your personal information.</p>
         </div>
 
         <div>

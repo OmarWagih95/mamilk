@@ -21,7 +21,7 @@ const page = () => {
   //   setCart(newCart);
   // }
   
-  return ( cart.length > 0 ? <div  className={`relative pt-20 pb-4 ${pagePadding} justify-between  min-h-screen  bg-pink0 flex flex-col  text-primary`}>
+  return ( cart.length > 0 ? <div  className={`relative pt-32 pb-4 ${pagePadding} justify-between  min-h-screen  bg-primaryLight flex flex-col  text-primary`}>
      <div className='w-full'>
 
       <div className='flex w-full gap-2 md:gap-4 flex-col'>
@@ -46,7 +46,7 @@ const page = () => {
 
       </div>
     </div>
-    :<div className={`pt-14 text-primary font-bold text-xl md:text-2xl flex justify-center items-center min-h-screen ${pagePadding} bg-pink1 text-primary`} >
+    :<div className={`pt-14 text-primary font-bold text-xl md:text-2xl flex justify-center items-center min-h-screen ${pagePadding} bg-primaryLight`} >
       YOUR CART IS EMPTY.
     </div>
   

@@ -15,6 +15,17 @@ export default function SideDrawer() {
   const {wishList,setWishList,wishListUpdated,setWishListUpdated}= useContext(wishListContext);
   const {cart,setCart}= useContext(cartContext);
   const[subTotal,setSubTotal]=useState(0)
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
     const handleShare=()=>{
       const cartJson = encodeURIComponent(JSON.stringify(wishList));
   const shareLink = `https://mamilk.com/pages/share?data=${cartJson}`;
@@ -93,7 +104,7 @@ export default function SideDrawer() {
 
       {/* Side Drawer */}
       <div
-        className={`fixed flex py-5 pr-3 flex-col pl-4 justify-start items-start top-0 right-0 h-[120vh] bg-pink1 text-white  w-80 sm:w-96 lg:w-[45vw] z-50 transform ${
+        className={`fixed flex py-5 pr-3 flex-col pl-4 justify-start items-start top-0 right-0 h-[120vh] bg-primaryLight text-white  w-80 sm:w-96 lg:w-[45vw] z-50 transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } transition-transform duration-700 ease-in-out`}
       >
@@ -123,7 +134,7 @@ export default function SideDrawer() {
     {/* <div className='rounded-md w-full flex justify-center border border-primary cursor-pointer px-4 py-2 text-primary  hover:bg-secondary transition duration-300 shadow-md'>
         <Link href={'/wishList'}>View WishList</Link> 
     </div> */}
-    <div onClick={addAllToCart} className={`${wishList.length===0? 'disabled-div py-2 hover:cursor-default bg-gray-800 w-full flex justify-center items-center':`${gradientButtonStyle}`} `}>
+    <div onClick={addAllToCart} className={`${wishList.length===0? 'disabled-div py-2 hover:cursor-default bg-gray-800 w-full flex justify-center items-center':`bg-accent px-4 w-full flex items-center justify-center text-white py-2 rounded-2xl hover:bg-primary`} `}>
         ADD ALL TO CART
     </div>
 </div>

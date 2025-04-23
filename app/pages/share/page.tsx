@@ -32,7 +32,7 @@ if (sharedData) {
   //   setCart(newCart);
   // }
   
-  return ( sharedList.length > 0 ? <div  className={`relative pt-20 pb-4 justify-between text-primary min-h-screen ${pagePadding} bg-backgroundColor flex flex-col text-primary`}>
+  return ( sharedList.length > 0 ? <div  className={`relative pt-[110px] pb-4 justify-between text-primary min-h-screen ${pagePadding} bg-primaryLight flex flex-col text-primary`}>
      <div className='w-full'>
 
       <div className='flex w-full flex-col'>

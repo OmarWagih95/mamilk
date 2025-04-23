@@ -4,13 +4,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 // import { motion } from 'framer-motion';
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import { FaRegHeart } from "react-icons/fa6";
+
 import Swal from 'sweetalert2';
 import { cartContext } from '../context/cartContext';
 import { wishListContext } from '../context/wishListContext';
 // import { fadeIn } from '../variants/fadIn';
 import { Product } from '../interfaces/interfaces';
 import { useRouter } from 'next/navigation';
-import { Gluten } from '@/app/layout';
+import { Berkishire } from '@/app/layout';
 import { gradientButtonStyle } from '../styles/styles';
 // import { ExposureRegular } from '../layout';
 
@@ -109,7 +111,7 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
   };
 
   return (
-    <div  className="bg-pink1 flex max-md:min-w-[40vw] flex-col rounded overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
+    <div  className="bg-primaryLight text-primary flex max-md:min-w-[40vw] flex-col rounded-2xl overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
     <div className="w-full">
       <img src={product.variations[0].images[0]} alt={product.title}
       onClick={()=>{
@@ -120,21 +122,22 @@ const ProductCard = ({ product,search ,favorite}: { favorite:boolean,product: Pr
 
     <div className="p-4 flex-1 gap-3 flex flex-col">
       <div className="flex-1">
-        <h5 className={`text-sm sm:text-base ${Gluten.className} font-bold text-pink3 line-clamp-2`}>{product.title}</h5>
+        <h5 className={`text-sm md:text-lg xl:text-xl   sm:text-base ${Berkishire.className} font-bold  line-clamp-2`}>{product.title}</h5>
         <div className=" flex items-center flex-wrap ">
-          <h6 className="text-sm sm:text-base font-bold text-pink2">{product.price.local} EGP</h6>
+          <h6 className="text-sm sm:text-base font-bold ">{product.price.local} EGP</h6>
           <div onClick={() => {
             addToWishList();
             toggleHeart();
-        }} className="bg-pink0 text-pink3 w-8 h-8 flex items-center justify-center rounded-full cursor-pointer ml-auto" title="Wishlist">
-          {heartIsEmpty !== true ?   <IoIosHeart />: <IoIosHeartEmpty />}
+        }} className=" border-primary border-2  w-8 h-8 flex items-center justify-center font-bold rounded-full cursor-pointer ml-auto" title="Wishlist">
+          {heartIsEmpty !== true ?   <IoIosHeart />: <FaRegHeart />}
           </div>
         </div>
       </div>
       <button
   onClick={addToCart}
   type="button"
-  className={`${gradientButtonStyle}`}
+  className={'bg-primary text-white hover:bg-accent rounded-xl px-4 py-2'}
+  // className={`bg-accent hover:bg-primary`}
 >
   Add to cart
 </button>

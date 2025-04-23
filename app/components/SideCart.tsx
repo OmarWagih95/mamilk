@@ -17,6 +17,17 @@ export default function SideDrawer() {
   const {cart}= useContext(cartContext);
   const[subTotal,setSubTotal]=useState(0)
   const router=useRouter()
+    useEffect(() => {
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }, [isOpen]);
   useEffect(() => {
     
   cart.map((item)=> setSubTotal(subTotal + item.price*item.quantity))
@@ -70,7 +81,7 @@ navigator.clipboard
     <BsBag />
 
     </div>
-    <div className={`absolute top-[-2px] text-white right-[-6px] flex justify-center items-center rounded-full text-sm w-3 h-3 bg-blue1`}>
+    <div className={`absolute top-[-2px] text-primary right-[-6px] flex justify-center items-center rounded-full text-[10px] w-3 h-3 bg-white`}>
         {cart.length>0?cart.length:''}
         </div>
     </div>
@@ -85,7 +96,7 @@ navigator.clipboard
 
       {/* Side Drawer */}
       <div
-        className={`fixed flex py-5 pr-3 flex-col pl-4 justify-start items-start top-0 right-0 h-[120vh] bg-pink1 text-white  w-80 sm:w-96 lg:w-[45vw] z-40 transform ${
+        className={`fixed flex py-5 pr-3 flex-col pl-4 justify-start items-start top-0 right-0 h-[120vh] bg-primaryLight text-primary  w-80 sm:w-96 lg:w-[45vw] z-40 transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } transition-transform duration-700 ease-in-out`}
       >
@@ -119,13 +130,13 @@ navigator.clipboard
   <h1>{total}</h1>
 </div>
 <div className='flex flex-col w-full items-center gap-4'>
-    <Link href={'/pages/cart'} onClick={toggleDrawer} className={`${gradientButtonStyle}  `}>
+    <Link href={'/pages/cart'} onClick={toggleDrawer} className={`bg-accent px-4 w-full flex items-center justify-center text-white py-2 rounded-2xl hover:bg-primary  `}>
         {/* <button onClick={toggleDrawer} href={'/pages/cart'}>VIEW CART</button>  */}
         <button onClick={()=>{toggleDrawer()
           router.push('/pages/cart')
         }} >VIEW CART</button> 
     </Link>
-{  cart.length>0?  <Link  onClick={toggleDrawer} href={'/pages/checkout'} className={`${gradientButtonStyle}`}>
+{  cart.length>0?  <Link  onClick={toggleDrawer} href={'/pages/checkout'} className={`bg-accent px-4 w-full flex items-center justify-center text-white py-2 rounded-2xl hover:bg-primary`}>
         <button >CHECKOUT</button> 
         
     </Link>:

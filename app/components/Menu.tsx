@@ -12,11 +12,23 @@ import axios from 'axios';
 // import { menuItemStyle, pagePadding } from '../styles';
 
 const Menu: React.FC = () => {
+  const [open, setOpen] = useState<boolean>(false); // Menu open/close state
+  const [activeCategory, setActiveCategory] = useState<number|null>(null);
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
   // const router = useRouter();
   const [collections, setCollections] = useState<Collection[]>([])
   const [summary,setSummary] = useState(false)
 
-  const [open, setOpen] = useState<boolean>(false); // Menu open/close state
   // useEffect(() => {
   //   const fetchCollections = async () => {
   //     try {
@@ -42,41 +54,65 @@ const Menu: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.0 }}
-          className={` bg-pink1 test text-primary w-full items-start justify-start pt-5 pl-2 absolute z-40 top-0 left-0 h-[120vh] gap-8 flex flex-col`}
+          className={` bg-primary test text-white w-full items-center justify-center  fixed z-40 top-0 left-0 min-h-screen gap-8 flex flex-col`}
         >
             <span
             onClick={() => setOpen(prev => !prev)}
-            className='absolute top-3 right-3'>x</span>
-          <div className='relative flex w-full pt-0 gap-32  flex-col'> 
-<div className='flex flex-col gap-4'>
+            className='absolute top-3  text-lg font-semibold right-3'>x</span>
+          <div className='relative flex w-full pt-0 gap-32 items-center justify-center flex-col'> 
+<div className='flex flex-col gap-16 text-lg font-semibold'>
           <Link onClick={() => setOpen(prev => !prev)} className={``} href="/" >
             HOME
           </Link>
 
-          <div className='' onClick={()=>setSummary((prevState)=>!prevState)}>
-<div className='flex items-center'>
-
-            SHOP                 <FaArrowRight className={`${summary?'rotate-90':''} transition mx-2 duration-700` }/>
+          <div className='flex items-center' onClick={() => setSummary(!summary)}>
+  SHOP <FaArrowRight className={`${summary ? 'rotate-90' : ''} transition mx-2 duration-700`} />
 </div>
-            <div
+
+<div
   className={`transition-all duration-700 ease-in-out overflow-hidden ${
-    summary
-      ? "max-h-[60vh]  opacity-100"
-      : "max-h-0  opacity-0"
-  }  flex flex-col gap-2`}
+    summary ? "max-h-[60vh] opacity-100 flex flex-col gap-2" : "max-h-0 opacity-0 hidden"
+  }`}
   style={{
     padding: summary ? "0.25rem 0.25rem" : "0",
   }}
 >
-  {constants.Categories.map((category,index)=>
-            <div key={index} className='flex flex-col gap-2 text-primary hover:text-secondary'>
-            <Link onClick={() => setOpen(prev => !prev)}  href={`/pages/categoryPage/${category._id}`}>
-              {category.categoryName}
-            </Link>
-          </div>  )}
-
+  {constants.Categories.map((category, index) => (
+    <div key={index} className='flex flex-col gap-2 text-white'>
+      <div 
+        className='flex items-center cursor-pointer'
+        onClick={() => setActiveCategory(activeCategory === index ? null : index)}
+      >
+        {category.categoryName}
+        <FaArrowRight className={`${activeCategory === index ? 'rotate-90' : ''} transition mx-2 duration-700 text-sm`} />
+      </div>
+      
+      <div 
+        className={`transition-all duration-500 ease-in-out overflow-hidden ${
+          activeCategory === index ? "max-h-24 opacity-100" : "max-h-0 opacity-0"
+        } flex flex-col gap-2 pl-4`}
+        style={{
+          padding: activeCategory === index ? "0.25rem 0.25rem" : "0",
+        }}
+      >
+        <Link 
+          onClick={() => setOpen(prev => !prev)} 
+          href={`/pages/productsPage?categoryID=${category._id}&season=summer`}
+          className="text-gray-300 hover:text-white"
+        >
+          Summer
+        </Link>
+        <Link 
+          onClick={() => setOpen(prev => !prev)} 
+          href={`/pages/productsPage?categoryID=${category._id}&season=winter`}
+          className="text-gray-300 hover:text-white"
+        >
+          Winter
+        </Link>
+      </div>
+    </div>
+  ))}
 </div>
-            </div>
 
           <Link
           onClick={() => setOpen(prev => !prev)}

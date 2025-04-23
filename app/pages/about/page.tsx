@@ -7,7 +7,7 @@ import { fadeIn } from '@/app/variants/fadIn';
 
 const AboutPage = () => {
   return (
-    <div className={`min-h-screen h-auto ${pagePadding} gap-4 pt-16 pb-16 md:pb-4 h-auto text-start flex  max-md:flex-col items-start bg-pink0`}>
+    <div className={`min-h-screen h-auto ${pagePadding} gap-4 pt-32 pb-16 md:pb-4 h-auto text-start flex  max-md:flex-col items-start bg-primaryLight`}>
       <motion.div
         variants={fadeIn({ direction: 'up', delay: 0.1 })}
         initial="hidden"

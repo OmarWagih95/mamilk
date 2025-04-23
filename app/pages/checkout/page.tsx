@@ -196,7 +196,7 @@ if (cart.length === 0) {
     setModalVisible(false);
   };
   return (
-    <div className="pt-14 bg-pink0">
+    <div className="pt-32 bg-primaryLight ">
             {modalVisible && <Modal message={modalMessage} buttonText={buttonText} buttonFunction={()=>{buttonFunction}} onClose={closeModal} />} {/* Modal component */}
               {loading && <Loading/>}
 
@@ -215,11 +215,11 @@ if (cart.length === 0) {
                   <div>
                     <input type="text" placeholder="Name" value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                      className="px-2 pb-2 bg-primaryLight rounded-2xl border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
                     <select value={state} onChange={(e) => setState(e.target.value)}
-                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none">
+                      className="px-2 pb-2 bg-primaryLight rounded-2xl border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none">
                       {states.map((state, index) => (
                         <option key={index} value={state.name}>{state.name}</option>
                       ))}
@@ -228,22 +228,22 @@ if (cart.length === 0) {
                   <div>
                     <input type="email" placeholder="Email" value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                      className="px-2 pb-2 bg-primaryLight rounded-2xl border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
                     <input type="text" placeholder="Phone" value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                      className="px-2 pb-2 bg-primaryLight rounded-2xl border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
                     <input type="text" placeholder="Address" value={address}
                       onChange={(e) => setAddress(e.target.value)}
-                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                      className="px-2 pb-2 bg-primaryLight rounded-2xl border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                   <div>
                     <input type="text" placeholder="Notes" value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      className="px-2 pb-2 bg-pink1 border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
+                      className="px-2 pb-2  bg-primaryLight rounded-2xl border-pink3 text-gray-800 w-full text-sm border-b focus:border-blue-600 outline-none" />
                   </div>
                 </div>
 
@@ -261,14 +261,15 @@ if (cart.length === 0) {
               </div>
               <div className="flex flex-wrap gap-4 mt-8">
                 <button type="button" onClick={handleConfirmOrder}
-                  className={`bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 hover:bg-gradient-to-l hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-700 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm md:text-lg  text-white rounded-lg`}>
+                  className={`bg-accent hover:bg-primary transition-all duration-500 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm md:text-lg  text-white rounded-2xl`}>
+                  {/* className={`bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 hover:bg-gradient-to-l hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-700 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm md:text-lg  text-white rounded-lg`}> */}
                   Confirm Order
                 </button>
               </div>
             </form>
           </div>
 
-          <div className="bg-pink1  lg:h-screen lg:sticky lg:top-0 lg:max-w-[430px] w-full lg:ml-auto">
+          <div className="bg-primaryLight rounded-2xl  lg:h-screen lg:sticky lg:top-0 lg:max-w-[430px] w-full lg:ml-auto">
             <div className="relative h-full">
               <div className="p-6 md:pb-12 overflow-y-scroll max-lg:max-h-[450px] lg:h-[calc(100vh-50px)]">
                 <h2 className="text-xl font-bold text-primary">Order Summary</h2>
@@ -280,7 +281,7 @@ if (cart.length === 0) {
                 </div>
               </div>
 
-              <div className="lg:absolute border-t-2 bg-pink1 border-pink3 px-2 md:px-6 lg:left-0 lg:bottom-0  w-full p-4">
+              <div className="lg:absolute text-primary border-t-2 bg-primaryLight  border-primary px-2 md:px-6 lg:left-0 lg:bottom-0  w-full p-4">
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Sub-Total <span className="ml-auto">{subTotal} LE</span></h4>
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Shipping <span className="ml-auto">{shipping} LE</span></h4>
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Total <span className="ml-auto">{total} LE</span></h4>

@@ -19,6 +19,12 @@ export const Gluten = localFont({
 export const Genos = localFont({
   src: "/fonts/Genos.ttf",
 });
+export const Baskerville = localFont({
+  src: "/fonts/LibreBaskerville-Regular.ttf",
+});
+export const Berkishire = localFont({
+  src: "/fonts/BerkshireSwash-Regular.ttf",
+});
 
 
 const geistMono = Geist_Mono({
@@ -39,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${Genos.className} bg-pink1 w-screen overflow-x-hidden antialiased`}
+        className={`${Baskerville.className} bg-primary w-screen overflow-x-hidden antialiased`}
       >
                 <SplashScreen /> {/* Add the splash screen component */}
 <UserProvider>

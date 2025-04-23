@@ -21,7 +21,7 @@ const WishlistPage = () => {
   //   setCart(newCart);
   // }
   
-  return ( wishList.length > 0 ? <div  className={`relative pt-20 pb-4 justify-between text-primary min-h-screen ${pagePadding} bg-pink0 flex flex-col text-primary`}>
+  return ( wishList.length > 0 ? <div  className={`relative pt-[110px] pb-4 justify-between text-primary min-h-screen ${pagePadding} bg-primaryLight flex flex-col `}>
      <div className='w-full'>
 
       <div className='flex w-full gap-4 flex-col'>

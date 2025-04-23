@@ -12,6 +12,7 @@ import { EmblaOptionsType } from "embla-carousel";
 import EmblaCarouselAutoScroll from "./components/embla/EmblaCarouselAutoScroll";
 import MoreToShop from "./components/sections/MoreToShop";
 import HeroCarouselPL from "./components/sections/HeroCarouselPL";
+import BestSellers from "./components/sections/BestSellers";
 export default function Home() {
   const OPTIONS: EmblaOptionsType = { loop: true }
 const SLIDE_COUNT = 8
@@ -23,6 +24,7 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
       {/* <PrismaCarousel/> */}
       <HeroCarouselPL/>
       <CollectionsList/>
+      {/* <BestSellers/> */}
       <MessageFromTheOwners/>
       <MoreToShop/>
       {/* <AutoplayCarousel/> */}

@@ -10,7 +10,7 @@ import { wishListContext } from '../context/wishListContext';
 // import { fadeIn } from '../variants/fadIn';
 import { Product, SubCategory } from '../interfaces/interfaces';
 import { useRouter } from 'next/navigation';
-import { Gluten } from '@/app/layout';
+import { Berkishire } from '@/app/layout';
 import { gradientButtonStyle } from '../styles/styles';
 // import { ExposureRegular } from '../layout';
 
@@ -29,7 +29,7 @@ const SubCategoryCard = ({ SubCategory}: { SubCategory:SubCategory }) => {
 
     <div className="p-4  flex-1 w-full gap-3 flex flex-col">
       <div className="flex-1 w-full text-center justify-center">
-        <h5 className={`text-lg md:text:2xl  ${Gluten.className} font-bold text-pink3`}>{SubCategory.SubCategoryName}</h5>
+        <h5 className={`text-lg md:text:2xl  ${Berkishire.className} font-bold text-pink3`}>{SubCategory.SubCategoryName}</h5>
         <div className=" flex items-center flex-wrap ">
 
         </div>

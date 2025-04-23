@@ -21,7 +21,7 @@ const AnnouncmentBar = () => {
       className={`
         fixed top-0 left-0 w-full z-20 h-10 
         flex justify-center items-center 
-        bg-pink3 text-white text-semibold text-lg md:text-xl
+        bg-accent text-white text-semibold text-lg md:text-xl
         transition-all duration-500 ease-in-out 
         ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}
       `}

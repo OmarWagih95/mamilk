@@ -40,7 +40,7 @@ const updateItemQuantity = (id: number, opr: string) => {
 };
 
   return (
-    <div className="flex  px-2 min-h-1/4 h-auto bg-slate-200 w-full border-b rounded-md border-gray-400 py-2  items-start gap-4">
+    <div className="flex  px-2 min-h-1/4 h-auto bg-slate-200 w-full border-b rounded-2xl border-gray-400 py-2  items-start gap-4">
     <Image
     width={200}
     height={300}

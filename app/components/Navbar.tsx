@@ -16,6 +16,7 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [takeTop, setTakeTop] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,9 +56,9 @@ const Navbar = () => {
 
   return (
     <div
-    className={`fixed  text-blue1  h-14 ${takeTop?'top-0':'top-10'} left-0 w-full transition-transform duration-500 z-40 px-1 
+    className={`fixed  text-white bg-primary  h-14 ${takeTop?'top-0':'top-10'} left-0 w-full transition-transform duration-500 z-40 px-1 
       ${isVisible ? 'translate-y-0' : '-translate-y-24'}
-     bg-pink2`}
+     `}
     // <div
     // className={`fixed  text-primary  h-14 top-0 left-0 w-full transition-transform duration-500 z-40 px-1 
     //   ${
@@ -77,13 +78,40 @@ const Navbar = () => {
         </div>
         {/* //meduimSize */}
         <div className={`hidden ${pagePadding} lg:flex justify-between items-center h-full`}>
-            <div className='flex w-1/3  items-center justify-start gap-4 '>
-            {/* Logo */}
-            {constants.Categories.map((category, index) =>
-               <Link key={index} className='text-xl font-medium tracking-wider group  border-loading-effect gap-4 transform  transition-transform duration-500 ease-out' href={`/pages/categoryPage/${category._id}`}>{category.categoryName}</Link>)}
-
-
-              </div>
+        <div className='flex w-1/3 items-center justify-start gap-3'>
+  {/* Categories with Dropdowns */}
+  {constants.Categories.map((category, index) => (
+    <div key={index} className="relative">
+      <button 
+        className='lg:text-sm xl:text-lg font-bold tracking-wider border-loading-effect gap-4 transform transition-transform duration-500 ease-out'
+        onClick={() => setActiveDropdown(activeDropdown === index ? null : index)}
+      >
+        {category.categoryName}
+      </button>
+      
+      {activeDropdown === index && (
+        <div className="absolute left-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+          <div className="py-1" role="menu">
+            <Link 
+                        onClick={() => setActiveDropdown(null)}
+              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' 
+              href={`/pages/productsPage?categoryID=${category._id}&season=summer`}
+            >
+              Summer
+            </Link>
+            <Link 
+            onClick={() => setActiveDropdown(null)}
+              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' 
+              href={`/pages/productsPage?categoryID=${category._id}&season=winter`}
+            >
+              Winter
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
             <div className='flex   items-center justify-center  gap-4'>
             {/* Logo */}
               <Link className=' tracking-wider' href={'/'}>

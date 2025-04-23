@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React, { useContext, useState } from 'react'
 import { cartContext } from '@/app/context/cartContext'
 import { wishListContext } from '@/app/context/wishListContext'
-import { Gluten } from '@/app/layout'
+import { Berkishire } from '@/app/layout'
 
 
 const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean}) => {
@@ -89,7 +89,7 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
 
 
     return (
-      <div className='text-pink3 border bg-pink1 border-pink3 rounded-md px-2 py-2'>
+      <div className='text-primary border border-primary rounded-2xl px-2 py-2'>
 
         <div className="flex w-full h-full  py-2  gap-4">
           <div  className='cursor-pointer h-full flex justify-start items-start'><span onClick={()=>deleteItem(item.productId,item.size,item.color)} className='text-[12px] text-primary'>x</span></div>
@@ -103,17 +103,17 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
         />
         </div>
     
-        <div className='flex w-full flex-col justify-between '>
+        <div className='flex w-full flex-col gap-2 justify-between '>
          <div>
-         <h3 className={`${Gluten.className} font-semibold text-sm w-full `}>{item.productName}</h3>
+         <h3 className={`${Berkishire.className} font-semibold text-lg w-full `}>{item.productName}</h3>
           </div> 
-          <div className='flex w-full  font-semibold text-xs text-pink3 justify-between'> 
+          <div className='flex w-full  font-semibold text-xs  justify-between'> 
             <h3 className=''>COLOR : {item.color}</h3>
             <h3 className=''>SIZE : {item.size}</h3>
 
           </div>
     
-          <div className="mt-0.5 flex justify-between   font-semibold text-xs text-pink3">
+          <div className="mt-0.5 flex justify-between   font-semibold text-xs ">
             <div>
               QUANTITY : 
               {/* <dt className="inline">Quantity:</dt> */}
@@ -126,7 +126,7 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
 
           </div>
             <div className='font-semibold flex justify-between w-full'>
-           <h2> TOTAL :  {item.quantity*item.price} LE </h2>
+           <h2 className='text-xs'> TOTAL :  {item.quantity*item.price} LE </h2>
          {wishListBool && <h1   onClick={()=>{
 
            transferItemToCart(); // Properly invoke the function
@@ -138,25 +138,7 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
         </div>
 
       </div>
-      {/* {modalAppear && <div className='absolute z-20 top-[40%] sm:top-[30%] sm:right-[35%] bg-backgroundColor left-[10%] w-[80vw] sm:w-[30vw] px-2 h-auto min-h-[20vh]'>
-            <span onClick={()=>toggleRemoveModal(false)} className='hover:cursor-pointer hover:rotate-180 transition-transform inline-block duration-700' >x</span>
-            <h1 className='py-6 text-center text-primary text-sm'>ARE YOU SURE YOU WANT TO REMOVE THIS ITEM FROM YOUR CART ?</h1>
-            <div className='flex w-full justify-center gap-3 py-4'>
-            <AnchuvaButton  buttonText={'DECLINE'} onClick={()=>toggleRemoveModal(false)}/>
-            <AnchuvaButton buttonText={'CONFIRM'} onClick={()=>{
-                deleteItem(item.id);
-                toggleRemoveModal(false)
-            }}/>
-
-
-            </div>
-            </div>}
-        {modalAppear && (
-        <div
-          className="fixed inset-0 bg-black h-[120vh] opacity-20 z-10"
-          onClick={()=>toggleRemoveModal(false)}
-        ></div>
-      )} */}
+      
       </div>
       )
 }

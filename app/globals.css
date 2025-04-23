@@ -45,7 +45,7 @@ body {
   left: 0;
   height: 2px; /* Adjust the border height */
   width: 0%; /* Start with a 0 width */
-  background-color: #1f3742; /* Set your primary color */
+  background-color: #ffffff; /* Set your primary color */
   transition: width 0.5s ease; /* Control the animation speed */
 }
 .border-loading-effect:hover::after {

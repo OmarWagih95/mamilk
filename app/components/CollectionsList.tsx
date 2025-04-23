@@ -14,7 +14,7 @@ const CollectionsList = () => {
   const [collections, setCollections] = useState<Collection[]>([])
   useEffect(() => {
     const fetchCollections = async () => {
-      const response = await axios(`/api/collections`);
+      const response = await axios(`/api/collections?collectionName=section`);
       setCollections(response.data as Collection[]);
     }
 

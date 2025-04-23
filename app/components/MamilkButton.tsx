@@ -9,7 +9,8 @@ const MamilkButton = ({buttonText,onClick,disabled}:{buttonText:String,onClick:(
   className={`border rounded-md transition duration-300  p-2 text-sm sm:text-lg md:text-xl ${
     disabled
       ? 'cursor-not-allowed bg-gray-300 text-gray-500' // Styles for disabled state
-      : `hover:cursor-pointer ${gradientSmallButtonStyle}  text-white`
+      : `hover:cursor-pointer bg-primary hover:bg-accent   text-white`
+      // : `hover:cursor-pointer ${gradientSmallButtonStyle}  text-white`
   }`}
 >
   {buttonText}
