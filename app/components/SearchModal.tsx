@@ -53,12 +53,12 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         onClick={onClose}
       />
       <div
-        className={`fixed inset-0 flex items-start justify-center bg-primaryLight min-h-[60vh] h-auto w-[100vw] z-40 transition-all duration-500 ${
+        className={`fixed pl-[2vw] pr-[3vw] inset-0 flex flex-col overflow-y-scroll gap-4 items-start justify-start  bg-primaryLight min-h-[90vh] pb-4 h-auto w-[100vw] z-40 transition-all duration-500 ${
           isVisible ? 'opacity-100 translate-y-14' : 'opacity-0 -translate-y-10'
         }`}
         onClick={(e) => e.stopPropagation()} // Stop event propagation here
       >
-        <form className='w-full px-3 md:px-6' onSubmit={handleSubmit}>
+        <form className='w-full text-primary px-3 md:px-6' onSubmit={handleSubmit}>
           <div className='flex gap-3 mt-3 w-full justify-between '>
             <label className='text-primary text-nowrap'>SEARCH HERE</label>
             <input
@@ -72,7 +72,6 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         </span>
           </div>
         </form>
-      </div>
       {message === '' ? (
         <div
           onClick={() => {
@@ -80,7 +79,7 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
             setSearchData([]);
             setSearchValue('');
           }}
-          className={`flex justify-between lg:justify-start w-full flex-wrap sm:items-start items-center gap-y-8 gap-x-[8vw] lg:gap-x-[18.7vw] py-2 h-auto`}
+          className={`grid grid-cols-2 lg:grid-cols-4 justify-between lg:justify-start w-full  sm:items-start items-center gap-y-8 gap-2 md:gap-8  py-2 h-auto`}
         >
           {searchData.map((product: Product) => {
             const productID = product._id;
@@ -88,7 +87,7 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               const color = variant.color;
               const fav = wishList.find((favorite) => favorite.productId === productID && favorite.color === color);
               return (
-                <ProductCard favorite={!fav} search={false} key={index} color={variant.color} product={product} />
+                <ProductCard favorite={fav? true:false} search={false} key={index} color={variant.color} product={product} />
               );
             });
             return products;
@@ -97,6 +96,7 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
       ) : (
         <div className='flex justify-center w-screen h-screen text-lg items-center'>{message}</div>
       )}
+      </div>
     </>
   );
 };

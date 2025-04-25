@@ -10,6 +10,7 @@ import { gradientSmallButtonStyle } from '@/app/styles/styles';
 import { wishListContext } from '@/app/context/wishListContext';
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import axios from 'axios';
+import MoreToShop from '@/app/components/sections/MoreToShop';
 
 const ProductPage = () => {
     const { productID } = useParams();
@@ -132,8 +133,8 @@ const ProductPage = () => {
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
   return (
-    <div className="bg-primaryLight pt-[110px] p-4">
-      <div className="w-full">
+    <div className="bg-primaryLight ">
+      <div className="w-full pt-[110px] p-4">
         <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8 max-lg:gap-12 max-sm:gap-8">
           
           {/* Product Images */}
@@ -245,6 +246,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
+      <MoreToShop/>
     </div>
   );
 };

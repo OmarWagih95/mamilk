@@ -269,7 +269,7 @@ if (cart.length === 0) {
             </form>
           </div>
 
-          <div className="bg-primaryLight rounded-2xl  lg:h-screen lg:sticky lg:top-0 lg:max-w-[430px] w-full lg:ml-auto">
+          <div className="bg-primaryLight rounded-2xl lg:border-l-2 border-primary lg:h-screen lg:sticky lg:top-0 lg:max-w-[430px] w-full lg:ml-auto">
             <div className="relative h-full">
               <div className="p-6 md:pb-12 overflow-y-scroll max-lg:max-h-[450px] lg:h-[calc(100vh-50px)]">
                 <h2 className="text-xl font-bold text-primary">Order Summary</h2>
@@ -281,7 +281,7 @@ if (cart.length === 0) {
                 </div>
               </div>
 
-              <div className="lg:absolute text-primary border-t-2 bg-primaryLight  border-primary px-2 md:px-6 lg:left-0 lg:bottom-0  w-full p-4">
+              <div className="lg:absolute text-primary max-lg:border-b-2 border-t-2 bg-primaryLight  border-primary px-2 md:px-6 lg:left-0 lg:bottom-0  w-full p-4">
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Sub-Total <span className="ml-auto">{subTotal} LE</span></h4>
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Shipping <span className="ml-auto">{shipping} LE</span></h4>
                 <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">Total <span className="ml-auto">{total} LE</span></h4>

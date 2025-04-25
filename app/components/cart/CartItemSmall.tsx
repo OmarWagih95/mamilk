@@ -89,7 +89,7 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
 
 
     return (
-      <div className='text-primary border border-primary rounded-2xl px-2 py-2'>
+      <div className='text-primary border-2 border-primary rounded-2xl px-2 py-2'>
 
         <div className="flex w-full h-full  py-2  gap-4">
           <div  className='cursor-pointer h-full flex justify-start items-start'><span onClick={()=>deleteItem(item.productId,item.size,item.color)} className='text-[12px] text-primary'>x</span></div>

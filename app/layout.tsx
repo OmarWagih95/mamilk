@@ -9,6 +9,8 @@ import Footer from "./components/sections/Footer";
 import SplashScreen from "./components/sections/SplashScreen";
 import UserProvider from "./UserProvider";
 import AnnouncmentBar from "./components/AnnouncmentBar";
+import { ModalProvider } from "./context/ModalContext";
+import ProductModal from "./components/ProductModal";
 
 export const testFont = localFont({
   src: "/fonts/Dangrek-Regular.ttf",
@@ -48,6 +50,8 @@ export default function RootLayout({
         className={`${Baskerville.className} bg-primary w-screen overflow-x-hidden antialiased`}
       >
                 <SplashScreen /> {/* Add the splash screen component */}
+                <ModalProvider>
+                <ProductModal /> {/* Add the product modal component */}
 <UserProvider>
 
                 <CartProvider>
@@ -59,6 +63,7 @@ export default function RootLayout({
         </CartProvider>
         <Footer />  
 </UserProvider>
+                </ModalProvider>
       </body>
     </html>
   );

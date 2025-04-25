@@ -12,24 +12,27 @@ import { Berkishire } from '@/app/layout'
 
 const MoreToShop = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [collection, setCollection] = useState<Collection | null>(null);
+  const [collection, setCollection] = useState<Collection>();
   
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await axios('/api/collections?collectionID=67ff8a79ad6f2eb3c9425e44');
-        const collectionData = res.data?.data;
-        console.log("collectionData"+ collectionData.collection.collectionName)
-  
+        console.log("Response:", res?.data);
+        const collectionData = res?.data?.data ;
+        if (!collectionData) {
+          console.error("No collection data found");
+          return;
+        }
+        console.log("Collection Name:", collectionData.collection?.collectionName);
         if (!collectionData || !Array.isArray(collectionData.products)) {
           console.error("Invalid collection data:", collectionData);
           return;
         }
-  
         setCollection(collectionData.collection);
-        setProducts(collectionData.products.slice(0, 4)); // Only 4 products
-      } catch (err) {
-        console.error("Fetch failed:", err);
+        setProducts(collectionData.products.slice(0, 4));
+      } catch (err : any) {
+        console.error("Fetch failed:", err.response || err.message);
       }
     };
   

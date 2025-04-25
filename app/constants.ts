@@ -30,12 +30,7 @@ const Categories:Category[]=
       ,
       "categoryName": "Sets",
     },
-    {
-      "_id":  "67e4a20423d644057f9fd265"
-      ,
-      "categoryName": "Hoodie",
-     
-    }]
+]
 const collections:Collection[]=
      //     {text:"Portfolio",link:"/"},
      [{

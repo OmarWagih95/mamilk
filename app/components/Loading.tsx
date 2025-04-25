@@ -3,12 +3,12 @@ import { gradientSmallButtonStyle } from '../styles/styles'
 
 const Loading = () => {
   return (
-    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
-        <button type="button" className={`${gradientSmallButtonStyle} rounded-md px-2 py-1 ...`} disabled>
-  <svg className="mr-3 size-5 animate-spin ..." viewBox="0 0 24 24">
-  </svg>
-  Processing…
-</button>
+    <div className='fixed w-screen h-screen  inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50'>
+<div className="bg-accent text-white w-20 h-12 rounded-2xl  justify-center items-center text-center">
+  <h2>
+  Loading…
+    </h2>
+</div>
     </div>
   )
 }

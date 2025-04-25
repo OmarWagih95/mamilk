@@ -36,7 +36,7 @@ export async function POST(request: Request) {
         email:data.email,
          orderID:''
         ,country: data.country,
-        firstName: data.firstName,
+        firstName: data.name,
         lastName: data.lastName,
         address: data.address,
         apartment: data.apartment,
