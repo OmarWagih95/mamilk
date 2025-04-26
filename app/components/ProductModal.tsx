@@ -1,10 +1,12 @@
 // ProductModal.tsx
 'use client'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useModal } from '../context/ModalContext'
 import { Berkishire } from '@/app/layout' // Make sure to import your font
+import { cartContext } from '../context/cartContext'
+import Swal from 'sweetalert2'
 
-const ProductModal = () => {
+const ProductModal = ({}) => {
   const { isModalOpen, closeModal, modalProduct: product } = useModal()
   
   // Return null if modal is closed or no product
@@ -14,6 +16,7 @@ const ProductModal = () => {
   const [selectedColor, setSelectedColor] = useState(product.variations[0]?.color || '')
   const [selectedSize, setSelectedSize] = useState(product.variations[0]?.sizes[0]?.name || '')
   const [quantity, setQuantity] = useState(1)
+  const {cart,setCart}=useContext(cartContext)
   
   // Find selected variation
   const selectedVariation = product.variations.find(
@@ -21,6 +24,50 @@ const ProductModal = () => {
   )
   
   const addToCart = () => {
+        const addToCart=()=>{
+          console.log('clicked')
+          const sameProductIndex = cart.findIndex(
+            (cartItem) => cartItem.productId === product._id && cartItem.color === product.variations[0].color
+          );
+        
+          if (sameProductIndex !== -1) {
+            const updatedCart = [...cart];  // Create a new cart array
+            updatedCart[sameProductIndex].quantity += 1; 
+            setCart(updatedCart); 
+           } 
+          else{
+            setCart(oldCart=>[...oldCart,{
+                  id:cart.length,
+              productId: product._id,
+                productName: product.title,
+                price: product.price.local,
+                color:product.variations[0].color,
+                quantity: 1,
+                size: product.variations[0].sizes[0].name,
+                imageUrl: product.variations[0].images[0]
+            }])
+          }
+          console.log(cart.length)
+          Swal.fire({
+        
+            background:'#cb808b',
+            color:'white',
+            toast:false,
+            iconColor:'#473728',
+          position: "center",
+          // icon: "success",
+          text: "YOUR PRODUCT HAS BEEN ADDED TO CART",
+          showConfirmButton: false,
+          timer: 2000,
+          customClass: {
+            popup: 'no-rounded-corners small-popup'
+          }
+        
+        }
+        )
+        
+          
+        }
     // Your add to cart logic here
     closeModal()
   }
