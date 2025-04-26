@@ -1,22 +1,36 @@
 // ProductModal.tsx
 'use client'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useModal } from '../context/ModalContext'
 import { Berkishire } from '@/app/layout' // Make sure to import your font
 import { cartContext } from '../context/cartContext'
 import Swal from 'sweetalert2'
 
-const ProductModal = ({}) => {
+const ProductModal = () => {
   const { isModalOpen, closeModal, modalProduct: product } = useModal()
+  const { cart, setCart } = useContext(cartContext)
   
-  // Return null if modal is closed or no product
-  if (!isModalOpen || !product) return null
-  
-  // Initialize state for the modal
-  const [selectedColor, setSelectedColor] = useState(product.variations[0]?.color || '')
-  const [selectedSize, setSelectedSize] = useState(product.variations[0]?.sizes[0]?.name || '')
+  // Always initialize state, even if the modal is closed
+  const [selectedColor, setSelectedColor] = useState('')
+  const [selectedSize, setSelectedSize] = useState('')
   const [quantity, setQuantity] = useState(1)
-  const {cart,setCart}=useContext(cartContext)
+  
+  // Debug log when cart changes
+  useEffect(() => {
+    console.log('Cart updated:', cart);
+  }, [cart,setCart]);
+  
+  // Update state when product changes
+  useEffect(() => {
+    if (product) {
+      setSelectedColor(product.variations[0]?.color || '')
+      setSelectedSize(product.variations[0]?.sizes[0]?.name || '')
+      setQuantity(1)
+    }
+  }, [product])
+  
+  // Return null if modal is closed or no product - AFTER initializing hooks
+  if (!isModalOpen || !product) return null
   
   // Find selected variation
   const selectedVariation = product.variations.find(
@@ -24,53 +38,85 @@ const ProductModal = ({}) => {
   )
   
   const addToCart = () => {
-        const addToCart=()=>{
-          console.log('clicked')
-          const sameProductIndex = cart.findIndex(
-            (cartItem) => cartItem.productId === product._id && cartItem.color === product.variations[0].color
-          );
-        
-          if (sameProductIndex !== -1) {
-            const updatedCart = [...cart];  // Create a new cart array
-            updatedCart[sameProductIndex].quantity += 1; 
-            setCart(updatedCart); 
-           } 
-          else{
-            setCart(oldCart=>[...oldCart,{
-                  id:cart.length,
-              productId: product._id,
-                productName: product.title,
-                price: product.price.local,
-                color:product.variations[0].color,
-                quantity: 1,
-                size: product.variations[0].sizes[0].name,
-                imageUrl: product.variations[0].images[0]
-            }])
+    console.log('===== ADDING TO CART - DEBUG INFO =====')
+    console.log('Cart before update:', cart)
+    
+    // Get all necessary values before updating
+    const newItemId = cart.length;
+    const productId = product._id;
+    const productName = product.title;
+    const price = product.price.local;
+    const color = selectedColor;
+    const size = selectedSize;
+    const currentQuantity = quantity;
+    const selectedVariationForImage = product.variations.find(v => v.color === selectedColor);
+    
+    // Ensure imageUrl is never undefined (use first variation's first image as fallback)
+    const imageUrl = selectedVariationForImage?.images[0] || product.variations[0].images[0];
+    
+    // Log all values
+    console.log({ newItemId, productId, productName, price, color, size, currentQuantity, imageUrl });
+    
+    // Find if this product is already in cart
+    const sameProductIndex = cart.findIndex(
+      (cartItem) => cartItem.productId === productId && cartItem.color === color && cartItem.size === size
+    );
+    console.log('Same product index:', sameProductIndex);
+    
+    // Create a function to handle the cart update for better debugging
+    const updateCart = () => {
+      if (sameProductIndex !== -1) {
+        console.log('Updating existing product in cart');
+        // Create a completely new cart array to ensure React detects the change
+        const updatedCart = cart.map((item, index) => {
+          if (index === sameProductIndex) {
+            return { ...item, quantity: item.quantity + currentQuantity };
           }
-          console.log(cart.length)
-          Swal.fire({
+          return item;
+        });
+        console.log('Updated cart will be:', updatedCart);
+        setCart(updatedCart);
+      } else {
+        console.log('Adding new product to cart');
+        const newItem = {
+          id: newItemId,
+          productId,
+          productName,
+          price,
+          color,
+          size,
+          quantity: currentQuantity,
+          imageUrl // This is now guaranteed to be a string, not undefined
+        };
+        console.log('New cart item:', newItem);
         
-            background:'#cb808b',
-            color:'white',
-            toast:false,
-            iconColor:'#473728',
-          position: "center",
-          // icon: "success",
-          text: "YOUR PRODUCT HAS BEEN ADDED TO CART",
-          showConfirmButton: false,
-          timer: 2000,
-          customClass: {
-            popup: 'no-rounded-corners small-popup'
-          }
-        
-        }
-        )
-        
-          
-        }
-    // Your add to cart logic here
-    closeModal()
-  }
+        // Create a completely new array to ensure React detects the change
+        const newCart = [...cart, newItem];
+        console.log('New cart will be:', newCart);
+        setCart(newCart);
+      }
+    };
+    
+    // Execute the cart update
+    updateCart();
+    
+    // Show success message
+    Swal.fire({
+      background: '#cb808b',
+      color: 'white',
+      toast: false,
+      iconColor: '#473728',
+      position: "center",
+      text: "YOUR PRODUCT HAS BEEN ADDED TO CART",
+      showConfirmButton: false,
+      timer: 2000,
+      customClass: {
+        popup: 'no-rounded-corners small-popup'
+      }
+    });
+    
+    closeModal();
+  };
 
   return (
     <div 

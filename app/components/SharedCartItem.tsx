@@ -14,7 +14,7 @@ const SharedBigCartItem = ({cartItem}:{cartItem:CartItem}) => {
 
     // const[modalAppear,toggleRemoveModal]=useState(false)
   return (
-    <div className='flex w-full border-b border-primary items-start text-primary mr-28'>
+    <div className='flex w-full border-2 rounded-2xl gap-4 border-primary items-start text-primary mr-28'>
 
     <div className='flex  pb-2 w-full justify-between items-start text-primary'>
         <div className='relative w-[60px] h-[70px] md:w-[100px] md:h-[120px]'>

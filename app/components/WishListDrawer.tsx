@@ -28,7 +28,7 @@ export default function SideDrawer() {
   }, [isOpen]);
     const handleShare=()=>{
       const cartJson = encodeURIComponent(JSON.stringify(wishList));
-  const shareLink = `https://mamilk.com/pages/share?data=${cartJson}`;
+  const shareLink = `https://mamilk-breastfeeding.com/pages/share?data=${cartJson}`;
   console.log(shareLink);
   
   navigator.clipboard

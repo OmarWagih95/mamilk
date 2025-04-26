@@ -40,7 +40,7 @@ export default function SideDrawer() {
 
   const handleShare=()=>{
     const cartJson = encodeURIComponent(JSON.stringify(cart));
-const shareLink = `https://anchuva.com/pages/share?data=${cartJson}`;
+const shareLink = `https://mamilk-breastfeeding.com/pages/share?data=${cartJson}`;
 console.log(shareLink);
 
 navigator.clipboard

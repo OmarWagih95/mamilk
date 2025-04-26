@@ -50,20 +50,20 @@ export default function RootLayout({
         className={`${Baskerville.className} bg-primary w-screen overflow-x-hidden antialiased`}
       >
                 <SplashScreen /> {/* Add the splash screen component */}
+                <CartProvider>
                 <ModalProvider>
                 <ProductModal /> {/* Add the product modal component */}
 <UserProvider>
 
-                <CartProvider>
                 <WishListProvider>
                   <AnnouncmentBar/>
         <Navbar/>
         {children}
                 </WishListProvider>
-        </CartProvider>
         <Footer />  
 </UserProvider>
                 </ModalProvider>
+        </CartProvider>
       </body>
     </html>
   );
