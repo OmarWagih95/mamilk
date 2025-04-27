@@ -24,16 +24,16 @@ const ProductsPage = () => {
   const [sortBy, setSortBy] = useState<string>('default') // 'default', 'priceHigh', 'priceLow'
   const [selectedCategory, setSelectedCategory] = useState<string>('All') // 'All' or categoryName
 
-  const searchParams = useSearchParams()
 
   useEffect(() => {
-    const categoryID = searchParams.get('categoryID')
-    const season = searchParams.get('season')
-    const collectionID = searchParams.get('collectionID')
+    const searchParams = new URLSearchParams(window?.location.search);
+    const categoryID = searchParams.get('categoryID');
+    const season = searchParams.get('season');
+    const collectionID = searchParams.get('collectionID');
 
-    setCategoryID(categoryID)
-    setSeason(season)
-    setCollectionID(collectionID)
+    setCategoryID(categoryID);
+    setSeason(season);
+    setCollectionID(collectionID);
     setProducts([])
 
     async function fetchProducts() {
@@ -59,7 +59,7 @@ const ProductsPage = () => {
     }
 
     fetchProducts()
-  }, [searchParams, categoryID, season, collectionID])
+  }, [ categoryID, season, collectionID])
 
   // Apply sorting and filtering when sortBy or selectedCategory changes
   useEffect(() => {
@@ -94,8 +94,8 @@ const ProductsPage = () => {
     <div className="bg-white text-primary pt-[110px]">
       <div className="font-sans w-screen min-h-screen h-auto p-4 mx-auto lg:max-w-6xl md:max-w-4xl">
         {/* Filter Controls */}
-        <div className="flex flex-col sm:flex-row justify-between mb-6 gap-4">
-          {collectionID && <h1></h1>}
+        <div className="flex flex-col sm:flex-row  mb-6 gap-4">
+          {/* {collectionID && <h1></h1>} */}
           <div>
             <label className="mr-2 text-primary">Sort by price:</label>
             <select
