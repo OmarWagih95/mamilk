@@ -37,7 +37,7 @@ description:string;
     title: string;
     description: string;
     price: price;
-    collectionID: string;
+    categoryID: string;
     variations: Variant[];
     productDimensions:string[];
       productDetails:string[];
