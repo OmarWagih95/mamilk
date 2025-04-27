@@ -24,7 +24,9 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
   const [selectedSize, setSelectedSize] = useState(product.variations[0].sizes[0].name);
   const [quantity, setQuantity] = useState(1); // New state for quantity
   const router = useRouter();
-
+  const isOutOfStock = product.variations.every((variation) =>
+    variation.sizes.every((size) => size.stock <= 0)
+  );
   const toggleHeart = () => {
     setHeartIsEmpty(!heartIsEmpty);
   };
@@ -160,7 +162,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
   return (
     <>
       <div className="bg-primaryLight text-primary flex max-md:min-w-[40vw] flex-col rounded-2xl overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
-        <div className="w-full">
+        <div className="w-full relative">
           <img
             src={product.variations[0].images[0]}
             alt={product.title}
@@ -169,6 +171,11 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
             }}
             className="w-full object-cover max-h-[50vh] object-top aspect-[230/307]"
           />
+                    {isOutOfStock && (
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <span className="text-white font-bold text-lg">Out of Stock</span>
+            </div>
+          )}
         </div>
 
         <div className="p-4 flex-1 gap-3 flex flex-col">
@@ -188,7 +195,10 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
           <button
             onClick={handleOpenModal}
             type="button"
-            className="bg-primary text-white hover:bg-accent rounded-xl px-4 py-2"
+            disabled={isOutOfStock}
+            className={`bg-primary text-white hover:bg-accent rounded-xl px-4 py-2 ${
+              isOutOfStock ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
           >
             Add to cart
           </button>

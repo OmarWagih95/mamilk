@@ -53,52 +53,59 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         onClick={onClose}
       />
       <div
-        className={`fixed pl-[2vw] pr-[3vw] inset-0 flex flex-col overflow-y-scroll gap-4 items-start justify-start  bg-primaryLight min-h-[90vh] pb-4 h-auto w-[100vw] z-40 transition-all duration-500 ${
+        className={`fixed pl-[2vw] pr-[3vw] inset-0 flex flex-col overflow-y-scroll gap-4 items-start justify-start bg-primaryLight min-h-[90vh] pb-4 h-auto w-[100vw] z-40 transition-all duration-500 ${
           isVisible ? 'opacity-100 translate-y-14' : 'opacity-0 -translate-y-10'
         }`}
-        onClick={(e) => e.stopPropagation()} // Stop event propagation here
+        onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from triggering backdrop onClose
       >
         <form className='w-full text-primary px-3 md:px-6' onSubmit={handleSubmit}>
-          <div className='flex gap-3 mt-3 w-full justify-between '>
+          <div className='flex gap-3 mt-3 w-full justify-between'>
             <label className='text-primary text-nowrap'>SEARCH HERE</label>
             <input
               value={searchValue}
               type='text'
               onChange={(e) => setSearchValue(e.target.value)}
-              className='border-b rounded-2xl px-2 py-1 outline-none w-full h-6 border-primary bg-primaryLight  text-sm'
+              className='border-b rounded-2xl px-2 py-1 outline-none w-full h-6 border-primary bg-primaryLight text-sm'
             />
-        <span onClick={onClose} className='hover:cursor-pointer text-primary mr-4 hover:rotate-180 transition duration-700'>
-          x
-        </span>
+            <span
+              onClick={onClose}
+              className='hover:cursor-pointer text-primary mr-4 hover:rotate-180 transition duration-700'
+            >
+              x
+            </span>
           </div>
         </form>
-      {message === '' ? (
-        <div
-          onClick={() => {
-            setIsVisible(false);
-            setSearchData([]);
-            setSearchValue('');
-          }}
-          className={`grid grid-cols-2 lg:grid-cols-4 justify-between lg:justify-start w-full  sm:items-start items-center gap-y-8 gap-2 md:gap-8  py-2 h-auto`}
-        >
-          {searchData.map((product: Product) => {
-            const productID = product._id;
-            const products = product.variations.map((variant, index) => {
-              const color = variant.color;
-              const fav = wishList.find((favorite) => favorite.productId === productID && favorite.color === color);
-              return (
-                <ProductCard favorite={fav? true:false} search={false} key={index} color={variant.color} product={product} />
-              );
-            });
-            return products;
-          })}
-        </div>
-      ) : (
-        <div className='flex justify-center w-screen h-screen text-lg items-center'>{message}</div>
-      )}
+        {message === '' ? (
+          <div
+            className={`grid grid-cols-2 lg:grid-cols-4 justify-between lg:justify-start w-full sm:items-start items-center gap-y-8 gap-2 md:gap-8 py-2 h-auto`}
+          onClick={onClose}
+          >
+            {searchData.map((product: Product) => {
+              const productID = product._id;
+              const products = product.variations.map((variant, index) => {
+                const color = variant.color;
+                const fav = wishList.find(
+                  (favorite) => favorite.productId === productID && favorite.color === color
+                );
+                return (
+                  <ProductCard
+                    favorite={fav ? true : false}
+                    search={false}
+                    key={index}
+                    color={variant.color}
+                    product={product}
+                  />
+                );
+              });
+              return products;
+            })}
+          </div>
+        ) : (
+          <div className='flex justify-center w-screen h-screen text-lg items-center'>{message}</div>
+        )}
       </div>
     </>
   );
 };
 
-export default SearchModal;
+export default SearchModal;     
