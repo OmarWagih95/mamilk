@@ -36,7 +36,7 @@ const NavIcons = () => {
   }, [isProfileOpen, isCartOpen, isCategoriesOpen, isSearchOpen]);
 
   return (
-    <div className='hover:cursor-pointer lg:text-sm xl:text-lg font-bold tracking-wider  flex items-center gap-4 xl:gap-6'>
+    <div className='hover:cursor-pointer lg:text-sm xl:text-base font-bold tracking-wider  flex items-center gap-4 xl:gap-6'>
      <Link className='hidden  border-loading-effect group   gap-4 transform  transition-transform duration-500 ease-out lg:flex' href={'/pages/about'}>About</Link>
      <Link className='hidden  border-loading-effect group   gap-4 transform  transition-transform duration-500 ease-out lg:flex' href={'/pages/contact'}>Contact</Link>
       {/* <h2 onClick={() => setCategoriesOpen(!isCategoriesOpen)} className='hidden  border-loading-effect group   gap-4 transform  transition-transform duration-500 ease-out  md:flex'>

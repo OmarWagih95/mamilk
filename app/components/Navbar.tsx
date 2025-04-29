@@ -83,7 +83,7 @@ const Navbar = () => {
   {constants.Categories.map((category, index) => (
     <div key={index} className="relative">
       <button 
-        className='lg:text-sm xl:text-lg font-bold tracking-wider border-loading-effect gap-4 transform transition-transform duration-500 ease-out'
+        className='lg:text-sm xl:text-base font-bold tracking-wider border-loading-effect gap-4 transform transition-transform duration-500 ease-out'
         onClick={() => setActiveDropdown(activeDropdown === index ? null : index)}
       >
         {category.categoryName}
