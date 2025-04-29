@@ -20,8 +20,8 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true)
   const [sortBy, setSortBy] = useState<string>('default')
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
+  
   const searchParams = useSearchParams() // Call useSearchParams at top level
-
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true)
