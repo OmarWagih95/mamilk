@@ -163,14 +163,16 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
     <>
       <div className="bg-primaryLight text-primary flex max-md:min-w-[40vw] flex-col rounded-2xl overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
         <div className="w-full relative">
-          <img
-            src={product.variations[0].images[0]}
-            alt={product.title}
-            onClick={() => {
-              router.push(`/pages/productPage/${product._id}`);
-            }}
-            className="w-full object-cover max-h-[50vh] object-top aspect-[230/307]"
-          />
+        <Image
+  src={product.variations[0].images[0]} 
+  alt={product.title}
+  width={230}
+  height={307}
+  className="w-full object-cover max-h-[50vh] object-top aspect-[230/307] cursor-pointer"
+  onClick={() => {
+    router.push(`/pages/productPage/${product._id}`);
+  }}
+/>
                     {isOutOfStock && (
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
               <span className="text-white font-bold text-lg">Out of Stock</span>

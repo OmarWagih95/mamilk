@@ -1,6 +1,6 @@
 'use client'
 
-import { Category, Product, SubCategory } from '@/app/interfaces/interfaces'
+import { Category, Product } from '@/app/interfaces/interfaces'
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import axios from 'axios'
@@ -15,30 +15,23 @@ const categories = [
 ]
 
 const ProductsPage = () => {
-  const [categoryID, setCategoryID] = useState<string | null>(null)
-  const [season, setSeason] = useState<string | null>(null)
-  const [collectionID, setCollectionID] = useState<string | null>(null)
   const [products, setProducts] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
-  const [sortBy, setSortBy] = useState<string>('default') // 'default', 'priceHigh', 'priceLow'
-  const [selectedCategory, setSelectedCategory] = useState<string>('All') // 'All' or categoryName
-
+  const [sortBy, setSortBy] = useState<string>('default')
+  const [selectedCategory, setSelectedCategory] = useState<string>('All')
+  const searchParams = useSearchParams() // Call useSearchParams at top level
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(window?.location.search);
-    const categoryID = searchParams.get('categoryID');
-    const season = searchParams.get('season');
-    const collectionID = searchParams.get('collectionID');
-
-    setCategoryID(categoryID);
-    setSeason(season);
-    setCollectionID(collectionID);
-    setProducts([])
-
     async function fetchProducts() {
       setLoading(true)
       try {
+        const categoryID = searchParams.get('categoryID')
+        const season = searchParams.get('season')
+        const collectionID = searchParams.get('collectionID')
+
+        console.log('Query params:', { categoryID, season, collectionID }) // Debug params
+
         let url = '/api/products'
         if (collectionID) {
           url = `/api/collections?collectionID=${collectionID}`
@@ -46,33 +39,36 @@ const ProductsPage = () => {
           url = `/api/products?categoryID=${categoryID}&season=${season}`
         }
 
-        console.log('Fetching URL:', url) // Debug URL
+        console.log('Fetching URL:', url)
         const response = await axios(url)
-        const data = collectionID ? response.data.data.products : response.data.data || response.data
+        const data = collectionID
+          ? response.data.data.products
+          : response.data.data || response.data
+
+        console.log('Fetched data:', data) // Debug API response
         setProducts(data)
-        setFilteredProducts(data) // Initialize filtered products
+        setFilteredProducts(data)
       } catch (error) {
         console.error('Error fetching products:', error)
+        setProducts([])
+        setFilteredProducts([])
       } finally {
         setLoading(false)
       }
     }
 
     fetchProducts()
-  }, [ categoryID, season, collectionID])
+  }, [searchParams.toString()]) // Depend on query string to re-run when parameters change
 
-  // Apply sorting and filtering when sortBy or selectedCategory changes
   useEffect(() => {
     let updatedProducts = [...products]
 
-    // Filter by category
     if (selectedCategory !== 'All') {
       updatedProducts = updatedProducts.filter(
         (product) => product.categoryID === selectedCategory
       )
     }
 
-    // Sort by price
     if (sortBy === 'priceHigh') {
       updatedProducts.sort((a, b) => {
         const aPrice = typeof a.price.local === 'number' ? a.price.local : 0
@@ -93,9 +89,7 @@ const ProductsPage = () => {
   return (
     <div className="bg-white text-primary pt-[110px]">
       <div className="font-sans w-screen min-h-screen h-auto p-4 mx-auto lg:max-w-6xl md:max-w-4xl">
-        {/* Filter Controls */}
-        <div className="flex flex-col sm:flex-row  mb-6 gap-4">
-          {/* {collectionID && <h1></h1>} */}
+        <div className="flex flex-col sm:flex-row mb-6 gap-4">
           <div>
             <label className="mr-2 text-primary">Sort by price:</label>
             <select
@@ -141,7 +135,7 @@ const ProductsPage = () => {
                 product={product}
                 color="black"
                 search={false}
-                key={index}
+                key={product._id || index} // Use product._id if available
               />
             ))
           )}

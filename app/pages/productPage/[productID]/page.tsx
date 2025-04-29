@@ -11,6 +11,7 @@ import { wishListContext } from '@/app/context/wishListContext';
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import axios from 'axios';
 import MoreToShop from '@/app/components/sections/MoreToShop';
+import Image from 'next/image';
 
 const ProductPage = () => {
     const { productID } = useParams();
@@ -142,7 +143,8 @@ const ProductPage = () => {
             <div className="grid grid-cols-2 gap-0.5">
               {selectedVariation?.images.map((img, index) => (
                 <div key={index}>
-                  <img src={img} alt={`Product ${selectedColor} ${index + 1}`} className="w-full aspect-[182/243] object-top object-cover" />
+                  <Image src={img} width={450} height={600} alt={`Product ${selectedColor} ${index + 1}`} className="w-full aspect-[182/243] object-top object-cover" >
+                  </Image>
                 </div>
               ))}
             </div>
