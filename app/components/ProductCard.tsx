@@ -100,7 +100,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
           color: selectedColor,
           quantity: quantity, // Use selected quantity
           size: selectedSize,
-          imageUrl: selectedVariation.images[0],
+          imageUrl: selectedVariation.images[0].url,
         },
       ]);
     }
@@ -134,7 +134,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
           quantity: 1,
           color: product.variations[0].color,
           size: product.variations[0].sizes[0].name,
-          imageUrl: product.variations[0].images[0],
+          imageUrl: product.variations[0].images[0].url,
         },
       ]);
       Swal.fire({
@@ -164,7 +164,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
       <div className="bg-primaryLight text-primary flex max-md:min-w-[40vw] flex-col rounded-2xl overflow-hidden shadow-md cursor-pointer hover:scale-[1.01] transition-all">
         <div className="w-full relative">
         <Image
-  src={product.variations[0].images[0]} 
+  src={product.variations[0].images[0].url} 
   alt={product.title}
   width={230}
   height={307}
@@ -241,7 +241,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
         </h2>
         <div className="relative w-full h-64 md:h-80">
           <img
-            src={selectedVariation?.images[0] || product.variations[0].images[0]}
+            src={selectedVariation?.images[0].url || product.variations[0].images[0].url}
             alt={product.title}
             className="w-full h-full object-contain rounded-lg"
           />

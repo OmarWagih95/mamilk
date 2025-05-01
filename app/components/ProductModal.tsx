@@ -52,7 +52,7 @@ const ProductModal = () => {
     const selectedVariationForImage = product.variations.find(v => v.color === selectedColor);
     
     // Ensure imageUrl is never undefined (use first variation's first image as fallback)
-    const imageUrl = selectedVariationForImage?.images[0] || product.variations[0].images[0];
+    const imageUrl = selectedVariationForImage?.images[0].url || product.variations[0].images[0].url;
     
     // Log all values
     console.log({ newItemId, productId, productName, price, color, size, currentQuantity, imageUrl });
@@ -151,7 +151,7 @@ const ProductModal = () => {
           </h2>
           <div className="relative w-full h-64 md:h-80">
             <img
-              src={selectedVariation?.images[0] || product.variations[0].images[0]}
+              src={selectedVariation?.images[0].url || product.variations[0].images[0].url}
               alt={product.title}
               className="w-full h-full object-contain rounded-lg"
             />
@@ -165,7 +165,7 @@ const ProductModal = () => {
                   key={index}
                   className="h-16 w-16 rounded-md border-2 border-gray-200 hover:border-primary focus:border-primary focus:outline-none"
                 >
-                  <img src={img} alt={`View ${index + 1}`} className="h-full w-full object-cover rounded" />
+                  <img src={img.url} alt={`View ${index + 1}`} className="h-full w-full object-cover rounded" />
                 </button>
               ))}
             </div>

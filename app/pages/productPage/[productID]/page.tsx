@@ -68,7 +68,7 @@ const ProductPage = () => {
               color:selectedColor!,
               size: selectedSize,
               quantity: quantity,
-              imageUrl: product!.variations.find(v=>v.color===selectedColor)!.images[0]
+              imageUrl: product!.variations.find(v=>v.color===selectedColor)!.images[0].url
           }])
         }
         console.log(cart.length)
@@ -105,8 +105,8 @@ const ProductPage = () => {
                 color: 'blue',
                 size: product!.variations[0].sizes[0].name,
                 
-                // imageUrl: product.variations.find(v=>v.color==='blue')!.images[0],
-                imageUrl: product!.variations[0].images[0],
+                // imageUrl: product.variations.find(v=>v.color==='blue')!.images[0].url,
+                imageUrl: product!.variations[0].images[0].url,
               },
             ]);
             Swal.fire({
@@ -142,10 +142,17 @@ const ProductPage = () => {
           <div className="w-full lg:sticky top-16 lg:col-span-3">
             <div className="grid grid-cols-2 gap-0.5">
               {selectedVariation?.images.map((img, index) => (
+                img.type === 'image' ?
+                
                 <div key={index}>
-                  <Image src={img} width={450} height={600} alt={`Product ${selectedColor} ${index + 1}`} className="w-full aspect-[182/243] object-top object-cover" >
+                  <Image src={img.url} width={450} height={600} alt={`Product ${selectedColor} ${index + 1}`} className="w-full aspect-[182/243] object-top object-cover" >
                   </Image>
-                </div>
+                </div> : 
+                <video key={index} autoPlay muted loop className="w-full aspect-[182/243] object-top object-cover" controls>
+                  <source src={img.url} type="video/mp4" />
+
+                  Your browser does not support the video tag
+                  </video>
               ))}
             </div>
           </div>

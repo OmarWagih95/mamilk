@@ -1,10 +1,17 @@
 
   
  export interface Variant {
-   color: string;
-   sizes:Size[]
-   images:string[];
- }
+  color: string;
+  sizes:Size[]
+  images:media[];
+}
+export type media={
+   url:string;
+   type:mediaType;
+   
+}
+export type mediaType= "image" | "video" 
+ 
   export type price={
    local:number;
   }
