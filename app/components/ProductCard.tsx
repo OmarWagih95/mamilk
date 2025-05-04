@@ -258,7 +258,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
           // Add image selection functionality here
         }}
       >
-        <img src={img} alt={`View ${index + 1}`} className="h-full w-full object-cover rounded" />
+        <img src={img.url} alt={`View ${index + 1}`} className="h-full w-full object-cover rounded" />
       </button>
     ))}
   </div>

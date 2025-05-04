@@ -17,7 +17,7 @@ const ProductPage = () => {
     const { productID } = useParams();
   
   const [product, setProduct] = useState<Product | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(product?.variations[0].color!);
   const [quantity, setQuantity] = useState<number>(1); // New quantity state
   const {cart,setCart}=useContext(cartContext)
     const { wishList, setWishList } = useContext(wishListContext);
@@ -178,11 +178,12 @@ const ProductPage = () => {
                     key={index}
                     type="button"
                     onClick={() => setSelectedColor(variation.color)}
-                    className={`px-4 py-2 border ${selectedColor === variation.color ? 'bg-accent hover:bg-primary' : 'border-gray-300 bg-pink3 '} text-white text-sm font-semibold`}
+                    className={`px-4 py-2 border ${selectedColor === variation.color ? 'bg-accent text-white' : 'border-primary text-primary bg-pink3 '}  text-sm font-semibold`}
                   >
                     {variation.color}
                   </button>
-                ))}
+                ))
+                }
               </div>
             </div>
 
@@ -198,7 +199,7 @@ const ProductPage = () => {
                       key={index}
                       type="button"
                       onClick={() => setSelectedSize(size.name)}
-                      className={`w-10 h-9 border ${selectedSize === size.name ? 'bg-accent hover:bg-primary' : 'border-gray-300 bg-pink3 '} text-white text-sm flex items-center justify-center shrink-0`}
+                      className={`min-w-10 text-sm font-semibold min-h-9 border ${selectedSize === size.name ? 'bg-accent text-white' : 'border-primary text-primary hover:bg-accent '}  py-2 px-4 text-sm flex items-center justify-center shrink-0`}
                     >
                       {size.name}
                     </button>
