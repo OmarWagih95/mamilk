@@ -12,7 +12,7 @@ const HeroCarousel = () => {
   ];
   
   // Create extended array with clones for infinite effect
-  const extendedImages = [...images, images[0].url];
+  const extendedImages = [...images, images[0]];
 
   const nextSlide = useCallback(() => {
     setIsTransitioning(true);
