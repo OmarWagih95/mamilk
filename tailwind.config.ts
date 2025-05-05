@@ -10,9 +10,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary:"#483C4E",
-        accent:"#CE6A85",
-        primaryLight:"#E6E1E9",
+        primary:"#113C6F",
+        accent:"#E6AEAD",
+        primaryLight:"#FCF0F2",
+        accentLight:"#FCF0F2",
         // secondary:"#1b3d6d",
         // boyPrimary:"#2C5694",
         // boySecondary:"#2C5694",

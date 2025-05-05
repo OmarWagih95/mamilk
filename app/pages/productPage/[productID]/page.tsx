@@ -160,7 +160,7 @@ const ProductPage = () => {
           {/* Product Details */}
           <div className="w-full lg:sticky top-0 lg:col-span-2 text-primary">
             <div>
-              <h3 className={`${Berkishire.className} text-xl sm:text-2xl lg:text-4xl font-bold `}>{product?.title}</h3>
+              <h3 className={`${Berkishire.className} text-2xl sm:text-4xl lg:text-6xl font-bold `}>{product?.title}</h3>
               <p className="text-gray-500  text-sm">{product?.description}</p>
               <div className="flex items-center flex-wrap gap-4 ">
                 <h4 className=" text-2xl sm:text-3xl font-bold">{product?.price.local} LE</h4>

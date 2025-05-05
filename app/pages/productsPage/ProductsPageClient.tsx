@@ -119,7 +119,7 @@ const ProductsPageClient = () => {
           </div>
         </div>
 
-        <div className="grid my-2 md:my-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid my-2 md:my-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {loading ? (
             <div className="flex justify-center items-center h-screen">
               <p className="text-lg text-primary">Loading...</p>

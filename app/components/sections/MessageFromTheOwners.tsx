@@ -5,7 +5,7 @@ import { fadeIn } from '@/app/variants/fadIn'
 import { Berkishire } from '@/app/layout'
 const MessageFromTheOwners = () => {
   return (
-    <div className='flex flex-col gap-6 md:gap-12 lg:gap-16 justify-center text-center items-center px-4 md:px-8 w-full h-[60vh] md:h-[80vh] bg-primary'>
+    <div className='flex flex-col gap-6 md:gap-12 lg:gap-16 justify-center text-center items-center px-4 md:px-8 w-full h-[60vh] md:h-[80vh] bg-gradient-to-r from-primary to-accent'>
         <motion.h1 
                 variants={fadeIn({ direction: 'up', delay: 0.1 })}
                 initial="hidden"
