@@ -50,7 +50,12 @@ else if(moreToShop){
 
 else if(categoryID && season){
     try {
-        const products = await productModel.find({categoryID:categoryID,season:season}).limit(8).skip(0)
+        const products = await productModel.find({
+          $or: [
+            { categoryID: categoryID, season: season },
+            { categoryID: categoryID, season: "all" }
+          ]
+        })
         // const totalProducts = await productModel.countDocuments();
         console.log("productsLength" + products.length)
         return NextResponse.json({
