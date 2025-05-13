@@ -190,17 +190,15 @@ const ProductModal = () => {
                     setSelectedColor(variation.color);
                     setSelectedSize(variation.sizes[0].name); // Reset size when color changes
                   }}
-                  className={`w-10 h-10 rounded-full border-2 flex items-center justify-center ${
-                    selectedColor === variation.color ? 'border-primary ring-2 ring-primary ring-opacity-50' : 'border-gray-300'
-                  } transition-all focus:outline-none`}
+                  className={`px-4 py-2 border-2 transition-colors ${
+                    selectedColor === variation.color 
+                      ? 'border-primary bg-primary text-white' 
+                      : 'border-gray-300 hover:border-primary'
+                  }`}
                   aria-label={`Select ${variation.color} color`}
                   aria-pressed={selectedColor === variation.color}
                 >
-                  <span 
-                    className="w-8 h-8 rounded-full" 
-                    style={{ backgroundColor: variation.color.toLowerCase() }}
-                    title={variation.color}
-                  ></span>
+                  {variation.color}
                 </button>
               ))}
             </div>

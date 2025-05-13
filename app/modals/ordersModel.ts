@@ -13,7 +13,7 @@ const CartItemSchema = new Schema({
 
 // Define the Order schema
 const OrderSchema = new Schema(
-    { email:{type: String, required: true}
+    { email:{type: String, required: false}
         ,country: { type: String, required: false },
         firstName: { type: String, required: false },
         lastName: { type: String, required: false },

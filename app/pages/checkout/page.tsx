@@ -136,8 +136,8 @@ const CheckoutPage = () => {
     const validationErrors: string[] = [];
 
     if (!name.trim()) validationErrors.push('Name is required.');
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      validationErrors.push('Valid email is required.');
+    // if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    //   validationErrors.push('Valid email is required.');
     if (!phone.trim() || !/^\d{10,15}$/.test(phone))
       validationErrors.push('Valid phone number is required.');
     if (!address.trim()) validationErrors.push('Address is required.');
@@ -311,7 +311,7 @@ const CheckoutPage = () => {
                 <button
                   type="button"
                   onClick={handleConfirmOrder}
-                  className="bg-accent hover:bg-primary transition-all duration-500 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm md:text-lg text-white rounded-2xl"
+                  className="bg-primary hover:bg-accent transition-all duration-500 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm md:text-lg text-white rounded-2xl"
                 >
                   Confirm Order
                 </button>
