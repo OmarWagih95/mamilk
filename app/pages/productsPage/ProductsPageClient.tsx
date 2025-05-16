@@ -20,6 +20,7 @@ const ProductsPageClient = () => {
   const [loading, setLoading] = useState(true)
   const [sortBy, setSortBy] = useState<string>('default')
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
+  const [selectedSeason, setSelectedSeason] = useState<string>('All')
   const [categoriesSelect, setCategoriesSelect] = useState<boolean>(false)
   const searchParams = useSearchParams()
 
@@ -39,6 +40,10 @@ const ProductsPageClient = () => {
           url = `/api/collections?collectionID=${collectionID}`
         } else if (categoryID && season) {
           url = `/api/products?categoryID=${categoryID}&season=${season}`
+        } else if (categoryID) {
+          url = `/api/products?categoryID=${categoryID}`
+        } else if (season) {
+          url = `/api/products?season=${season}`
         }
 
         console.log('Fetching URL:', url)
@@ -71,6 +76,12 @@ const ProductsPageClient = () => {
       )
     }
 
+    if (selectedSeason !== 'All') {
+      updatedProducts = updatedProducts.filter(
+        (product) => product.season === selectedSeason || product.season === 'all'
+      )
+    }
+
     if (sortBy === 'priceHigh') {
       updatedProducts.sort((a, b) => {
         const aPrice = typeof a.price.local === 'number' ? a.price.local : 0
@@ -86,7 +97,7 @@ const ProductsPageClient = () => {
     }
 
     setFilteredProducts(updatedProducts)
-  }, [products, sortBy, selectedCategory])
+  }, [products, sortBy, selectedCategory, selectedSeason])
 
   return (
     <div className="bg-white text-primary pt-[110px]">
@@ -104,21 +115,35 @@ const ProductsPageClient = () => {
               <option value="priceLow">Price: Low to High</option>
             </select>
           </div>
-     { categoriesSelect &&  <div>
-            <label className="mr-2 text-primary">Category:</label>
+          {categoriesSelect && (
+            <div>
+              <label className="mr-2 text-primary">Category:</label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="border rounded px-2 py-1 text-primary bg-white"
+              >
+                <option value="All">All Categories</option>
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.categoryName}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          <div>
+            <label className="mr-2 text-primary">Season:</label>
             <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
+              value={selectedSeason}
+              onChange={(e) => setSelectedSeason(e.target.value)}
               className="border rounded px-2 py-1 text-primary bg-white"
             >
-              <option value="All">All Categories</option>
-              {categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.categoryName}
-                </option>
-              ))}
+              <option value="all">All</option>
+              <option value="summer">Summer</option>
+              <option value="winter">Winter</option>
             </select>
-          </div>}
+          </div>
         </div>
 
         <div className="grid my-2 md:my-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">

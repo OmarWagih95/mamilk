@@ -1,6 +1,4 @@
-
-  
- export interface Variant {
+export interface Variant {
   color: string;
   sizes:Size[]
   images:media[];
@@ -47,8 +45,9 @@ description:string;
     categoryID: string;
     variations: Variant[];
     productDimensions:string[];
-      productDetails:string[];
-      productCare:string[];
+    productDetails:string[];
+    productCare:string[];
+    season: string;
   }
 
   export type AddProductType = Omit<Product, '_id'>;

@@ -56,18 +56,40 @@ else if(categoryID && season){
             { categoryID: categoryID, season: "all" }
           ]
         })
-        // const totalProducts = await productModel.countDocuments();
         console.log("productsLength" + products.length)
         return NextResponse.json({
             data: products,
-            // total: totalProducts,
-            // currentPage: page,
-            // totalPages: Math.ceil(totalProducts / limit),
         }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: "Failed to fetch products season" }, { status: 500 });
     }
-
+}
+else if(categoryID){
+    try {
+        const products = await productModel.find({ categoryID: categoryID })
+        console.log("productsLength" + products.length)
+        return NextResponse.json({
+            data: products,
+        }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
+    }
+}
+else if(season){
+    try {
+        const products = await productModel.find({
+          $or: [
+            { season: season },
+            { season: "all" }
+          ]
+        })
+        console.log("productsLength" + products.length)
+        return NextResponse.json({
+            data: products,
+        }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ error: "Failed to fetch products by season" }, { status: 500 });
+    }
 }
 else{
     return NextResponse.json({ error: "productID or moreToShop not found" }, { status: 500 });
