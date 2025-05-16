@@ -49,7 +49,7 @@ const BestSellers = () => {
   <ProductCard key={index} product={product} favorite={false} color="black" search={false} />
 ))}
 
-    </div>:<CardsSkeleton width={160} height={200} />}
+    </div>:<CardsSkeleton variant='product' count={4}  containerClassName='grid grid-cols-2 md:grid-cols-4 gap-4'/>}
     <div className='flex  items-center text-center text-accent justify-center w-full h-auto'>
 <Link href={`/pages/productsPage?collectionID=67ffaa228416009f14c31e4c`} className='flex font-semibold md:text-lg underline uppercase hover:cursor-pointer items-center text-center text-accent justify-center w-full '>View All</Link>
    </div>

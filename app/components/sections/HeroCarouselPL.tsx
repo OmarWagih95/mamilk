@@ -35,10 +35,11 @@ const HeroCarousel = () => {
       mobilePosition: { top: "70%", left: "40%" }
     },
     {
+      
       desktopImage: "/hero/4d.jpg",
       mobileImage: "/hero/4m.jpg",
       path: "/pages/productsPage?collectionID=67e2e60dad1aeb81400d9970",
-      title: "Shop 4",
+      title: "Shop Now",
       desktopPosition: { top: "62%", left: "50%" },
       mobilePosition: { top: "65%", left: "50%" }
     }

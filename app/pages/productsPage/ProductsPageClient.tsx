@@ -20,6 +20,7 @@ const ProductsPageClient = () => {
   const [loading, setLoading] = useState(true)
   const [sortBy, setSortBy] = useState<string>('default')
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
+  const [categoriesSelect, setCategoriesSelect] = useState<boolean>(false)
   const searchParams = useSearchParams()
 
   useEffect(() => {
@@ -27,6 +28,7 @@ const ProductsPageClient = () => {
       setLoading(true)
       try {
         const categoryID = searchParams.get('categoryID')
+        setCategoriesSelect(categoryID && categoryID !== '' ? false : true);
         const season = searchParams.get('season')
         const collectionID = searchParams.get('collectionID')
 
@@ -102,7 +104,7 @@ const ProductsPageClient = () => {
               <option value="priceLow">Price: Low to High</option>
             </select>
           </div>
-          <div>
+     { categoriesSelect &&  <div>
             <label className="mr-2 text-primary">Category:</label>
             <select
               value={selectedCategory}
@@ -116,12 +118,12 @@ const ProductsPageClient = () => {
                 </option>
               ))}
             </select>
-          </div>
+          </div>}
         </div>
 
         <div className="grid my-2 md:my-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {loading ? (
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex w-screen justify-center items-center h-screen">
               <p className="text-lg text-primary">Loading...</p>
             </div>
           ) : filteredProducts.length === 0 ? (

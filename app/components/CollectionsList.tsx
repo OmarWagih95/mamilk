@@ -8,6 +8,7 @@ import 'swiper/css';
 import { sectionStyle } from '../styles';
 import axios from 'axios'
 import { Collection } from '../interfaces/interfaces'
+import CardsSkeleton from './cardsSkelton'
 
 
 const CollectionsList = () => {
@@ -28,7 +29,9 @@ const CollectionsList = () => {
     
     <div className={`${sectionStyle}   overflow-x-scroll scrollbar-hidden `}>
        {
-        collections?.map((collection,index)=> <CollectionCard key={index} collection={collection} />)
+        collections.length>0?
+        collections?.map((collection,index)=> <CollectionCard key={index} collection={collection} />):
+        <CardsSkeleton variant='collection' count={3} containerClassName='flex overflow-x-hidden gap-4'/>
         
        }
        

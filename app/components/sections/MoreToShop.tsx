@@ -47,7 +47,7 @@ const MoreToShop = () => {
     {products.length>0?<div className={`${sectionStyle} flex justify-center w-full h-auto bg-white`}>
               <EmblaCarouselAutoScroll slides={products} options={OPTIONS} />
 
-    </div>:<CardsSkeleton width={300} height={450} count={3}/>}
+    </div>:<CardsSkeleton containerClassName='flex overflow-x-hidden gap-4' variant='product' count={4}/>}
    </div>
   )
 }
