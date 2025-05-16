@@ -1,62 +1,132 @@
 'use client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import HoverButton from '../HoverButton'
 
 const HeroCarousel = () => {
+  const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Array of images with their respective paths and device-specific images
+  const slides = [
+    {
+      desktopImage: "/hero/1de.jpg",
+      mobileImage: "/hero/1me.jpg",
+      path: "/pages/productsPage?categoryID=67e3c7112fe97723301d6ff4&season=all",
+      title: "Shop Now",
+      desktopPosition: { top: "80%", left: "48%" },
+      mobilePosition: { top: "70%", left: "54%" }
+    },
+    {
+      desktopImage: "/hero/2d.jpg",
+      mobileImage: "/hero/2m.jpg",
+      path: "/pages/productsPage?collectionID=67e2b261630c109896771f90",
+      title: "Shop Now",
+      desktopPosition: { top: "60%", left: "90%" },
+      mobilePosition: { top: "60%", left: "30%" }
+    },
+    {
+      desktopImage: "/hero/3d.jpg",
+      mobileImage: "/hero/3m.jpg",
+      path: "/pages/productsPage?categoryID=67e3c7112fe97723301d6ff4&season=all",
+      title: "Shop Now",
+      desktopPosition: { top: "80%", left: "46%" },
+      mobilePosition: { top: "70%", left: "40%" }
+    },
+    {
+      desktopImage: "/hero/4d.jpg",
+      mobileImage: "/hero/4m.jpg",
+      path: "/pages/productsPage?collectionID=67e2e60dad1aeb81400d9970",
+      title: "Shop 4",
+      desktopPosition: { top: "62%", left: "50%" },
+      mobilePosition: { top: "65%", left: "50%" }
+    }
+  ];
+
   useEffect(() => {
-const interval = setInterval(() => {
-    setActiveIndex((prev) => prev === (images.length - 1)? 0 : prev + 1);
-}
-    
-, 5000);
-console.log(activeIndex);
-console.log('3000')
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => prev === (slides.length - 1) ? 0 : prev + 1);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
-    
-  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Array of images to display in the carousel
-  const images = [
-    "/category1.jpeg",
-    "/category2.jpeg",
-  ];
-
-  // Function to handle moving to the next slide
-  // const nextSlide = () => {
-  //   setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
-  // };
-
-  // Function to handle moving to the previous slide
-  // const prevSlide = () => {
-  //   setActiveIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  // };
+  const handleSlideClick = (path: string) => {
+    console.log('Clicked path:', path); // Debug log
+    if (path) {
+      router.push(path);
+    }
+  };
 
   return (
-    <div id="default-carousel" className="relative  w-full h-[45vh] md:h-[calc(100vh-56px)]" data-carousel="slide">
-      <div className="relative  overflow-hidden rounded-lg h-full">
-        {images.map((src, index) => (
+    <div id="default-carousel" className="relative w-full mt-10 aspect-square md:aspect-video" data-carousel="slide">
+    {/* <div id="default-carousel" className="relative w-full h-[55vh] md:h-[calc(100vh-56px)]"  data-carousel="slide"> */}
+      <div className="relative w-full h-full ">
+        {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute h-[45vh] md:h-screen inset-0 transition-opacity duration-700 ease-in-out ${
-              index === activeIndex ? 'opacity-100' : 'opacity-0'
+            className={`absolute w-full h-full inset-0 transition-opacity duration-700 ease-in-out ${
+              index === activeIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'
             }`}
           >
-            <Image
-              src={src}
-              layout="fill"
-              className="object-cover"
-              alt={`Slide ${index + 1}`}
-              priority={index === activeIndex} // Set priority for active slide
-            />
+            {/* Desktop Image */}
+            <div className="relative  w-full hidden md:block">
+              <div className="relative w-full" style={{ paddingTop: '56.25%' }} >
+                <div className="w-full h-full" >
+                  <Image
+                    src={slide.desktopImage}
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                    alt={`Slide ${index + 1}`}
+                    priority={index === activeIndex}
+                  />
+                </div>
+                <div 
+                  className="absolute w-full h-full flex items-center justify-center"
+                  style={{ 
+                    top: slide.desktopPosition.top,
+                    left: slide.desktopPosition.left,
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                >
+                  <HoverButton href={slide.path} text={slide.title} />
+                </div>
+              </div>
+            </div>
+            {/* Mobile Image */}
+            <div className="relative  aspect-square md:hidden">
+            <div className="relative w-full" style={{ paddingTop: '100%' }} >
+            <div className="w-full h-full" >
+              <Image
+                src={slide.mobileImage}
+                fill
+                sizes="100vw"
+                className="object-cover"
+                alt={`Slide ${index + 1}`}
+                priority={index === activeIndex}
+              />
+              </div>
+              </div>
+              <div 
+                className="absolute flex items-center justify-center"
+                style={{ 
+                  top: slide.mobilePosition.top,
+                  left: slide.mobilePosition.left,
+                  transform: 'translate(-50%, -50%)'
+                }}
+              >
+                <HoverButton href={slide.path} text={slide.title} />
+              </div>
+            </div>
           </div>
         ))}
       </div>
 
       {/* Carousel navigation dots */}
       <div className="absolute z-30 flex gap-3 bottom-[50%] right-4 md:right-8 transform flex-col -translate-x-1/2">
-        {images.map((_, index) => (
+        {slides.map((_, index) => (
           <button
             key={index}
             type="button"
@@ -66,32 +136,6 @@ console.log('3000')
           />
         ))}
       </div>
-
-      {/* Previous Button */}
-      {/* <button
-        type="button"
-        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer"
-        onClick={prevSlide}
-      >
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
-          <svg className="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </span>
-      </button>  */}
-
-      {/* Next Button */}
-      {/* <button
-        type="button"
-        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer"
-        onClick={nextSlide}
-      >
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
-          <svg className="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </span>
-      </button> */}
     </div>
   );
 }

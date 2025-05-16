@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${Baskerville.className} bg-primary w-screen overflow-x-hidden antialiased`}
+        className={`${Baskerville.className} bg-white w-screen overflow-x-hidden antialiased`}
       >
                 <SplashScreen /> {/* Add the splash screen component */}
                 <CartProvider>

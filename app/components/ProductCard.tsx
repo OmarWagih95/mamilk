@@ -182,7 +182,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
 
         <div className="p-4 flex-1 gap-3 flex flex-col">
           <div className="flex-1">
-            <h5 className={`text-sm md:text-base xl:text-base sm:text-base ${Berkishire.className} font-bold line-clamp-2`}>{product.title}</h5>
+            <h5 className={`text-sm md:text-base xl:text-base sm:text-base ${Berkishire.className} font-bold  line-clamp-1`}>{product.title}</h5>
             <div className="flex items-center flex-wrap">
               <h6 className="text-sm sm:text-base font-bold">{product.price.local} EGP</h6>
               <div

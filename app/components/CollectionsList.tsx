@@ -23,7 +23,7 @@ const CollectionsList = () => {
   }, [])
   
   return (
-    <div className='w-[100vw] bg-white flex justify-center items-center'>
+    <div className='w-[100vw]   bg-white flex justify-center items-center'>
 
     
     <div className={`${sectionStyle}   overflow-x-scroll scrollbar-hidden `}>

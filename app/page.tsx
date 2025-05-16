@@ -22,7 +22,7 @@ const SLIDE_COUNT = 8
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
   return (
-    <div className="flex min-w-full w-full bg-transparent flex-col items-center pt-14 justify-center h-auto min-h-screen ">
+    <div className="flex min-w-full overflow-x-hidden w-full bg-transparent flex-col items-center pt-14 justify-center h-auto min-h-screen ">
       {/* <Hero/> */}
       {/* <PrismaCarousel/> */}
       <HeroCarouselPL/>
