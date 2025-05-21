@@ -25,6 +25,7 @@ export async function GET (request:Request){
 
             return NextResponse.json({message:"THERE'S NO ITEMS FOUND"},{status:300});
         }
+        console.log(res)
         return NextResponse.json(res);
     }
     catch(error){

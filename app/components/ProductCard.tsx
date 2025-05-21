@@ -31,6 +31,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
     setHeartIsEmpty(!heartIsEmpty);
   };
   const handleOpenModal = () => {
+
     openModal(product)  // Use the context function instead of local state
   }
   // const openModal = () => {
@@ -184,7 +185,11 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
           <div className="flex-1">
             <h5 className={`text-sm md:text-base xl:text-base sm:text-base ${Berkishire.className} font-bold  line-clamp-1`}>{product.title}</h5>
             <div className="flex items-center flex-wrap">
+             <div>
+
+              {product?.comparedPrice > 0 && <h6 className="text-[10px] text-gray-400 sm:text-xs line-through font-bold">{product.comparedPrice} EGP</h6>}
               <h6 className="text-sm sm:text-base font-bold">{product.price.local} EGP</h6>
+             </div>
               <div
                 onClick={addToWishList}
                 className="border-primary border-2 w-8 h-8 flex items-center justify-center font-bold rounded-full cursor-pointer ml-auto"

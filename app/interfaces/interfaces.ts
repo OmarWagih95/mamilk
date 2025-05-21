@@ -42,6 +42,7 @@ description:string;
     title: string;
     description: string;
     price: price;
+    comparedPrice: number;
     categoryID: string;
     variations: Variant[];
     productDimensions:string[];

@@ -162,7 +162,8 @@ const ProductPage = () => {
             <div>
               <h3 className={`${Berkishire.className} text-2xl sm:text-4xl lg:text-6xl font-bold `}>{product?.title}</h3>
               <p className="text-gray-500  text-sm">{product?.description}</p>
-              <div className="flex items-center flex-wrap gap-4 ">
+              <div className="">
+                <h4 className=" text-lg sm:text-xl text-gray-400  line-through">{product?.comparedPrice} LE</h4>
                 <h4 className=" text-2xl sm:text-3xl font-bold">{product?.price.local} LE</h4>
               </div>
             </div>

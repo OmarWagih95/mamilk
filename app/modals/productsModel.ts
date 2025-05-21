@@ -18,6 +18,8 @@ export interface Product extends Document {
   price: {
     local: number;
   };
+  comparedPrice: number;
+
   productDimensions: string[];
   productDetails: string[];
   productCare: string[];
@@ -67,7 +69,12 @@ const ProductSchema = new Schema<Product>({
       type: Number, 
       required: true,
       min: 0 
-    }
+    },
+  },
+  comparedPrice: {
+    type: Number,
+    required: false,
+    min: 0
   },
   productDimensions: { type: [String], default: [] },
   productDetails: { type: [String], default: [] },
