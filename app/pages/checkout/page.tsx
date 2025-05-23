@@ -7,6 +7,8 @@ import { Modal } from '@/app/components/Modal';
 import { useRouter } from 'next/navigation';
 import { Product, Size, Variant } from '@/app/interfaces/interfaces';
 import Loading from '@/app/components/Loading';
+import DiscountSection from '@/app/components/checkout/DiscountSection';
+import { Discount, DiscountCalculationType } from '@/app/types/discount';
 
 interface ShippingZone {
   _id: string;
@@ -33,13 +35,59 @@ const CheckoutPage = () => {
   const [errors, setErrors] = useState<string[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [appliedDiscount, setAppliedDiscount] = useState<Discount | null>(null);
+  const [discountAmount, setDiscountAmount] = useState(0);
 
   const calculateTotals = () => {
+    // Calculate subtotal first
     const calculatedSubTotal = cart.reduce(
       (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
       0
     );
     setSubTotal(calculatedSubTotal);
+    
+    // Calculate discount amount
+    let newDiscountAmount = 0;
+    let effectiveShipping = shipping;
+
+    if (appliedDiscount && appliedDiscount.value !== undefined) {
+      if (appliedDiscount.calculationType === 'PERCENTAGE') {
+        newDiscountAmount = Math.round((calculatedSubTotal * appliedDiscount.value) / 100);
+        console.log('Percentage discount:', {
+          subtotal: calculatedSubTotal,
+          percentage: appliedDiscount.value,
+          discountAmount: newDiscountAmount
+        });
+      } else if (appliedDiscount.calculationType === 'FIXED_AMOUNT') {
+        newDiscountAmount = appliedDiscount.value;
+        console.log('Fixed amount discount:', {
+          subtotal: calculatedSubTotal,
+          fixedAmount: appliedDiscount.value,
+          discountAmount: newDiscountAmount
+        });
+      }
+      else if (appliedDiscount.calculationType === 'FREE_SHIPPING'){
+        effectiveShipping = 0;
+        newDiscountAmount = shipping; // Set the discount amount to the original shipping cost
+        console.log('Free shipping discount applied:', {
+          originalShipping: shipping,
+          effectiveShipping: 0,
+          discountAmount: newDiscountAmount
+        });
+      }
+    }
+
+    setDiscountAmount(newDiscountAmount);
+    
+    // Calculate final total
+    const finalTotal = calculatedSubTotal + effectiveShipping;
+    console.log('Final calculation:', {
+      subtotal: calculatedSubTotal,
+      shipping: effectiveShipping,
+      discountAmount: newDiscountAmount,
+      finalTotal
+    });
+    setTotal(finalTotal);
   };
 
   const checkStock = async (): Promise<boolean> => {
@@ -117,20 +165,13 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     calculateTotals();
-    checkStock(); // Run stock check when page loads or cart changes
-  }, [cart]);
+  }, [cart, appliedDiscount, shipping]);
 
   useEffect(() => {
     const stata = states.find((s) => s.name === state);
     const shippingZone = shippingZones.find((z) => z._id === stata?.shipping_zone);
-
-    if (shippingZone) {
-      setShipping(shippingZone.zone_rate);
-      setTotal(shippingZone.zone_rate + subTotal);
-    } else {
-      setShipping(70);
-    }
-  }, [state, shippingZones, subTotal]);
+    setShipping(shippingZone?.zone_rate || 70);
+  }, [state, shippingZones]);
 
   const validateInputs = () => {
     const validationErrors: string[] = [];
@@ -145,6 +186,11 @@ const CheckoutPage = () => {
 
     setErrors(validationErrors);
     return validationErrors.length === 0;
+  };
+
+  const handleDiscountApplied = (discount: Discount | null) => {
+    // alert(discount?.calculationType)
+    setAppliedDiscount(discount);
   };
 
   const handleConfirmOrder = async () => {
@@ -169,6 +215,11 @@ const CheckoutPage = () => {
         total,
         cart,
         subTotal,
+        discount: appliedDiscount ? {
+          code: appliedDiscount.code,
+          amount: appliedDiscount.value,
+          type: appliedDiscount.calculationType
+        } : null
       };
 
       const response = await axios.post('/api/orders', orderData);
@@ -311,7 +362,7 @@ const CheckoutPage = () => {
                 <button
                   type="button"
                   onClick={handleConfirmOrder}
-                  className="bg-primary hover:bg-accent transition-all duration-500 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm md:text-lg text-white rounded-2xl"
+                  className="bg-accent hover:bg-primary transition-all duration-500 ease-in-out bg-[length:100%_100%] hover:bg-[length:200%_100%] min-w-[150px] px-6 py-3.5 text-sm md:text-lg text-white rounded-2xl"
                 >
                   Confirm Order
                 </button>
@@ -319,29 +370,49 @@ const CheckoutPage = () => {
             </form>
           </div>
 
-          <div className="bg-primaryLight rounded-2xl lg:border-l-2 border-primary lg:h-screen lg:sticky lg:top-0 lg:max-w-[430px] w-full lg:ml-auto">
-            <div className="relative h-full">
-              <div className="p-6 md:pb-12 overflow-y-scroll max-lg:max-h-[450px] lg:h-[calc(100vh-50px)]">
-                <h2 className="text-xl font-bold text-primary">Order Summary</h2>
+          <div className="lg:col-span-1 max-lg:order-2 p-6">
+            <div className="border-l-2 border-primary p-6 rounded-lg shadow-sm">
+              <h2 className="text-xl font-bold text-primary mb-6">Order Summary</h2>
+              
+              {/* Cart Items */}
+              <div className="space-y-4 mb-6">
+                {cart.map((item) => (
+                  <CartItemSmall key={item.id} item={item} wishListBool={false} />
+                ))}
+              </div>
 
-                <div className="space-y-6 mt-4">
-                  {cart.map((cartona, index) => (
-                    <CartItemSmall item={cartona} wishListBool={false} key={index} />
-                  ))}
+              {/* Discount Section */}
+              <DiscountSection onDiscountApplied={handleDiscountApplied} />
+
+              {/* Order Totals */}
+              <div className="mt-6 space-y-2 text-black">
+                <div className="flex justify-between text-sm">
+                  <span>Subtotal</span>
+                  <span>{subTotal} LE</span>
+                </div>
+                {appliedDiscount && appliedDiscount.value !== undefined && (
+                  <div className="flex justify-between text-sm text-green-600">
+                    <span>Discount ({appliedDiscount.code})</span>
+                    <span>
+                      {appliedDiscount.calculationType === 'FREE_SHIPPING' 
+                        ? `-${shipping} LE (Free Shipping)`
+                        : `-${appliedDiscount.calculationType === 'PERCENTAGE' 
+                          ? Math.round((subTotal * appliedDiscount.value) / 100)
+                          : appliedDiscount.value} LE`}
+                    </span>
+                  </div>
+                )}
+                <div className="flex justify-between text-sm">
+                  <span>Shipping</span>
+                  <span>{appliedDiscount?.calculationType === 'FREE_SHIPPING' ? '0' : shipping} LE</span>
+                </div>
+                <div className="flex justify-between font-bold mt-4 pt-4 border-t">
+                  <span>Total</span>
+                  <span>{total} LE</span>
                 </div>
               </div>
 
-              <div className="lg:absolute text-primary max-lg:border-b-2 border-t-2 bg-primaryLight border-primary px-2 md:px-6 lg:left-0 lg:bottom-0 w-full p-4">
-                <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">
-                  Sub-Total <span className="ml-auto">{subTotal} LE</span>
-                </h4>
-                <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">
-                  Shipping <span className="ml-auto">{shipping} LE</span>
-                </h4>
-                <h4 className="flex flex-wrap gap-4 text-sm text-secondary font-bold">
-                  Total <span className="ml-auto">{total} LE</span>
-                </h4>
-              </div>
+              {/* ... rest of the order summary ... */}
             </div>
           </div>
         </div>

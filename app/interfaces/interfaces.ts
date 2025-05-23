@@ -71,17 +71,16 @@ description:string;
      name:string
      stock:number 
   }
-  export interface CartItem 
-  {
-   id:number;
-   productId: string,
-   productName: string,
-   price: number,
-   size: string
-   quantity: number,
-   imageUrl: string,
-   color: string
-
+  export interface CartItem {
+    id: number;
+    productId: string;
+    productName: string;
+    price: number;
+    color: string;
+    size: string;
+    quantity: number;
+    imageUrl: string;
+    collections?: string[];
   }
 
   export type FeaturedProduct = Omit<CartItem, 'id' | 'quantity'>;

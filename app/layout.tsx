@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import CartProvider from "./CartProvider";
+import { CartProvider } from "./context/cartContext";
 import WishListProvider from "./WishListProvider";
 import Footer from "./components/sections/Footer";
 import SplashScreen from "./components/sections/SplashScreen";
