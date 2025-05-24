@@ -6,7 +6,7 @@ import { Product } from '../interfaces/interfaces';
 
 const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [searchData, setSearchData] = useState([]);
+  const [searchData, setSearchData] = useState<Product[]>([]);
   const [message, setMessage] = useState('');
   const { wishList } = useContext(wishListContext);
   const [searchValue, setSearchValue] = useState('');
@@ -56,7 +56,7 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         className={`fixed pl-[2vw] pr-[3vw] inset-0 flex flex-col overflow-y-scroll gap-4 items-start justify-start bg-primaryLight min-h-[90vh] pb-4 h-auto w-[100vw] z-40 transition-all duration-500 ${
           isVisible ? 'opacity-100 translate-y-14' : 'opacity-0 -translate-y-10'
         }`}
-        onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from triggering backdrop onClose
+        onClick={(e) => e.stopPropagation()}
       >
         <form className='w-full text-primary px-3 md:px-6' onSubmit={handleSubmit}>
           <div className='flex gap-3 mt-3 w-full justify-between'>
@@ -78,26 +78,23 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         {message === '' ? (
           <div
             className={`grid grid-cols-2 lg:grid-cols-4 justify-between lg:justify-start w-full sm:items-start items-center gap-y-8 gap-2 md:gap-8 py-2 h-auto`}
-          onClick={onClose}
+            onClick={onClose}
           >
-            {searchData.map((product: Product) => {
+            {searchData.map((product: Product, index) => {
               const productID = product._id;
-              const products = product.variations.map((variant, index) => {
-                const color = variant.color;
-                const fav = wishList.find(
-                  (favorite) => favorite.productId === productID && favorite.color === color
-                );
-                return (
-                  <ProductCard
-                    favorite={fav ? true : false}
-                    search={false}
-                    key={index}
-                    color={variant.color}
-                    product={product}
-                  />
-                );
-              });
-              return products;
+              const fav = wishList.find(
+                (favorite) => favorite.productId === productID
+              );
+              
+              return (
+                <ProductCard
+                  favorite={fav ? true : false}
+                  search={false}
+                  key={index}
+                  color={'black'}
+                  product={product}
+                />
+              );
             })}
           </div>
         ) : (
