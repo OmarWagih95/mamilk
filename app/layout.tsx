@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import { CartProvider } from "./context/cartContext";
 import WishListProvider from "./WishListProvider";
 import Footer from "./components/sections/Footer";
 import SplashScreen from "./components/sections/SplashScreen";
@@ -11,6 +10,7 @@ import UserProvider from "./UserProvider";
 import AnnouncmentBar from "./components/AnnouncmentBar";
 import { ModalProvider } from "./context/ModalContext";
 import ProductModal from "./components/ProductModal";
+import { CartProvider } from "./context/cartContext";
 
 export const testFont = localFont({
   src: "/fonts/Dangrek-Regular.ttf",

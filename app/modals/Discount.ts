@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { Discount, DiscountApplicationType, DiscountCalculationType } from '@/types/discount';
+import { Discount, DiscountApplicationType, DiscountCalculationType } from '@/app/types/discount';
 
 const discountSchema = new Schema<Discount>({
   code: {
@@ -30,23 +30,23 @@ const discountSchema = new Schema<Discount>({
   value: {
     type: Number,
     required: function(this: Discount) {
-      return this.calculationType !== 'FREE_SHIPPING' && this.calculationType !== 'BUY_X_GET_Y';
+      return this.calculationType !== 'FREE_SHIPPING' ;
     },
   },
-  buyXGetYDetails: {
-    buyQuantity: {
-      type: Number,
-      required: function(this: Discount) {
-        return this.calculationType === 'BUY_X_GET_Y';
-      },
-    },
-    getQuantity: {
-      type: Number,
-      required: function(this: Discount) {
-        return this.calculationType === 'BUY_X_GET_Y';
-      },
-    },
-  },
+  // buyXGetYDetails: {
+  //   buyQuantity: {
+  //     type: Number,
+  //     required: function(this: Discount) {
+  //       return this.calculationType === 'BUY_X_GET_Y';
+  //     },
+  //   },
+  //   getQuantity: {
+  //     type: Number,
+  //     required: function(this: Discount) {
+  //       return this.calculationType === 'BUY_X_GET_Y';
+  //     },
+  //   },
+  // },
   conditions: {
     minimumOrderAmount: Number,
     productIds: [String],

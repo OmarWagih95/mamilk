@@ -69,24 +69,28 @@ export async function POST(req: Request) {
     let discountAmount = 0;
     switch (discount.calculationType) {
       case 'PERCENTAGE':
-        discountAmount = (cartTotal * discount.value) / 100;
-        console.log("discountAmount: "+discountAmount);
-        if (discount.maxDiscountAmount) {
-          discountAmount = Math.min(discountAmount, discount.maxDiscountAmount);
+        if(discount.value){
+
+          discountAmount = (cartTotal * discount.value) / 100;
+          console.log("discountAmount: "+discountAmount);
         }
+        // if (discount.maxDiscountAmount) {
+        //   discountAmount = Math.min(discountAmount, discount.maxDiscountAmount);
+        // }
         break;
       case 'FIXED_AMOUNT':
-        discountAmount = discount.value;
+
+        discountAmount = discount.value ? discount.value : 0;
         break;
       case 'FREE_SHIPPING':
         // For free shipping, we set the value to 0 since it's a special case
         discountAmount = 0;
         discount.value = 0; // Ensure the value is set to 0 for free shipping
         break;
-      case 'BUY_X_GET_Y':
-        // Implement buy X get Y logic based on your requirements
-        discountAmount = 0; // Replace with actual calculation
-        break;
+      // case 'BUY_X_GET_Y':
+      //   // Implement buy X get Y logic based on your requirements
+      //   discountAmount = 0; // Replace with actual calculation
+      //   break;
     }
 
     const finalTotal = cartTotal - discountAmount;
