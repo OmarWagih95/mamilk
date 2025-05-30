@@ -5,6 +5,7 @@ import React, { useContext, useState } from 'react'
 import { cartContext } from '@/app/context/cartContext'
 import { wishListContext } from '@/app/context/wishListContext'
 import { Berkishire } from '@/app/layout'
+import Link from 'next/link'
 
 
 const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean}) => {
@@ -89,7 +90,8 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
 
 
     return (
-      <div className='text-primary border-2 border-primary rounded-2xl px-2 py-2'>
+    <Link href={`/pages/productPage/${item.productId}`}>
+    <div className='text-primary border-2 border-primary rounded-2xl px-2 py-2'>
 
         <div className="flex w-full h-full  py-2  gap-4">
           <div  className='cursor-pointer h-full flex justify-start items-start'><span onClick={()=>deleteItem(item.productId,item.size,item.color)} className='text-[12px] text-primary'>x</span></div>
@@ -113,14 +115,23 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
 
           </div>
     
-          <div className="mt-0.5 flex justify-between   font-semibold text-xs ">
-            <div>
+          <div className="mt-0.5 flex gap-3 justify-between   font-semibold text-xs ">
+            <div 
+            onClick={(e)=>{e.stopPropagation()}}
+            className='flex gap-4 items-center justify-between'>
               QUANTITY : 
               {/* <dt className="inline">Quantity:</dt> */}
-              {/* <span className='cursor-pointer' onClick={()=>handleQuantity('-',item.id)}>- </span> */}
-           { item.quantity}
-          {/* <span onClick={()=>handleQuantity('+',item.id)} className='cursor-pointer'> +</span> */}
-
+              <span className='px-3 py-2 bg-primary rounded-lg text-white cursor-pointer p-3 text-sm' onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        handleQuantity('-', item.id);
+      }}>- </span>
+      {item.quantity}
+      <span onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        handleQuantity('+', item.id);
+      }} className='text-sm px-3 py-2 bg-primary rounded-lg text-white cursor-pointer'> +</span>
             </div>
             <h3 className=''>PRICE : {item.price} LE</h3>
 
@@ -140,6 +151,7 @@ const CartItemSmall = ({item,wishListBool}:{item:CartItem,wishListBool:boolean})
       </div>
       
       </div>
+      </Link>
       )
 }
 

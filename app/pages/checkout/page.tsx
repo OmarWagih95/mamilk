@@ -275,8 +275,8 @@ const CheckoutPage = () => {
       {loading && <Loading />}
 
       <div className="max-lg:max-w-xl mx-auto w-full">
-        <div className="grid lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 max-lg:order-1 p-6 !pr-0 max-w-4xl mx-auto w-full">
+        <div className="grid lg:grid-cols-5 gap-6">
+          <div className="lg:col-span-3 max-lg:order-1 p-6 !pr-0 max-w-4xl mx-auto w-full">
             <div className="text-center max-lg:hidden">
               <h2 className="text-3xl font-bold text-primary inline-block border-b-2 border-secondary">
                 Checkout
@@ -370,7 +370,7 @@ const CheckoutPage = () => {
             </form>
           </div>
 
-          <div className="lg:col-span-1 max-lg:order-2 p-6">
+          <div className="lg:col-span-2 max-lg:order-2 p-6">
             <div className="border-l-2 border-primary p-6 rounded-lg shadow-sm">
               <h2 className="text-xl font-bold text-primary mb-6">Order Summary</h2>
               

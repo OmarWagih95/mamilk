@@ -28,7 +28,6 @@ export const Berkishire = localFont({
   src: "/fonts/BerkshireSwash-Regular.ttf",
 });
 
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -49,20 +48,19 @@ export default function RootLayout({
       <body
         className={`${Baskerville.className} bg-white w-screen overflow-x-hidden antialiased`}
       >
-                <SplashScreen /> {/* Add the splash screen component */}
-                <CartProvider>
-                <ModalProvider>
-                <ProductModal /> {/* Add the product modal component */}
-<UserProvider>
-
-                <WishListProvider>
-                  <AnnouncmentBar/>
-        <Navbar/>
-        {children}
-                </WishListProvider>
-        <Footer />  
-</UserProvider>
-                </ModalProvider>
+        <SplashScreen /> {/* Add the splash screen component */}
+        <CartProvider>
+          <ModalProvider>
+            <ProductModal /> {/* Add the product modal component */}
+            <UserProvider>
+              <WishListProvider>
+                <AnnouncmentBar />
+                <Navbar />
+                {children}
+              </WishListProvider>
+              <Footer />
+            </UserProvider>
+          </ModalProvider>
         </CartProvider>
       </body>
     </html>

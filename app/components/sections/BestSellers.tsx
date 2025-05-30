@@ -43,7 +43,7 @@ const BestSellers = () => {
 
   return (
     <div className='flex  py-8 lg:py-12  flex-col pl-[2vw] pr-[3vw]    items-start justify-center w-full h-auto gap-2 md:gap-8 lg:gap-10 bg-primaryLight'>
-        <h2 className={`${Berkishire.className} uppercase font-semibold text-xl max-md:pl-2 md:text-2xl lg:text-4xl text-primary`}>Best Sellers</h2>
+        <h2 className={`${Berkishire.className}  font-semibold text-xl max-md:pl-2 md:text-2xl lg:text-4xl text-primary`}>Best sellers</h2>
     {products.length>0?<div className={`${sectionStyle} grid grid-cols-2 lg:grid-cols-4 text-center justify-center min-w-screen h-auto`}>
     {products?.slice(0, 4).map((product, index) => (
   <ProductCard key={index} product={product} favorite={false} color="black" search={false} />

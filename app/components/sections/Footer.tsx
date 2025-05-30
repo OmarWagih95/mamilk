@@ -70,7 +70,7 @@ const Footer = () => {
       <footer className="bg-primary text-blue2 py-10 sm:px-10 px-6 tracking-wide">
         <div className="flex-col-reverse w-full flex md:flex-row gap-8">
           <div className='md:w-1/4'>
-            <h4 className={`text-base ${Berkishire.className} font-bold mb-6`}>POLICIES</h4>
+            <h4 className={`text-2xl ${Berkishire.className} font-bold mb-6`}>Policies</h4>
             <ul className="space-y-1">
               <li><Link href="/pages/policies?privacy-policy" className="text-white hover:text-secondary text-sm">
                 PRIVACY POLICY</Link></li>
@@ -82,7 +82,7 @@ const Footer = () => {
           </div>
 
           <div className='md:w-1/4'>
-            <h4 className={`text-base ${Berkishire.className} font-bold mb-6`}>SOCIALS</h4>
+            <h4 className={`text-2xl ${Berkishire.className} font-bold mb-6`}>Socials</h4>
             <ul className="space-y-1">
               <li><Link target='#' href="https://www.facebook.com/profile.php?id=61565209649532&mibextid=LQQJ4d" className="text-white hover:text-secondary text-sm">
                 FACEBOOK</Link></li>
