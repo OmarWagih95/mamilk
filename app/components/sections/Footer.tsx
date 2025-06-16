@@ -127,7 +127,7 @@ const Footer = () => {
               <li>
                 <Link
                   target="#"
-                  href="https://wa.me/2010280712423?text=Hello%2C%20I%20am%20interested%20in%20your%20products
+                  href="https://wa.me/201080712423?text=Hello%2C%20I%20am%20interested%20in%20your%20products
 "
                   className="text-white hover:text-secondary text-sm"
                 >
