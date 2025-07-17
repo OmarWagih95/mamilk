@@ -207,7 +207,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
               isOutOfStock ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
-            Add to cart
+            Quick Add
           </button>
         </div>
       </div>
