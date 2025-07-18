@@ -60,13 +60,21 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
       >
         <form className='w-full text-primary px-3 md:px-6' onSubmit={handleSubmit}>
           <div className='flex gap-3 mt-3 w-full justify-between'>
-            <label className='text-primary text-nowrap'>SEARCH HERE</label>
+            <label className='text-primary max-md:hidden text-nowrap'>SEARCH HERE</label>
             <input
               value={searchValue}
               type='text'
               onChange={(e) => setSearchValue(e.target.value)}
               className='border-b rounded-2xl px-2 py-1 outline-none w-full h-6 border-primary bg-primaryLight text-sm'
             />
+            {/* Add the search button here */}
+            <button
+            id='search'
+              type="submit"
+              className="ml-2 px-3 py-1 bg-primary text-white rounded-2xl hover:bg-primaryDark transition"
+            >
+              Search
+            </button>
             <span
               onClick={onClose}
               className='hover:cursor-pointer text-primary mr-4 hover:rotate-180 transition duration-700'
@@ -98,7 +106,7 @@ const SearchModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
             })}
           </div>
         ) : (
-          <div className='flex justify-center w-screen h-screen text-lg items-center'>{message}</div>
+          <div className='flex text-primary justify-center w-screen h-screen text-lg items-center'>{message}</div>
         )}
       </div>
     </>

@@ -190,13 +190,14 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
               {product?.comparedPrice > 0 && <h6 className="text-[10px] text-gray-400 sm:text-xs line-through font-bold">{product.comparedPrice} EGP</h6>}
               <h6 className="text-sm sm:text-base font-bold">{product.price.local} EGP</h6>
              </div>
-              <div
+              <button
+              id='addToWishList'
                 onClick={addToWishList}
                 className="border-primary border-2 w-8 h-8 flex items-center justify-center font-bold rounded-full cursor-pointer ml-auto"
                 title="Wishlist"
               >
                 {heartIsEmpty ? <FaRegHeart /> : <IoIosHeart />}
-              </div>
+              </button>
             </div>
           </div>
           <button
