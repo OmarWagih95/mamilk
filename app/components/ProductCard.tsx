@@ -200,7 +200,7 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
                 onClick={() => {
                   addToWishList();
                   if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-                    window.fbq('track', 'Purchase');
+                    window.fbq('track', 'add to wishlist');
                   }
                 }}
                 className="border-primary border-2 w-8 h-8 flex items-center justify-center font-bold rounded-full cursor-pointer ml-auto"
