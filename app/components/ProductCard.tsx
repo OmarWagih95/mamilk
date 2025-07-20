@@ -12,6 +12,11 @@ import { useRouter } from 'next/navigation';
 import { Berkishire } from '@/app/layout';
 import { useModal } from '../context/ModalContext'  // Import the modal hook
 
+declare global {
+  interface Window {
+    fbq: (...args: any[]) => void;
+  }
+}
 
 const ProductCard = ({ product, search, favorite }: { favorite: boolean; product: Product; color: string; search: boolean }) => {
   const [heartIsEmpty, setHeartIsEmpty] = useState(!favorite);
@@ -192,7 +197,12 @@ const ProductCard = ({ product, search, favorite }: { favorite: boolean; product
              </div>
               <button
               id='addToWishList'
-                onClick={addToWishList}
+                onClick={() => {
+                  addToWishList();
+                  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+                    window.fbq('track', 'Purchase');
+                  }
+                }}
                 className="border-primary border-2 w-8 h-8 flex items-center justify-center font-bold rounded-full cursor-pointer ml-auto"
                 title="Wishlist"
               >
