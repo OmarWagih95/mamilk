@@ -8,11 +8,13 @@ import { useEffect, useState } from 'react'
 import { pagePadding } from '../styles'
 import constants from '../constants'
 import AnnouncmentBar from './AnnouncmentBar'
+import { useRouter } from 'next/navigation'
 // import { useEffect, useState } from 'react'
 // import { CartItem } from '../interfaces/interfaces'
 // import { CartItem } from '../interfaces/interfaces'
 
 const Navbar = () => {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [takeTop, setTakeTop] = useState(false);
@@ -109,8 +111,19 @@ const Navbar = () => {
           </div>
         </div>
       )}
+
     </div>
+    
   ))}
+            <div  className="relative">
+      <button 
+        className='lg:text-sm xl:text-base font-bold tracking-wider border-loading-effect gap-4 transform transition-transform duration-500 ease-out'
+        onClick={() => router.push(`/pages/productsPage?categoryID=687deebe4dd929c4dd905850&season=all}`)}
+      >
+        Baby
+      </button>
+      </div>
+  
 </div>
             <div className='flex   items-center justify-center  gap-4'>
             {/* Logo */}

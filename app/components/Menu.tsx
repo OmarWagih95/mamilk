@@ -6,10 +6,12 @@ import { motion } from 'framer-motion';
 import { fadeInMenu } from '../variants/fadIn';
 import { FaArrowRight } from 'react-icons/fa6';
 import constants from '../constants';
+import { useRouter } from 'next/navigation'
 import { Collection } from '../interfaces/interfaces';
 import axios from 'axios';
 
 const Menu: React.FC = () => {
+  const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
   const [summary, setSummary] = useState(false);
@@ -95,6 +97,16 @@ const Menu: React.FC = () => {
                       </div>
                     </div>
                   ))}
+                    <div  className="relative">
+      <button 
+        className='lg:text-sm xl:text-base font-bold tracking-wider border-loading-effect gap-4 transform transition-transform duration-500 ease-out'
+        onClick={() => {
+          setOpen(false)
+          router.push(`/pages/productsPage?categoryID=687deebe4dd929c4dd905850&season=all`)}}
+      >
+        Baby
+      </button>
+      </div>
                 </div>
               </div>
 
