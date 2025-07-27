@@ -14,6 +14,7 @@ const ProductModal = () => {
   const [selectedColor, setSelectedColor] = useState('')
   const [selectedSize, setSelectedSize] = useState('')
   const [quantity, setQuantity] = useState(1)
+  const [selectedImage,setSelectedImage]=useState(product?.variations?.[0]?.images?.[0]?.url || '')
   
   // Debug log when cart changes
   useEffect(() => {
@@ -26,6 +27,7 @@ const ProductModal = () => {
       setSelectedColor(product.variations[0]?.color || '')
       setSelectedSize(product.variations[0]?.sizes[0]?.name || '')
       setQuantity(1)
+      setSelectedImage(product.variations[0]?.images[0]?.url || '')
     }
   }, [product])
   
@@ -151,7 +153,7 @@ const ProductModal = () => {
           </h2>
           <div className="relative w-full h-64 md:h-80">
             <img
-              src={selectedVariation?.images[0].url || product.variations[0].images[0].url}
+              src={selectedImage}
               alt={product.title}
               className="w-full h-full object-contain rounded-lg"
             />
@@ -162,6 +164,7 @@ const ProductModal = () => {
             <div className="flex gap-2 mt-4 overflow-x-auto pb-2 w-full justify-center">
               {selectedVariation.images.map((img, index) => (
                 <button 
+                onClick={()=>setSelectedImage(img.url)}
                   key={index}
                   className="h-16 w-16 rounded-md border-2 border-gray-200 hover:border-primary focus:border-primary focus:outline-none"
                 >
