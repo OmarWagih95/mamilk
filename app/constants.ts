@@ -1,62 +1,60 @@
-import {  Collection, ImageVariant, Product } from "./interfaces/interfaces";
+import { Collection, ImageVariant, Product } from "./interfaces/interfaces";
 
-const Categories:Category[]=
-     //     {text:"Portfolio",link:"/"},
-     [{
-      "_id":  "67e2b261630c109896771f90"
-      ,
-      "categoryName": "Tops",
-      "description": "wolf"
-    },
+const Categories: Category[] =
+  //     {text:"Portfolio",link:"/"},
+  [
     {
-      "_id":  "67e2dfbd630c109896771f91"
-      ,
-      "categoryName": "Dresses"
-    },
-    {
-      "_id":  "67e2e60dad1aeb81400d9970"
-      ,
-      "categoryName": "Bottoms",
-     
-    },
-    {
-      "_id":  "67e3c7112fe97723301d6ff4"
-      ,
-      "categoryName": "Maternity",
-     
-    },
-    {
-      "_id":  "67e3c7182fe97723301d6ff8"
-      ,
-      "categoryName": "Sets",
-    },
-]
-const collections:Collection[]=
-     //     {text:"Portfolio",link:"/"},
-     [{
-      _id:  "67e2b261630c109896771f90"
-      ,
+      _id: "67e2b261630c109896771f90",
+      categoryName: "Tops",
       description: "wolf",
-      imageURL:"/winter.JPG",
+    },
+    {
+      _id: "67e2dfbd630c109896771f91",
+      categoryName: "Dresses",
+    },
+    {
+      _id: "67e2e60dad1aeb81400d9970",
+      categoryName: "Bottoms",
+    },
+    {
+      _id: "67e3c7112fe97723301d6ff4",
+      categoryName: "Maternity",
+    },
+    {
+      _id: "67e3c7182fe97723301d6ff8",
+      categoryName: "Sets",
+    },
+    {
+      _id: "6900a00e71add2414e1e0d50",
+      categoryName: "Outlet",
+    },
+    {
+      _id: "6905038e1271c23db05b5dc9",
+      categoryName: "Home-wear",
+    },
+  ];
+const collections: Collection[] =
+  //     {text:"Portfolio",link:"/"},
+  [
+    {
+      _id: "67e2b261630c109896771f90",
+      description: "wolf",
+      imageURL: "/winter.JPG",
       collectionName: "Winter Essentials",
     },
     {
-      _id:  "67e2dfbd630c109896771f91"
-      ,
+      _id: "67e2dfbd630c109896771f91",
       description: "wolf",
-      imageURL:"/maternity.jpg",
-      collectionName: "Maternity Essentials"
+      imageURL: "/maternity.jpg",
+      collectionName: "Maternity Essentials",
     },
     {
-      "_id":  "67e2e60dad1aeb81400d9970"
-      ,
+      _id: "67e2e60dad1aeb81400d9970",
       description: "wolf",
-      imageURL:"/summer.jpg",
-      collectionName: "Summer Essentials"
-     
+      imageURL: "/summer.jpg",
+      collectionName: "Summer Essentials",
     },
-]
-
+  ];
 
 // export const testProducts: Product[] = [
 //     {
@@ -163,26 +161,21 @@ const collections:Collection[]=
 //     //   productCare: ["Dry clean only", "Store in a cool, dry place"]
 //     // }
 //   ];
-  
-  // Sample Cart Items
 
-  
-  // Sample Image Variants
-  // export const testImageVariants: ImageVariant[] = [
-  //   {
-  //     image: "https://example.com/images/handbag-black-1.jpg",
-  //     color: "Black"
-  //   },
-  //   {
-  //     image: "https://example.com/images/sneakers-white-1.jpg",
-  //     color: "White"
-  //   }
-  // ];
-  
+// Sample Cart Items
 
+// Sample Image Variants
+// export const testImageVariants: ImageVariant[] = [
+//   {
+//     image: "https://example.com/images/handbag-black-1.jpg",
+//     color: "Black"
+//   },
+//   {
+//     image: "https://example.com/images/sneakers-white-1.jpg",
+//     color: "White"
+//   }
+// ];
 
-
- const constants={Categories:Categories,collections:collections,
-}
+const constants = { Categories: Categories, collections: collections };
 
 export default constants;
