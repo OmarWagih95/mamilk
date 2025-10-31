@@ -228,7 +228,7 @@ const ProductPage = () => {
                       width={450}
                       height={600}
                       alt={`Product ${selectedColor} ${index + 1}`}
-                      unoptimized
+                      loading="lazy"
                       className="w-full aspect-[182/243] object-top object-cover"
                     ></Image>
                   </div>
