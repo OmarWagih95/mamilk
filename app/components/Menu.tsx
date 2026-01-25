@@ -104,7 +104,7 @@ const Menu: React.FC = () => {
           setOpen(false)
           router.push(`/pages/productsPage?categoryID=687deebe4dd929c4dd905850&season=all`)}}
       >
-        Baby
+        Ramadan
       </button>
       </div>
                 </div>
