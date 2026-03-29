@@ -18,14 +18,14 @@ const HeroCarousel = () => {
       desktopPosition: { top: "80%", left: "48%" },
       mobilePosition: { top: "70%", left: "54%" },
     },
-    {
-      desktopImage: "/hero/5d.jpeg",
-      mobileImage: "/hero/5m.jpeg",
-      path: "/pages/productsPage?season=all",
-      title: "Shop Now",
-      desktopPosition: { top: "60%", left: "80%" },
-      mobilePosition: { top: "90%", left: "45%" },
-    },
+    // {
+    //   desktopImage: "/hero/5d.jpeg",
+    //   mobileImage: "/hero/5m.jpeg",
+    //   path: "/pages/productsPage?season=all",
+    //   title: "Shop Now",
+    //   desktopPosition: { top: "60%", left: "80%" },
+    //   mobilePosition: { top: "90%", left: "45%" },
+    // },
     {
       desktopImage: "/hero/2d.jpg",
       mobileImage: "/hero/2m.jpg",
