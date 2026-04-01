@@ -1,19 +1,12 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = `mongodb+srv://mamilkcs:${process.env.MONGO_PASSWORD}@cluster0.wwpxp.mongodb.net/mamilk?retryWrites=true&w=majority&appName=Cluster0`;
-
-if (!MONGODB_URI) {
+if (!process.env.MONGO_PASSWORD) {
   throw new Error("Please define the MONGO_PASSWORD environment variable");
 }
 
-let cached = (global as any).mongoose;
-
-if (!cached) {
-  cached = (global as any).mongoose = {
-    conn: null,
-    promise: null,
-  };
-}
+// 👇 global cache (VERY IMPORTANT)
+let cached = (global as any).mongoose || { conn: null, promise: null };
 
 export const ConnectDB = async () => {
   if (cached.conn) {
@@ -21,34 +14,17 @@ export const ConnectDB = async () => {
   }
 
   if (!cached.promise) {
-    console.log("🔌 Creating new MongoDB connection...");
-
-    cached.promise = mongoose.connect(MONGODB_URI, {
+    const options = {
       bufferCommands: false,
+      maxPoolSize: 5, // lower = safer for free tier
+    };
 
-      // 👇 VERY IMPORTANT for Vercel
-      serverSelectionTimeoutMS: 5000, // fail fast if can't connect
-      connectTimeoutMS: 10000,
-
-      // optional but helpful
-      maxPoolSize: 10,
-    })
-    .then((mongoose) => {
-      console.log("✅ MongoDB connected");
-      return mongoose;
-    })
-    .catch((err) => {
-      console.error("❌ MongoDB connection failed:", err);
-      throw err;
-    });
+    cached.promise = mongoose.connect(MONGODB_URI, options);
   }
 
-  try {
-    cached.conn = await cached.promise;
-  } catch (e) {
-    cached.promise = null; // allow retry on next request
-    throw e;
-  }
-
+  cached.conn = await cached.promise;
   return cached.conn;
 };
+
+// 👇 save to global
+(global as any).mongoose = cached;
