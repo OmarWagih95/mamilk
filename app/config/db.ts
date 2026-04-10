@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = `mongodb+srv://mamilkcs:${process.env.MONGO_PASSWORD}@cluster0.wwpxp.mongodb.net/mamilk?retryWrites=true&w=majority&appName=Cluster0`;
+// const MONGODB_URI = `mongodb+srv://mamilkcs:${process.env.MONGO_PASSWORD}@cluster0.wwpxp.mongodb.net/mamilk?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI = `mongodb+srv://mamilk:${process.env.MONGO_PASSWORD}@cluster0.xbfppld.mongodb.net/mamilk?retryWrites=true&w=majority&appName=Cluster0`;
 if (!process.env.MONGO_PASSWORD) {
   throw new Error("Please define the MONGO_PASSWORD environment variable");
 }
