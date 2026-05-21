@@ -3,13 +3,8 @@ import productModel from "@/app/modals/productsModel";
 import { ConnectDB } from "@/app/config/db";
 import { NextResponse } from "next/server";
 
-const loadDB = async () => {
-    await ConnectDB();
-};
-
-loadDB();
-
 export async function GET(req: Request) {
+    await ConnectDB();
     const { searchParams } = new URL(req.url);
     const categoryID = searchParams.get("categoryID")!;
     console.log('categoryID'+categoryID)

@@ -4,13 +4,8 @@ import mongoose from "mongoose";
 import productModel from "@/app/modals/productsModel";
 import { NextResponse } from "next/server";
 
-const loadDB =async()=>{
-    console.log('hna');
-    await ConnectDB();
-}
-
-loadDB();
 export async function GET (request:Request){
+    await ConnectDB();
     const url = new URL(request.url);
     const searchValue = url.searchParams.get("searchValue");
     console.log('search'+searchValue)

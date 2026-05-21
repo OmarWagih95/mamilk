@@ -2,14 +2,8 @@ import { ConnectDB } from "@/app/config/db";
 import  newSletterModel from "@/app/modals/newSletterModel";
 import { NextResponse } from "next/server";
 
-const loadDB = async () => {
-    console.log('hna');
-    await ConnectDB();
-}
-
-loadDB();
-
 export async function POST(request: Request) {
+    await ConnectDB();
     const data = await request.json();
     console.log('Name'+data.name+data.number);
 

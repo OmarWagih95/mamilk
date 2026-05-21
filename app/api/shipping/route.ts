@@ -3,12 +3,7 @@ import { NextResponse } from "next/server";
 import clientPromise from '../../lib/mongodb';
 
 
-const loadDB =async()=>{
-    console.log('hna');
-    await ConnectDB();
-}
 
-loadDB();
 
 export async function GET(request: Request) {
     const client = await clientPromise;

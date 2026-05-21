@@ -6,14 +6,8 @@ import productsModel from "@/app/modals/productsModel"; // Import productsModel
 import axios from "axios";
 import { NextResponse } from "next/server";
 
-const loadDB = async () => {
-    console.log('hna');
-    await ConnectDB();
-}
-
-loadDB();
-
 export async function POST(request: Request) {
+    await ConnectDB();
     try {
         const data = await request.json();
         console.log('paymentData' + data.total);

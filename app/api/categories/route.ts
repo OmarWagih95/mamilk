@@ -5,13 +5,8 @@ import { NextResponse } from "next/server";
 import collectionsModel from "@/app/modals/categoriesModel";
 import categoriesModel from "@/app/modals/categoriesModel";
 
-const loadDB = async () => {
-    await ConnectDB();
-};
-
-loadDB();
-
 export async function GET(req: Request) {
+    await ConnectDB();
     const { searchParams } = new URL(req.url);
     const categoryID = searchParams.get("categoryID")!;
     console.log('categoryID'+categoryID)

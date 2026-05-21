@@ -2,13 +2,8 @@
 import { ConnectDB } from "@/app/config/db";
 import SubCategorysModel from "@/app/modals/subCollectionsModal";
 import { NextResponse } from "next/server";
-const loadDB = async () => {
-    await ConnectDB();
-};
-
-loadDB();
-
 export async function GET(req: Request) {
+    await ConnectDB();
     const { searchParams } = new URL(req.url);
     const collectionID = searchParams.get("collectionID")!;
     console.log('collectionID'+collectionID)
@@ -26,6 +21,7 @@ export async function GET(req: Request) {
     }
 }
 export async function DELETE(req: Request) {
+    await ConnectDB();
     const { searchParams } = new URL(req.url);
     const SubCategoryID = searchParams.get("SubCategoryID")!;
     console.log('SubCategoryID'+SubCategoryID)
@@ -44,6 +40,7 @@ export async function DELETE(req: Request) {
 }
 
 export async function PUT(request:Request){
+    await ConnectDB();
     const { searchParams } = new URL(request.url);
     const SubCategoryID = searchParams.get("SubCategoryID") 
     console.log('SubCategoryID');
@@ -62,6 +59,7 @@ export async function PUT(request:Request){
 }
 
 export async function POST(request:Request){
+    await ConnectDB();
     const req=await request.json()
     console.log(req)
     try {
