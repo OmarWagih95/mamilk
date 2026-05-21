@@ -19,7 +19,7 @@ const BestSellers = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios('/api/collections?collectionID=67ffaa228416009f14c31e4c');
+        const res = await axios('/api/collections?collectionID=6a0ef7c2bba911c404f00b60');
         const collectionData = res?.data?.data;
         console.log("collectionData"+ collectionData.collection.collectionName)
   

@@ -17,8 +17,7 @@ const MoreToShop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios('/api/collections?collectionID=67ff8a79ad6f2eb3c9425e44');
-        console.log("Response:", res?.data);
+        const res = await axios('/api/collections?collectionID=6a0ef842bba911c404f00b67');
         const collectionData = res?.data?.data ;
         if (!collectionData) {
           console.error("No collection data found");

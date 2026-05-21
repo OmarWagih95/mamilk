@@ -1,0 +1,31 @@
+[
+  {
+    "_id": { "$oid": "67e2b261630c109896771f90" },
+    "categoryName": "Tops",
+    "description": "wolf"
+  },
+  {
+    "_id": { "$oid": "67e2dfbd630c109896771f91" },
+    "categoryName": "Dresses"
+  },
+  {
+    "_id": { "$oid": "67e2e60dad1aeb81400d9970" },
+    "categoryName": "Bottoms"
+  },
+  {
+    "_id": { "$oid": "67e3c7112fe97723301d6ff4" },
+    "categoryName": "Maternity"
+  },
+  {
+    "_id": { "$oid": "67e3c7182fe97723301d6ff8" },
+    "categoryName": "Sets"
+  },
+  {
+    "_id": { "$oid": "6900a00e71add2414e1e0d50" },
+    "categoryName": "Outlet"
+  },
+  {
+    "_id": { "$oid": "6905038e1271c23db05b5dc9" },
+    "categoryName": "Home-wear"
+  }
+]

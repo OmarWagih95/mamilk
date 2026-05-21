@@ -6,7 +6,7 @@ const Categories: Category[] =
     {
       _id: "67e2b261630c109896771f90",
       categoryName: "Tops",
-      description: "wolf",
+      description: "",
     },
     {
       _id: "67e2dfbd630c109896771f91",
@@ -38,19 +38,19 @@ const collections: Collection[] =
   [
     {
       _id: "67e2b261630c109896771f90",
-      description: "wolf",
+      description: "",
       imageURL: "/winter.JPG",
       collectionName: "Winter Essentials",
     },
     {
       _id: "67e2dfbd630c109896771f91",
-      description: "wolf",
+      description: "",
       imageURL: "/maternity.jpg",
       collectionName: "Maternity Essentials",
     },
     {
       _id: "67e2e60dad1aeb81400d9970",
-      description: "wolf",
+      description: "",
       imageURL: "/summer.jpg",
       collectionName: "Summer Essentials",
     },

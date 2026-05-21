@@ -31,7 +31,10 @@ const nextConfig: NextConfig = {
             {
               protocol: "https",
               hostname: "nos3hy6pzl.ufs.sh",
-
+            },
+            {
+              protocol: "https",
+              hostname: "res.cloudinary.com",
             },
     ]
 
