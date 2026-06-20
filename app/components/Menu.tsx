@@ -7,10 +7,14 @@ import { fadeInMenu } from '../variants/fadIn';
 import { FaArrowRight } from 'react-icons/fa6';
 import constants from '../constants';
 import { useRouter } from 'next/navigation'
-import { Collection } from '../interfaces/interfaces';
+import { Collection, Category } from '../interfaces/interfaces';
 import axios from 'axios';
 
-const Menu: React.FC = () => {
+interface MenuProps {
+  categories?: Category[];
+}
+
+const Menu: React.FC<MenuProps> = ({ categories = constants.Categories }) => {
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
@@ -63,7 +67,7 @@ const Menu: React.FC = () => {
                     paddingBottom: summary ? '0.25rem' : '0',
                   }}
                 >
-                  {constants.Categories.map((category, index) => (
+                  {categories.map((category, index) => (
                     <div key={index} className="flex flex-col gap-2 text-white">
                       <div
                         className="flex items-center cursor-pointer py-1"

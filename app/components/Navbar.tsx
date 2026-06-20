@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { pagePadding } from "../styles";
 import constants from "../constants";
 import AnnouncmentBar from "./AnnouncmentBar";
+import { Category } from "../interfaces/interfaces";
 import { useRouter } from "next/navigation";
 // import { useEffect, useState } from 'react'
 // import { CartItem } from '../interfaces/interfaces'
@@ -19,6 +20,22 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [takeTop, setTakeTop] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+  const [categories, setCategories] = useState<Category[]>(constants.Categories);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/categories?categoryID=all");
+        const json = await res.json();
+        if (json.data && Array.isArray(json.data)) {
+          setCategories(json.data);
+        }
+      } catch (error) {
+        console.error("Error fetching categories in Navbar:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,7 +100,7 @@ const Navbar = () => {
 
         <div className="flex items-center">
           <NavIcons />
-          <Menu />
+          <Menu categories={categories} />
         </div>
       </div>
       {/* //meduimSize */}
@@ -92,7 +109,7 @@ const Navbar = () => {
       >
         <div className="flex w-1/3 items-center justify-start gap-3">
           {/* Categories with Dropdowns */}
-          {constants.Categories.map((category, index) => (
+          {categories.map((category, index) => (
             <div key={index} className="relative">
               <button
                 className="lg:text-xs xl:text-sm font-bold tracking-wide border-loading-effect gap-4 transform transition-transform duration-500 ease-out whitespace-nowrap"

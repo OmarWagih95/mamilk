@@ -16,8 +16,8 @@ export type mediaType= "image" | "video"
   export interface Category {
     _id: string;
     categoryName:string;
-    description:string;
-    imageURL:string;
+    description?:string;
+    imageURL?:string;
 
 }
   export interface Collection {
